@@ -5,9 +5,7 @@ Color palette:
 -->
  
 <p align="center">
-  <a href="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit_logo.png">
-    <img src="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit_logo.png" alt="PicoUnits logo">
-  </a>
+  <img src="media\picounit_logo.png" alt="PicoUnits logo" style="max-width:600px;">
 </p>
 <h4 align="center">A runtime type system for numerical quantities.</h4>
 <p align="center">
@@ -28,9 +26,6 @@ It is not automatic.
 ![Coverage](https://img.shields.io/badge/coverage-68%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
   
-> [!NOTE]
-> PicoUnits is the dimensional environment underlying `PyFea`, `PicoMaterials`, and other cross-domain engineering projects.
- 
 ### Overview
 
 Here we go again! Version 1.1.0 lets go.
