@@ -36,48 +36,13 @@ Here we go again! Version 1.1.0 lets go.
 - Finish up on the 2026-08-24 and release 1.1.0
 - Finish most of the issues below: (Will remove over time.)
 
-Finish alot of these issues:
-.fundamental for qualities to expose the raw dimensions instead of any derived units1.1.0
-Status: Open.
-#35 In Bowley-Systems/PicoUnits;· wgbowley opened 3d ago
-1 comment
-wgbowley
-Custom dynamic loaders structures for .uiv parsing1.1.0
-Status: Open.
-#34 In Bowley-Systems/PicoUnits;· wgbowley opened 1w ago
-2 comments
-wgbowley
-Readme fix, forgot ### features in the overview of the readme.1.1.0
-Status: Open.
-#32 In Bowley-Systems/PicoUnits;· wgbowley opened 3w ago
-5 comments
-wgbowley
-Fix arrays such that they can encoded with dimensions other than just dimensionless1.1.0
-UnitValuesA typed language for numerical quantities
-Status: Open.
-#31 In Bowley-Systems/PicoUnits;· wgbowley opened 3w ago
-wgbowley
-Enable constants to show up in text editors when doing from picounits import1.1.0
-Status: Open.
-#30 In Bowley-Systems/PicoUnits;· wgbowley opened 3w ago
-wgbowley
-Conversion layer that handles multiple vector representationsenhancementNew feature or request
-help wantedExtra attention is needed
-RuntimeIssues related to picounit dimesional analysis etc in runtime.
-Status: Open.
-#25 In Bowley-Systems/PicoUnits;· wgbowley opened on Jul 7
-Unit test coverage for picounits: Objective 100% core1.0.6
-1.1.0
-Status: Open.
-#24 In Bowley-Systems/PicoUnits;· wgbowley opened on Jul 7
-2 comments
-wgbowley
-Add better static resolve for methodsenhancementNew feature or request
-help wantedExtra attention is needed
-Status: Open.
-#9 In Bowley-Systems/PicoUnits;· wgbowley opened on May 10
-Support trigonometric functions for complex scalarsenhancementNew feature or request
-help wantedExtra attention is needed
-RuntimeIssues related to picounit dimesional analysis etc in runtime.
-Status: Open.
-#2 In Bowley-Systems/PicoUnits;· wgbowley opened on Jan 7
+Finish a lot of these issues:
+- fundamental for qualities to expose the raw dimensions instead of any derived units
+- Custom dynamic loaders structures for .uiv parsing
+- Readme fix, forgot ### features in the overview of the readme
+- Fix arrays such that they can encoded with dimensions other than just dimensionless
+- Enable constants to show up in text editors when doing from picounits import
+- Conversion layer that handles multiple vector representations
+- Unit test coverage for picounits: Objective 100%
+- Add better static resolve for methods
+- Support trigonometric functions for complex scalars
