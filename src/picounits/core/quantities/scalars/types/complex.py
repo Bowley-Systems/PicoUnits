@@ -55,10 +55,9 @@ class ComplexPacket(ScalarPacket):
         prefix_difference = prefix.value - PrefixScale.BASE.value
         self.value *= self._get_factor(prefix_difference)
 
-    @property
-    def name(self) -> str:
+    def name(self, fundamental) -> str:
         """ Returns the packet name as value + prefix(unit) """
-        value, prefix = self._normalize() 
+        value, prefix = self._normalize()
 
         if isinstance(value, complex):
             # Rounds imaginary & real parts if complex
@@ -68,7 +67,7 @@ class ComplexPacket(ScalarPacket):
         else:
             value = round(value, DEFAULT_SIGNIFICANT_FIGURES)
 
-        return f"{value} {prefix}({self.unit.name()})"
+        return f"{value} {prefix}({self.unit.name(fundamental)})"
 
     @property
     def magnitude(self) -> int | float:
@@ -239,7 +238,3 @@ class ComplexPacket(ScalarPacket):
         """ Defines the behavior for greater than or equal to comparison """
         _ = other
         self._raise_ordering_error()
-
-    def __repr__(self) -> str:
-        """ Displays the packet name """
-        return str(self.name)

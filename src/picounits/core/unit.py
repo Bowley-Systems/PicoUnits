@@ -104,36 +104,42 @@ class Unit:
 
     def name(self, fundamental: bool = False) -> str:
         """ Returns the units name as dimensions """
+        derived = {}
+        if fundamental is True:
+            # Returns fundamental notation
+            return self.unit_construction(derived)
+
         if self._name_cache is None:
+            # Constructs and caches the full notation
             derived = get_derived_units()
-            if fundamental:
-                # Assumes no derived units for fundamental form
-                derived = None
-
-            # Primary: Check exact match first
-            for symbol, unit in derived.items():
-                if self.dimensions == unit.dimensions:
-                    self._name_cache = symbol
-                    return self._name_cache
-
-            # Secondary: Try partial substitution
-            remaining = list(self.dimensions)
-            result_parts = []
-
-            for symbol, unit in derived.items():
-                derived_dims = list(unit.dimensions)
-                if all(d in remaining for d in derived_dims):
-                    # Remove matched dimensions from remaining
-                    for d in derived_dims:
-                        remaining.remove(d)
-
-                    result_parts.append(symbol)
-
-            # Fallback: Append non-substituted dimensions
-            result_parts.extend(str(d.name) for d in remaining)
-            self._name_cache = "·".join(result_parts)
+            self._name_cache = self.unit_construction(derived)
 
         return self._name_cache
+
+    def unit_construction(self, derived: dict) -> str:
+        """ Constructs the unit with fundamental and/or derived notation """
+        # Primary: Check exact match first
+        for symbol, unit in derived.items():
+            if self.dimensions == unit.dimensions:
+                self._name_cache = symbol
+                return self._name_cache
+
+        # Secondary: Try partial substitution
+        remaining = list(self.dimensions)
+        result_parts = []
+
+        for symbol, unit in derived.items():
+            derived_dims = list(unit.dimensions)
+            if all(d in remaining for d in derived_dims):
+                # Remove matched dimensions from remaining
+                for d in derived_dims:
+                    remaining.remove(d)
+
+                result_parts.append(symbol)
+
+        # Fallback: Append non-substituted dimensions
+        result_parts.extend(str(d.name) for d in remaining)
+        return "·".join(result_parts)
 
     @property
     def length(self) -> int:
