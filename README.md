@@ -3,7 +3,11 @@ Color palette:
 #006d77ff, 
 #d92c2aff 
 -->
- 
+
+> [!IMPORTANT]
+> This branch is version 1.0.8 of PicoUnits. This version is no longer supported. Move to the main branch for the latest version.
+
+
 <p align="center">
   <a href="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit_logo.png">
     <img src="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit_logo.png" alt="PicoUnits logo">
