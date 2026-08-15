@@ -127,3 +127,8 @@ class ArrayPacket(VectorPacket):
         """ Defines the behavior for ceiling method """
         factory = import_factory("ArrayPacket.__ceil__")
         return factory.create(ceil(self.value), self.unit)
+
+    def __format__(self, format_spec: str) -> str:
+        """ Formats the string based on user input through 'format_spec'"""
+        _ = format_spec
+        return self.name(fundamental=False)
