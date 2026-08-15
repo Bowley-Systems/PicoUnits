@@ -5,7 +5,7 @@ Color palette:
 -->
  
 <p align="center">
-  <img src="media\picounit_logo.png" alt="PicoUnits logo" style="max-width:600px;">
+  <img src="media\picounit_logo.png" alt="PicoUnits logo" style="max-width:550px;">
 </p>
 <h4 align="center">A runtime type system for numerical quantities.</h4>
 <p align="center">
