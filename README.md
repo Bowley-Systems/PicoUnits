@@ -9,9 +9,9 @@ Color palette:
     <img src="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit_logo.png" alt="PicoUnits logo">
   </a>
 </p>
-<p align="center">A runtime type system for numerical quantities. </p>
+<h4 align="center">A runtime type system for numerical quantities.</h4>
 <p align="center">
-  Define the type. Define the variable. Execute.
+  Define the type. Define the variable. Execute. <br>
   Automate physical meaning throughout your pipeline.
 </p>
 
