@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *(ISO-DATE is used for all updates)*
 
-## [1.0.6] - 2026-07-24
+## [1.0.6-1.0.8] - 2026-07-24
 
 ### Added
 - `.picounits` configuration file inheritance for base symbols and order
@@ -35,3 +35,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Documentation
 - Improved logo with dark/light mode support
 - New color palettes
+
+## [1.1.0] - 2027-08-24
+
+### Added
+*(work in progress)*
+
+### Changed
+*(work in progress)*
+
+### Fixed
+*(work in progress)*
+
+### Documentation
+*(work in progress)*

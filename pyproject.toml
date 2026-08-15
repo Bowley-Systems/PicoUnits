@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "PicoUnits"
 version = "1.0.8"
-description = "Explicit Units and Dimensional Analysis for Scientific Python"
+description = "A runtime type system for numerical quantities"
 
 readme = "README.md"
 requires-python = ">=3.8"

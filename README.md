@@ -24,137 +24,60 @@ Color palette:
 > [!NOTE]
 > PicoUnits is the dimensional environment underlying `PyFea`, `PicoMaterials`, and other cross-domain engineering projects.
  
-## Overview
- 
-PicoUnits is a dimensional constraint system for computational engineering.
-  
-Unlike general-purpose unit libraries, PicoUnits separates:
- 
-- The underlying algebraic structure of a physical quantity.
-- Prefixes represent scale along an existing dimensional axis.
-- The symbols used to represent dimensions and derived units belong to the application's `unit frame`.
+### Overview
 
-> [!important]
-> - Pluggable unit systems via `Unit Frames` (domain-specific base dimensions)
-> - Algebra-first unit system: no implicit or explicit unit conversion
-> - Prefixes are representational and do not participate in unit algebra
-> - Configuration format: `.uiv` and `.ut` with embedded validation
-> - Boundary validation via `@expects`
-> - Full numeric support: real, complex, and vector quantities
+Here we go again! Version 1.1.0 lets go.
 
-## Not a Unit Conversion Library
- 
-PicoUnits was never intended or designed as a universal unit conversion system.
- 
-It does not attempt to answer:
- 
-```text
-3 metres → ? feet
-```
- 
-Instead, it answers questions such as:
- 
-```text
-- Does this quantity have the required dimensions?
-- Are these two physical quantities algebraically compatible?
-- Can this solver safely consume this value?
-```
- 
-## What is a unit frame?
- 
-A unit frame defines the dimensional environment used by an application.
- 
-For example:
- 
-```text
-[symbols]
-time: s
-length: m
-mass: kg
-current: A
-TEMPERATURE: K
-amount: mol
-luminosity: cd
-dimensionless: ∅
-```
- 
-The underlying dimensional basis is independent of the notation used to represent it. The notation is simply a semantic layer applied over the same mathematical rules.
- 
-## What are .uiv & .ut?
- 
-Both are dimensionally aware formats. `.ut (unit types)` encodes custom base units for your system and `.uiv (unit informed values)` encodes value:unit pairs:
- 
-### `.ut`
- 
-```
-# Coilgun Units - Derived from Base Dimensions (kg, m, s, A, etc.)
-[version]
-format: 0.1.0
- 
-[units]
-ρ: kg/m^3
-V: kg*m^2*s^-3*A^-1
-```
- 
-### `.uiv`
- 
-All `value : unit` pairs exist in the form value `prefix(unit)`, for example:
- 
-```
-[version]
-format: 0.1.0
-unit_frame: units.ut
- 
-[notes]
-# Analytical model for a multi-stage coil-gun
-# Models electrical, magnetic and motional dynamics
- 
-[model]
-number_stages: 10 (∅)    # Explicitly dimensionless
- 
-# Millimeter -> prefix `m` and unit `m` hence prefix(unit), m(m)
-stage_gap: 10 m(m)
- 
-# Value without prefix (volts - empty prefix)
-voltage: 18 (V)         # Equivalent to ""(V)
-current_limit: 40 (A) 
-time_steps: 50 u(s)
-atmospheric_density: 1.225 (ρ)
-```
- 
-## Quick Start
- 
-```py
-from picounits import expects, VOLTAGE, CURRENT, RESISTANCE
- 
-@expects(VOLTAGE)
-def ohm_law(i, r):
-    return i * r
- 
-# Correct usage
-v = ohm_law(10 * CURRENT, 5 * RESISTANCE) 
-print(v) # Output: 50.0 (kg·m²·s⁻³·A⁻¹) (Derived units need to be pulled in via .ut)
- 
-# This would raise a DimensionError:
-# 'ohm_law' returned kg²·m⁴·s⁻⁶·A⁻³, expected kg·m²·s⁻³·A⁻¹ 
-```
- 
-## Installation 
- 
-To install:
-```bash
-# Recommended for most users
-pip install PicoUnits
-```
-or use `setuptools` locally:
- 
-```bash
-git clone https://github.com/wgbowley/PicoUnits.git
-cd PicoUnits
-pip install -e .
-```
- 
-## Documentation
- 
-> [!NOTE]
-> Documentation is available in [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs), with a standard introduction example available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
+### Aims:
+- 70% unit test coverage
+- Get the error list from `unitValues` into the `parser` 
+- Get everything in order for `PicoMaterials` (Perhaps even concurrent development at ~17th onwards)
+- Write a more concise version of the implementation and reference `unitValues` instead of having a leaky readme.
+- Finish up on the 2026-08-24 and release 1.1.0
+- Finish most of the issues below: (Will remove over time.)
+
+Finish alot of these issues:
+.fundamental for qualities to expose the raw dimensions instead of any derived units1.1.0
+Status: Open.
+#35 In Bowley-Systems/PicoUnits;· wgbowley opened 3d ago
+1 comment
+wgbowley
+Custom dynamic loaders structures for .uiv parsing1.1.0
+Status: Open.
+#34 In Bowley-Systems/PicoUnits;· wgbowley opened 1w ago
+2 comments
+wgbowley
+Readme fix, forgot ### features in the overview of the readme.1.1.0
+Status: Open.
+#32 In Bowley-Systems/PicoUnits;· wgbowley opened 3w ago
+5 comments
+wgbowley
+Fix arrays such that they can encoded with dimensions other than just dimensionless1.1.0
+UnitValuesA typed language for numerical quantities
+Status: Open.
+#31 In Bowley-Systems/PicoUnits;· wgbowley opened 3w ago
+wgbowley
+Enable constants to show up in text editors when doing from picounits import1.1.0
+Status: Open.
+#30 In Bowley-Systems/PicoUnits;· wgbowley opened 3w ago
+wgbowley
+Conversion layer that handles multiple vector representationsenhancementNew feature or request
+help wantedExtra attention is needed
+RuntimeIssues related to picounit dimesional analysis etc in runtime.
+Status: Open.
+#25 In Bowley-Systems/PicoUnits;· wgbowley opened on Jul 7
+Unit test coverage for picounits: Objective 100% core1.0.6
+1.1.0
+Status: Open.
+#24 In Bowley-Systems/PicoUnits;· wgbowley opened on Jul 7
+2 comments
+wgbowley
+Add better static resolve for methodsenhancementNew feature or request
+help wantedExtra attention is needed
+Status: Open.
+#9 In Bowley-Systems/PicoUnits;· wgbowley opened on May 10
+Support trigonometric functions for complex scalarsenhancementNew feature or request
+help wantedExtra attention is needed
+RuntimeIssues related to picounit dimesional analysis etc in runtime.
+Status: Open.
+#2 In Bowley-Systems/PicoUnits;· wgbowley opened on Jan 7
