@@ -39,12 +39,17 @@ Here we go again! Version 1.1.0 lets go.
 - Finish most of the issues below: (Will remove over time.)
 
 Finish a lot of these issues:
-- fundamental for qualities to expose the raw dimensions instead of any derived units
+
 - Custom dynamic loaders structures for .uiv parsing
 - Readme fix, forgot ### features in the overview of the readme
 - Fix arrays such that they can encoded with dimensions other than just dimensionless
-- Enable constants to show up in text editors when doing from picounits import
 - Conversion layer that handles multiple vector representations
 - Unit test coverage for picounits: Objective 100%
 - Add better static resolve for methods
 - Support trigonometric functions for complex scalars
+
+<br>
+Finished:
+
+- ~~fundamental for qualities to expose the raw dimensions instead of any derived units~~
+- ~~Enable constants to show up in text editors when doing from picounits import~~
