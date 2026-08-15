@@ -68,7 +68,7 @@ class ComplexPacket(ScalarPacket):
         else:
             value = round(value, DEFAULT_SIGNIFICANT_FIGURES)
 
-        return f"{value} {prefix}({self.unit.name})"
+        return f"{value} {prefix}({self.unit.name()})"
 
     @property
     def magnitude(self) -> int | float:
@@ -158,7 +158,7 @@ class ComplexPacket(ScalarPacket):
             format_spec = f".{DEFAULT_SIGNIFICANT_FIGURES}f"
 
         formatted_value = format(value, format_spec)
-        return f"{formatted_value} {prefix}({self.unit.name})"
+        return f"{formatted_value} {prefix}({self.unit.name()})"
 
     def __ceil__(self) -> Packet:
         """ Defines the behavior for ceiling method """

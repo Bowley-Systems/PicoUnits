@@ -57,7 +57,7 @@ class RealPacket(ScalarPacket):
         value, prefix = self._normalize()
         rounded_value = round(value, DEFAULT_SIGNIFICANT_FIGURES)
 
-        return f"{rounded_value} {prefix}({self.unit.name})"
+        return f"{rounded_value} {prefix}({self.unit.name()})"
 
     @property
     def magnitude(self) -> int | float:
@@ -105,7 +105,7 @@ class RealPacket(ScalarPacket):
             format_spec = f".{DEFAULT_SIGNIFICANT_FIGURES}f"
 
         formatted_value = format(value, format_spec)
-        return f"{formatted_value} {prefix}({self.unit.name})"
+        return f"{formatted_value} {prefix}({self.unit.name()})"
 
     def __ceil__(self) -> Packet:
         """ Defines the behavior for ceiling method """

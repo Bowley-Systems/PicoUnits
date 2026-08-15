@@ -102,11 +102,13 @@ class Unit:
 
         return Unit(*new_dimensions)
 
-    @property
-    def name(self) -> str:
+    def name(self, fundamental: bool = False) -> str:
         """ Returns the units name as dimensions """
         if self._name_cache is None:
             derived = get_derived_units()
+            if fundamental:
+                # Assumes no derived units for fundamental form
+                derived = None
 
             # Primary: Check exact match first
             for symbol, unit in derived.items():
@@ -241,8 +243,8 @@ class Unit:
 
     def __str__(self) -> str:
         """ returns the unit name as a string"""
-        return self.name
+        return self.name()
 
     def __repr__(self) -> str:
         """ Displays the unit name """
-        return f"<Unit: {self.name}>"
+        return f"<Unit: {self.name()}>"

@@ -83,7 +83,7 @@ class ArrayPacket(VectorPacket):
         value, prefix = self._normalize()
         rounded_value = np_round(value, DEFAULT_SIGNIFICANT_FIGURES)
 
-        return f"{rounded_value} {prefix}({self.unit.name})"
+        return f"{rounded_value} {prefix}({self.unit.name()})"
 
     @property
     def magnitude(self) -> float:
