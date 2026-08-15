@@ -29,7 +29,7 @@ Color palette:
 Here we go again! Version 1.1.0 lets go.
 
 ### Aims:
-- 70% unit test coverage
+- Greater than 80% unit test coverage
 - Get the error list from `unitValues` into the `parser` 
 - Get everything in order for `PicoMaterials` (Perhaps even concurrent development at ~17th onwards)
 - Write a more concise version of the implementation and reference `unitValues` instead of having a leaky readme.
