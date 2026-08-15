@@ -9,10 +9,10 @@ Color palette:
     <img src="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit_logo.png" alt="PicoUnits logo">
   </a>
 </p>
-<p align="center">A dimensional constraint system for computational engineering.</p>
+<p align="center">A runtime type system for numerical quantities. </p>
 <p align="center">
-  Define the dimensional environment of your application.<br>
-  Keep physical meaning attached to computation.
+  Define the type. Define the variable. Execute.
+  Automate physical meaning throughout your pipeline.
 </p>
 
 ---
