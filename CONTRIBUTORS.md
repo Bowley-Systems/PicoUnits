@@ -3,7 +3,7 @@
 Picounits is developed using:
 - `pylint` as the linter
 - `radon` as the complexity analyzer
-- `coverage` to check test coverage
+- `coverage` to check test coverage in (src/tests)
 - `tokei` as the code statistics analyzer 
 - `CSpell` for spell checking (Code Spell Checker, Bundled Dictionaries)
 - `UnitValues` for syntax highlighting for `.ut` and `.uiv`
