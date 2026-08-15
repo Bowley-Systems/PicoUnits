@@ -22,6 +22,7 @@ Make sure to update the coverage value
 (if unit tests are done for the update). 
 It is not automatic. 
 --> 
+
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
 ![Coverage](https://img.shields.io/badge/coverage-68%25-E14F4C?style=flat-square)
