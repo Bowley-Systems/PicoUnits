@@ -170,9 +170,16 @@ class ParseLines:
                 if all(isinstance(entry, (complex, int, float)) for entry in value):
                     # If all values are complex, int or float than construct array
                     array = []
-                    for idx, val in enumerate(value):
-                        quantity = ConstructQuantity.quantity(val, prefix[idx], unit[idx])
+                    unit_idx = 0
+
+                    for val in value:
+                        quantity = ConstructQuantity.quantity(
+                            val,
+                            prefix[unit_idx % len(prefix)],
+                            unit[unit_idx % len(unit)],
+                        )
                         array.append(quantity)
+                        unit_idx += 1
 
                     state.content[state.section][key] = array
                     continue

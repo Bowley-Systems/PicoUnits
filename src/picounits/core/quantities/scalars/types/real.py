@@ -179,7 +179,7 @@ class RealPacket(ScalarPacket):
 
     def __repr__(self) -> str:
         """ Displays the packet name """
-        return str(self.name)
+        return str(self.name(fundamental=False))
 
 
     # TRANSCENDENTAL METHODS
