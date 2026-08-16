@@ -15,6 +15,8 @@ Color palette:
 
 ---
 
+## Overview
+
 <!--
 Make sure to update the coverage value 
 (if unit tests are done for the update). 
@@ -26,8 +28,6 @@ It is not automatic.
 ![Coverage](https://img.shields.io/badge/coverage-68%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
   
-## Overview
-
 Here we go again! Version 1.1.0 lets go.
 
 ## Aims:
