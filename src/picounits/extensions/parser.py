@@ -32,7 +32,7 @@ class Parser:
         filepath: Path | str | IO | Any,
         derived: Path | str | IO | Any = None,
         loader: Loader | None = DynamicLoader
-    ) -> Loader | dict[str, Any]:
+    ) -> Loader:
         """ Parses .uiv file into an attribute tree structure """
         if derived:
             # Imports derived units if available
