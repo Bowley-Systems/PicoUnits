@@ -17,7 +17,7 @@ from typing import IO, Any
 
 from picounits.configuration.management import add_derived_units
 
-from picounits.extensions.loader import DynamicLoader
+from picounits.extensions.loader import Loader, DynamicLoader
 from picounits.extensions.core.syntax import ExtractPairs, QualityExtraction
 from picounits.extensions.core.construction import ConstructQuantity, ConstructUnits
 
@@ -28,8 +28,11 @@ class Parser:
     """ Parser for .ut & .uiv file formats"""
     @classmethod
     def open(
-        cls, filepath: Path | str | IO | Any, derived: Path | str | IO | Any = None
-    ) -> DynamicLoader:
+        cls,
+        filepath: Path | str | IO | Any,
+        derived: Path | str | IO | Any = None,
+        loader: Loader | None = DynamicLoader
+    ) -> Loader | dict[str, Any]:
         """ Parses .uiv file into an attribute tree structure """
         if derived:
             # Imports derived units if available
@@ -45,7 +48,10 @@ class Parser:
 
         # Parses lines into dynamic loader
         data = ParseLines.parse(lines, filepath)
-        return DynamicLoader(data)
+
+        # Returns data as loader or as dictionary structure
+        if loader in Loader.__subclasses__(): return loader(data)
+        return data
 
     @classmethod
     def import_derived(cls, filepath: Path | str | IO | Any) -> None:

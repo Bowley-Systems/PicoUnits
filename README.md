@@ -40,7 +40,6 @@ Here we go again! Version 1.1.0 lets go.
 
 ### Finish a lot of these issues:
 
-- Custom dynamic loaders structures for .uiv parsing
 - Readme fix, forgot ### features in the overview of the readme
 - Conversion layer that handles multiple vector representations
 - Unit test coverage for picounits: Objective 80% or greater
@@ -49,6 +48,7 @@ Here we go again! Version 1.1.0 lets go.
 
 ### Finished:
 
+- ~~Custom dynamic loaders structures for .uiv parsing~~
 - ~~fundamental for qualities to expose the raw dimensions instead of any derived units~~
 - ~~Enable constants to show up in text editors when doing from picounits import~~
 - ~~Fix arrays such that they can encoded with dimensions other than just dimensionless~~
