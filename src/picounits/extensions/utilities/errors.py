@@ -118,7 +118,7 @@ class DuplicateSectionError(ValueError):
 
 class InvalidKeyError(ValueError):
     """ Exception for malformed key-value pair """
-    CODE = "E012"
+    CODE = "E011"
 
     def __init__(self, line: str, line_num: int):
         """ Returns a malformed key-value error """
@@ -126,19 +126,9 @@ class InvalidKeyError(ValueError):
         super().__init__(msg)
 
 
-class InvalidUnitError(ValueError):
-    """ Exception for invalid or malformed unit definition """
-    CODE = "E014"
-
-    def __init__(self, unit: str, error: str):
-        """ Returns an invalid unit error """
-        msg = f"[{self.CODE}] Invalid unit definition '{unit!r}': {error}"
-        super().__init__(msg)
-
-
 class UnitNotFoundError(ValueError):
     """ Exception for referenced unit that doesn't exist """
-    CODE = "E015"
+    CODE = "E012"
 
     def __init__(self, unit: str, available_units: list):
         """ Returns a unit not found error """

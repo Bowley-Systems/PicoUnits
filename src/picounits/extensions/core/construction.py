@@ -22,7 +22,8 @@ from picounits.core.quantities.factory import Factory
 
 from picounits.extensions.utilities.operations import Operations
 from picounits.extensions.utilities.errors import (
-    ParserError, UnknownPrefix, ColumnAttribute, UnsupportedType, UnknownOperator
+    ParserError, UnknownPrefix, ColumnAttribute, UnsupportedType,
+    UnknownOperator, UnitNotFoundError 
 )
 
 from picounits.configuration.management import get_derived_units
@@ -178,8 +179,7 @@ class ConstructUnits:
 
         except KeyError:
             symbols = FBase.all_symbols()
-            msg = f"{token!r} is an unknown dimension. Supported dimensions are {symbols!r}"
-            raise ParserError(cls.__name__, msg) from None
+            raise UnitNotFoundError(token, symbols) from None
 
     @classmethod
     def _construct_unit_from_tokens(cls, tokens: list[str]) -> Unit:
