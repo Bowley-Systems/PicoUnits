@@ -31,7 +31,7 @@ class Parser:
         cls,
         filepath: Path | str | IO | Any,
         derived: Path | str | IO | Any = None,
-        loader: Loader | None = DynamicLoader
+        loader: Loader = DynamicLoader
     ) -> Loader:
         """ Parses .uiv file into an attribute tree structure """
         if derived:
@@ -48,10 +48,7 @@ class Parser:
 
         # Parses lines into dynamic loader
         data = ParseLines.parse(lines, filepath)
-
-        # Returns data as loader or as dictionary structure
-        if loader in Loader.__subclasses__(): return loader(data)
-        return data
+        return loader(data)
 
     @classmethod
     def import_derived(cls, filepath: Path | str | IO | Any) -> None:
