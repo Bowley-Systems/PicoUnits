@@ -13,8 +13,6 @@ Color palette:
   Automate physical meaning throughout your pipeline.
 </p>
 
----
-
 ## Overview
 
 <!--
