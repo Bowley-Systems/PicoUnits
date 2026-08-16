@@ -40,11 +40,9 @@ Here we go again! Version 1.1.0 lets go.
 
 ### Finish a lot of these issues:
 
+- Implement Errors and warning codes from .uiv and .ut from UnitValues language specification
 - Readme fix, forgot ### features in the overview of the readme
-- Conversion layer that handles multiple vector representations
 - Unit test coverage for picounits: Objective 80% or greater
-- Add better static resolve for methods
-- Support trigonometric functions for complex scalars
 
 ### Finished:
 
