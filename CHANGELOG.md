@@ -39,13 +39,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2027-08-24
 
 ### Added
-*(work in progress)*
+- .fundamental for exposing raw dimensions for debugging
+- Implemented errors and warning codes from UnitValues specification document
+- Custom loaders structures for .uiv parsing
 
 ### Changed
-*(work in progress)*
+- Changed the `unit_test` folder to `tests` in `/src`
 
 ### Fixed
-*(work in progress)*
+- Enabled constants to show up in the api promises for PicoUnits
+- Fixed array qualities in .uiv parsing to allow them to have dimensions
 
 ### Documentation
-*(work in progress)*
+- Added a contributors file rather than using `README.md` in `/docs`
+- Added a api reference document implemented in latex in `/docs`
+- Added a runtime specification document implement in latex in `/docs`
