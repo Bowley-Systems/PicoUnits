@@ -117,7 +117,7 @@ def kinetic_energy(mass: Q, velocity: Q) -> Q:
 
 Projectile_Mass = 12 * MASS
 energy = kinetic_energy(Projectile_Mass, final_v)
-print(f"Final Kinetic Energy: {energy:.3f} J")
+print(f"Final Kinetic Energy: {energy:.3f}")
 
 # ============ Example 6: Parser (introduction.uiv) ============
 next_step("6: Parser (introduction.uiv)")
