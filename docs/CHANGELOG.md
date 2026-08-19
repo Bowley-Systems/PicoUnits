@@ -39,12 +39,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2027-08-24
 
 ### Added
-- .fundamental for exposing raw dimensions for debugging
-- Implemented section and key attribute checking
-- Implemented errors and warning codes from UnitValues specification document
 - Custom loaders structures for .uiv parsing
 - Exposed the node attribute name within the API
 - Parser passes the file stem to the loader to use as name
+- .fundamental for exposing raw dimensions for debugging
+- Implemented section and key attribute checking
+- Implemented duplicate section detection
+- Implemented errors and warning codes from UnitValues specification document
 
 ### Changed
 - Changed the `unit_test` folder to `tests` in `/src`
