@@ -20,8 +20,9 @@ from picounits.extensions.utilities.attributes import AttributeCheck
 from picounits.extensions.core.syntax import ExtractPairs, QualityExtraction
 from picounits.extensions.core.construction import ConstructQuantity, ConstructUnits
 
-from picounits.extensions.utilities.errors import ParserError, BackCompatibilityWarning
-
+from picounits.extensions.utilities.errors import (
+    ParserError, BackCompatibilityWarning, DuplicateSectionError
+)
 
 class Parser:
     """ Parser for .ut & .uiv file formats"""
@@ -129,8 +130,11 @@ class ParseLines:
 
             is_section, name = cls._is_section(line)
             if is_section:
-                # Checks to ensure the section name is validate
+                # Ensures section is validate and not a duplication
                 AttributeCheck.validate_section(name, state.index)
+                if name in state.content:
+                    # Section Duplication check
+                    raise DuplicateSectionError(name, state.index)
 
                 # Updates section based if identified
                 state.section = name

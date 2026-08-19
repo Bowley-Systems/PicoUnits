@@ -20,7 +20,7 @@ class ParserError(ValueError):
 
     def __init__(self, caller: str, error: str):
         """ Returns a custom error message """
-        msg = f"[{self.CODE}] '{caller}' raised error: {error}. "
+        msg = f"[{self.CODE}] {caller!r} raised error: {error}. "
         super().__init__(msg)
 
 
@@ -30,7 +30,7 @@ class ParseListFailure(ValueError):
 
     def __init__(self, caller: Any, msg: str):
         """ Returns a failed casting error """
-        msg = f"[{self.CODE}] '{caller}' raised error: {msg}. "
+        msg = f"[{self.CODE}] {caller!r} raised error: {msg}. "
         super().__init__(msg)
 
 
@@ -91,7 +91,7 @@ class UnbalancedDepth(Exception):
 
     def __init__(self, caller: str, line: str, symbol: str):
         """ Returns a unbalanced depth error """
-        msg = f"[{self.CODE}] '{caller}' attempted to parse {line!r} but depth of {symbol!r} is unbalanced."
+        msg = f"[{self.CODE}] {caller!r} attempted to parse {line!r} but depth of {symbol!r} is unbalanced."
         super().__init__(msg)
 
 
@@ -101,7 +101,7 @@ class InvalidSectionError(ValueError):
 
     def __init__(self, section: str, line: str):
         """ Returns a malformed section error """
-        msg = f"[{self.CODE}] Malformed section header: {section!r} at line {line!r}. Expected format: [section_name.sub_section]"
+        msg = f"[{self.CODE}] Malformed section header: {section!r} at line {line!r}. Must be a validate section."
         super().__init__(msg)
 
 
@@ -109,10 +109,9 @@ class DuplicateSectionError(ValueError):
     """ Exception for duplicate section in file """
     CODE = "E010"
 
-    def __init__(self, section: str, filepath: str):
+    def __init__(self, section: str, line: int):
         """ Returns a duplicate section error """
-        filename = Path(filepath).name
-        msg = f"[{self.CODE}] Duplicate section '{section!r}' found in {filename!r}. Sections must be unique."
+        msg = f"[{self.CODE}] Duplicate section {section!r} at line: {line!r}. Sections must be unique."
         super().__init__(msg)
 
 
@@ -122,7 +121,7 @@ class InvalidKeyError(ValueError):
 
     def __init__(self, line: str, line_num: int):
         """ Returns a malformed key-value error """
-        msg = f"[{self.CODE}] Malformed key-value pair at line {line_num}: {line!r}. Expected format: key: value"
+        msg = f"[{self.CODE}] Malformed key-value pair at line {line_num}: {line!r}. Must be validate key."
         super().__init__(msg)
 
 
@@ -133,7 +132,7 @@ class UnitNotFoundError(ValueError):
     def __init__(self, unit: str, available_units: list):
         """ Returns a unit not found error """
         available = ", ".join(available_units) if available_units else "none defined"
-        msg = f"[{self.CODE}] Unit '{unit!r}' not found. Available units: {available}"
+        msg = f"[{self.CODE}] Unit {unit!r} not found. Available units: {available}"
         super().__init__(msg)
 
 
@@ -164,7 +163,7 @@ class BackCompatibilityWarning(ParserNotification):
         """ Returns a compatibility warning """
         filename = Path(file_path).name
         note = f"Tip: {filename} missing 'format' key."
-        compatibility = "Add 'version.format: 0.1.0' for compatibility."
+        compatibility = "Add 'version.format: 0.1.1' for compatibility."
 
         # Sets the message for display
         self.message = f"[{self.CODE}] {note} {compatibility}"
