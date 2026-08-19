@@ -127,7 +127,7 @@ To install:
 pip install PicoUnits
 ```
 
-## Documentation
+### Documentation
  
 > [!NOTE]
 >
