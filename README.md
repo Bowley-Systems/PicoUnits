@@ -2,6 +2,19 @@
 Color palette: 
 #006d77ff, 
 #d92c2aff 
+
+Hello,
+Picounits only exists because I got annoyed by the 
+uncertainty of other unit systems and I wanted a 
+language that can encode parameters into it (UnitValues).
+
+I think the final result here is quite reasonable for 
+that initial problem. I hope you enjoy using PicoUnits.
+
+William Bowley, 
+20th August, 2026
+
+P.S: Thanks for downloading our Picounits repository `▽`ʃ♡
 -->
  
 <p align="center">
@@ -34,31 +47,91 @@ PicoUnits is a dynamic runtime dimensional typing system for numerical quantitie
 > - Parses `UnitValues` languages (`.ut`) and unit-informed values (`.uiv`)
 > - Numerical support for real, complex, and vector array quantities
 
----
+## Unit conversion is uncertainty
 
-Here we go again! Version 1.1.0 lets go.
+PicoUnits removes uncertainty by reducing the set of units to one canonical set defined by the user.
 
-## Aims:
-- Greater than 80% unit test coverage
-- Get the error list from `unitValues` into the `parser` 
-- Get everything in order for `PicoMaterials` (Perhaps even concurrent development at ~17th onwards)
-- Write a more concise version of the implementation and reference `unitValues` instead of having a leaky readme.
-- Finish up on the 2026-08-24 and release 1.1.0
-- Finish most of the issues below: (Will remove over time.)
+It does not attempt to answer:
 
-### Finish a lot of these issues:
+How might one convert between systems at a boundary?
+```
+3 feet → ? meet (1/3.280839895...?) 
+↺ Each iteration
+```
 
-- Direct integration with `matplotlib` instead of having to do .stripped 
-- Readme fix, forgot ### features in the overview of the readme
-- Unit test coverage for picounits: Objective 80% or greater
-- Picounits documentation written in .tex | This is going to be sooo long...
+Because for computation, this is fundamentally flawed. It destroys certainty for implementation convenience.
 
-### Finished:
+```
+Define unit frame → Define derived units → Work within it, not outside it.
+```
 
-- ~~Custom dynamic loaders structures for .uiv parsing~~
-- ~~fundamental for qualities to expose the raw dimensions instead of any derived units~~
-- ~~Enable constants to show up in text editors when doing from picounits import~~
-- ~~Fix arrays such that they can encoded with dimensions other than just dimensionless~~
-- ~~Improve `introduction.py` to show derived units and debugging features like `.strip` and `.fundamental`.~~
-- ~~Fix array qualities to return as array qualities, allow for non-prefixed ones to work and loader improvements.~~
-- ~~Implement Errors and warning codes from `.uiv` and `.ut` from UnitValues language specification~~
+
+## What is a Unit Frame?
+
+A unit frame defines the dimensional system used by an application.
+ 
+For example:
+ 
+```text
+[symbols]
+time: s
+length: m
+mass: kg
+current: A
+temperature: K
+amount: mol
+luminosity: cd
+dimensionless: ∅
+```
+
+The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used.
+
+## What are `.ut` and `.uiv` 
+
+Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes value:unit pairs.
+
+`.ut` defines the custom units for your unit system:
+```
+[units]
+ρ: kg/m^3                 # Defines the unit for density
+```
+
+`.uiv` defines the quantities within your unit system:
+
+```
+[model]
+inlet_pressure: 101 k(ρ)  # 101 kPa using the defined unit ρ
+```
+See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) for more information.
+
+## Quick Start
+ 
+```py
+from picounits import expects, VOLTAGE, CURRENT, RESISTANCE
+ 
+@expects(VOLTAGE)
+def ohm_law(i, r):
+    return i * r
+ 
+# Correct Usage
+ohm_law(10 * CURRENT, 5 * RESISTANCE) 
+> Output: 50.0 (kg·m²·s⁻³·A⁻¹)
+
+# Incorrect Usage
+ohm_law(10 * CURRENT, 5 * VOLTAGE)
+> DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
+```
+
+## Installation 
+ 
+To install:
+```bash
+# Recommended for most users
+pip install PicoUnits
+```
+
+## Documentation
+ 
+> [!NOTE]
+>
+> Documentation is available in [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs), with a standard introduction example available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
