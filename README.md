@@ -93,7 +93,7 @@ Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` e
 `.ut` defines the custom units for your unit system:
 ```
 [units]
-ρ: kg/m^3                 # Defines the unit for density
+ρ: kg/m^3                 # Defines the unit for pressurdensitye
 ```
 
 `.uiv` defines the quantities within your unit system:
@@ -126,7 +126,6 @@ ohm_law(10 * CURRENT, 5 * VOLTAGE)
  
 To install:
 ```bash
-# Recommended for most users
 pip install PicoUnits
 ```
 
