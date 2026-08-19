@@ -39,6 +39,7 @@ It is not automatic.
 
 PicoUnits is a dynamic runtime dimensional typing system for numerical quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
+> [!important]
 > ### Features:
 > - Pluggable unit systems via `Unit Frames` for custom fundamental dimensions
 > - Parses `UnitValues` language formats (`.ut`) and unit-informed values (`.uiv`)
@@ -83,7 +84,7 @@ dimensionless: ∅
 
 The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used.
 
-## What are `.ut` and `.uiv`? 
+## What are `.ut` and `.uiv` 
 
 Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes value:unit pairs.
 
