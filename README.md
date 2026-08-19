@@ -129,6 +129,4 @@ pip install PicoUnits
 
 ### Documentation
  
-> [!NOTE]
->
-> Documentation is available in [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs), with a standard introduction example available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
+Documentation is available in [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs), with a standard introduction example available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
