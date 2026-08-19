@@ -10,9 +10,16 @@ current_phasor: 10+1j (A)
 axial_length: 50 m(m)
 outer_radius: 17.5 m(m)
 inner_radius: 6.25 m(m)
-wire_diameter: 1.25 m(m)
+wire_diameter: 1.25 m#(m)
 fill_factor: 0.7  (∅)
 
 [pole]
 axial_length: 10 m(m)
 outer_radius: 10 m(m)
+
+[test]
+test1: [1,1] n(A)
+test2: [
+    [1, 2],
+    [3, 4]
+], n(m), M(A)

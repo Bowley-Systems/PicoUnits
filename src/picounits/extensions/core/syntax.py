@@ -53,9 +53,7 @@ class ExtractPairs:
         state = ExtractionState()
 
         # Remove inline comments first
-        for comment_char in ('#', ';'):
-            if comment_char in line:
-                line = line[:line.index(comment_char)].rstrip()
+        if '#' in line: line = line[:line.index('#')].rstrip()
 
         for index, character in enumerate(line):
             state.index = index

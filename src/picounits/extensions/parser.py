@@ -165,30 +165,10 @@ class ParseLines:
                     # If format is found within the [version] section
                     state.format_status = True
 
-            # Extracts value, prefix and unit
+            # Extracts value, prefix and unit then constructs the quality
             value, prefix, unit = QualityExtraction.extract(raw_value)
-
-            # Constructs array of quantity (value_1: unit_1, ..., value_n: unit_n)
-            if isinstance(unit, list) and isinstance(value, list):
-                if all(isinstance(entry, (complex, int, float)) for entry in value):
-                    # If all values are complex, int or float than construct array
-                    array = []
-                    unit_idx = 0
-
-                    for val in value:
-                        quantity = ConstructQuantity.quantity(
-                            val,
-                            prefix[unit_idx % len(prefix)],
-                            unit[unit_idx % len(unit)],
-                        )
-                        array.append(quantity)
-                        unit_idx += 1
-
-                    state.content[state.section][key] = array
-                    continue
-
-            # Construct the quantity (Arrays, single value unit pairs)
             quantity = ConstructQuantity.quantity(value, prefix, unit)
+
             state.content[state.section][key] = quantity
 
         if not state.format_status:
@@ -214,6 +194,10 @@ class ParseLines:
         while open_count > close_count and state.index < len(lines):
             # Removes whitespaces and adds next_line
             next_line = lines[state.index].strip()
+
+            # Remove inline comments first
+            if '#' in next_line: next_line = next_line[:next_line.index('#')].rstrip()
+
             state.index += 1
             raw_value += ' ' + next_line
 

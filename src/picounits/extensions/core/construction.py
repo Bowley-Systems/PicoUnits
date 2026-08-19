@@ -67,6 +67,9 @@ class ConstructQuantity:
                 # Applies different units to each column
                 return cls._nested_array(value, prefix, unit)
 
+        # Pops the first unit to use for construction
+        if isinstance(unit, list): unit = unit.pop(0)
+
         # Simple lists, create array quantity e.x [10, 2] (kg*m*s^-2)
         prefix_obj = ConstructPrefix.construct_prefix(prefix)
         unit_obj = ConstructUnits.construct_unit(unit)

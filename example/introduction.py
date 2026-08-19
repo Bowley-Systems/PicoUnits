@@ -150,6 +150,8 @@ library = BASE_DIR / "introduction.uiv"
 parameters = Parser.open(library)
 parameters.info("library")
 
+print(type(parameters.coil.wire_diameter))
+
 axial_length = parameters.pole.axial_length
 outer_radius = parameters.pole.outer_radius
 volume = pi * outer_radius ** 2 * axial_length
