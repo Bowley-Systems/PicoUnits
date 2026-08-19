@@ -1,10 +1,8 @@
-<!-- 
-Color palette: 
+<!--
 #006d77ff, 
 #d92c2aff 
-
 Hello,
-Picounits only exists because I got annoyed by the 
+PicoUnits only exists because I got annoyed by the 
 uncertainty of other unit systems and I wanted a 
 language that can encode parameters into it (UnitValues).
 
@@ -14,9 +12,9 @@ that initial problem. I hope you enjoy using PicoUnits.
 William Bowley, 
 20th August, 2026
 
-P.S: Thanks for downloading our Picounits repository `▽`ʃ♡
+P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 -->
- 
+
 <p align="center">
   <img src="media\picounit_logo.png" alt="PicoUnits logo" style="max-width:400px;">
 </p>
@@ -44,7 +42,7 @@ PicoUnits is a dynamic runtime dimensional typing system for numerical quantitie
 > [!important]
 > ### Features:
 > - Pluggable unit systems via `Unit Frames` for custom fundamental dimensions
-> - Parses `UnitValues` languages (`.ut`) and unit-informed values (`.uiv`)
+> - Parses `UnitValues` language formats (`.ut`) and unit-informed values (`.uiv`)
 > - Numerical support for real, complex, and vector array quantities
 
 ## Unit conversion is uncertainty
@@ -55,7 +53,7 @@ It does not attempt to answer:
 
 How might one convert between systems at a boundary?
 ```
-3 feet → ? meet (1/3.280839895...?) 
+3 feet → ? metre (1/3.280839895...?) 
 ↺ Each iteration
 ```
 
@@ -86,14 +84,14 @@ dimensionless: ∅
 
 The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used.
 
-## What are `.ut` and `.uiv` 
+## What are `.ut` and `.uiv`? 
 
 Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes value:unit pairs.
 
 `.ut` defines the custom units for your unit system:
 ```
 [units]
-ρ: kg/m^3                 # Defines the unit for pressurdensitye
+ρ: kg/m^3                 # Defines the unit for density
 ```
 
 `.uiv` defines the quantities within your unit system:
