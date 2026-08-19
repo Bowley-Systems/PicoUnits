@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - .fundamental for exposing raw dimensions for debugging
+- Implemented section and key attribute checking
 - Implemented errors and warning codes from UnitValues specification document
 - Custom loaders structures for .uiv parsing
 - Exposed the node attribute name within the API
@@ -47,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Changed the `unit_test` folder to `tests` in `/src`
+- Limited strings to quoted strings aligning with `UnitValues` language specification
 
 ### Fixed
 - Enabled constants to show up in the api promises for PicoUnits

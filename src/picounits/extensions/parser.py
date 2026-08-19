@@ -16,6 +16,7 @@ from pathlib import Path
 from picounits.configuration.management import add_derived_units
 
 from picounits.extensions.loader import Loader, DynamicLoader
+from picounits.extensions.utilities.attributes import AttributeCheck
 from picounits.extensions.core.syntax import ExtractPairs, QualityExtraction
 from picounits.extensions.core.construction import ConstructQuantity, ConstructUnits
 
@@ -128,6 +129,9 @@ class ParseLines:
 
             is_section, name = cls._is_section(line)
             if is_section:
+                # Checks to ensure the section name is validate
+                AttributeCheck.validate_section(name, state.index)
+
                 # Updates section based if identified
                 state.section = name
                 state.content[name] = {}
@@ -146,7 +150,10 @@ class ParseLines:
                 msg = f"key-value pair outside section {line!r}"
                 raise ParserError(cls.__name__, msg) from None
 
+            # Extracts key and ensure the key name is validate
             key, raw_value = split_result
+            AttributeCheck.validate_key(key, state.index)
+
             if raw_value.startswith('['):
                 # Handles multi-line values (lists that span multiple lines)
                 raw_value = cls._handle_multi_line(state, lines, raw_value)

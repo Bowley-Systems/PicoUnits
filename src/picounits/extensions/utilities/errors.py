@@ -101,7 +101,7 @@ class InvalidSectionError(ValueError):
 
     def __init__(self, section: str, line: str):
         """ Returns a malformed section error """
-        msg = f"[{self.CODE}] Malformed section header: {section!r} at line {line!r}. Expected format: [section_name]"
+        msg = f"[{self.CODE}] Malformed section header: {section!r} at line {line!r}. Expected format: [section_name.sub_section]"
         super().__init__(msg)
 
 
