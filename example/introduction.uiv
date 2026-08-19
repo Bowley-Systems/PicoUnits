@@ -29,6 +29,3 @@ temperature_conductivity: [
   [423.0, 0.649],
   [473.0, 0.643]
 ] (K), M(kg^-1*m^-3*s^3*A^2)    # kelvin : siemens
-
-[stator]
-is_this_a_issue: 10
