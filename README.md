@@ -33,7 +33,6 @@ PicoUnits is a dynamic runtime dimensional typing system for numerical quantitie
 > - Pluggable unit systems via `Unit Frames` for custom fundamental dimensions
 > - Parses `UnitValues` languages (`.ut`) and unit-informed values (`.uiv`)
 > - Numerical support for real, complex, and vector array quantities
-> - Algebra-first type system — decreases uncertainty by removing unit conversion between systems
 
 ---
 
