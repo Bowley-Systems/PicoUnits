@@ -59,7 +59,7 @@ class Loader:
     """ Loads the values from the parser into attribute tree """
     def __init__(self, dictionary: dict[str, any], name: str | None = None) -> None:
         """ Ensures data stays in the correct category """
-        self.name = name
+        self.lx_name = name
 
         for key, value in dictionary.items():
             # Splits the path into keys -> e.i `vacuum.meta` -> ['vacuum', 'meta']
@@ -72,9 +72,9 @@ class Loader:
             # Initialize context if not provided
             context = LoaderContext(inline=inline)
 
-        if self.name is not None:
+        if self.lx_name is not None:
             # Use class name if available
-            name = self.name
+            name = self.lx_name
 
         # Print the current node within the tree
         connector = context.connector()
@@ -140,24 +140,24 @@ class Loader:
         attributes = {}
         # Iterates over the items within the node
         for key, value in self.__dict__.items():
-            if not key.startswith('_'):
+            if not key.startswith('lx_'):
                 attributes[key] = value
 
         return attributes
 
     def __getattr__(self, key: str) -> Any:
         """ Allow dynamic attribute access """
-        raise AttributeNotFound(key, self.name)
+        raise AttributeNotFound(key, self.lx_name)
 
     def __repr__(self):
         """ Returns the loaders direct members """
         attributes = self._attributes()
 
         items = ', '.join(attributes)
-        if self.name is None:
+        if self.lx_name is None:
             return f'Paths({items})'
 
-        return f'{self.name}({items})'
+        return f'{self.lx_name}({items})'
 
 
 class DynamicLoader(Loader):

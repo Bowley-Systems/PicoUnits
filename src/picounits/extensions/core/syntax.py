@@ -114,7 +114,7 @@ class ExtractBrackets:
                     # Returns content once end bracket is found
                     return line[open_index+1:index], index
 
-        raise UnbalancedDepth(cls.__name__, line, "[ ]")
+        raise UnbalancedDepth(cls.__name__, line, "[ ]") from None
 
 
 class ExtractParentheses:
@@ -141,7 +141,7 @@ class ExtractParentheses:
             cls._extract_content(line, state, length)
 
             # Raises unbalanced depth error if missing end parentheses
-            if state.depth > 0: raise UnbalancedDepth(cls.__name__, line, "( )")
+            if state.depth > 0: raise UnbalancedDepth(cls.__name__, line, "( )") from None
 
         return state.content
 
@@ -192,7 +192,7 @@ class QualityExtraction:
         """ Extracts value, prefix and unit from line. """
         if not isinstance(text, str):
             err = f"Expected str, got {type(text).__name__}"
-            raise ParserError(cls.__name__, err)
+            raise ParserError(cls.__name__, err) from None
 
         # Removes leading and trailing whitespaces
         text = text.strip()
@@ -219,7 +219,7 @@ class QualityExtraction:
         bracket_content = ExtractBrackets.extract_content(text)
         if not bracket_content:
             msg = f"Invalid list structure: {text!r}"
-            raise ParserError(cls.__name__, msg)
+            raise ParserError(cls.__name__, msg) from None
 
         # Splits content and end index
         content, end_index = bracket_content
@@ -273,7 +273,7 @@ class QualityExtraction:
                     return before[-1]
 
         msg = f"Invalid prefixes/unit structure: {unit_strings!r}"
-        raise ParserError(cls.__name__, msg)
+        raise ParserError(cls.__name__, msg) from None
 
     @classmethod
     def _from_parentheses(
@@ -300,4 +300,4 @@ class QualityExtraction:
             return (Deserialize.cast(split_prefix_unit), "", unit)
 
         msg = f"Invalid parentheses structure: {line!r}"
-        raise ParserError(cls.__name__, msg)
+        raise ParserError(cls.__name__, msg) from None

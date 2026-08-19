@@ -3,23 +3,29 @@ format: 0.1.0
 notes: "Example usage of .uiv for introduction.py"
 
 [circuit]
-voltage_range: [5, 12, 24] k(kg*m^2*s^-3*A^-1)
+# The current represented as a complex number
 current_phasor: 10+1j (A)
+voltage_range: [5, 12, 24] k(kg*m^2*s^-3*A^-1)  # Voltage
 
 [coil]
 axial_length: 50 m(m)
 outer_radius: 17.5 m(m)
 inner_radius: 6.25 m(m)
-wire_diameter: 1.25 m#(m)
+wire_diameter: 1.25 m(m)
 fill_factor: 0.7  (∅)
 
-[pole]
+[stator]
+num_poles: 10
+
+[stator.pole]
 axial_length: 10 m(m)
 outer_radius: 10 m(m)
 
-[test]
-test1: [1,1] n(A)
-test2: [
-    [1, 2],
-    [3, 4]
-], n(m), M(A)
+temperature_conductivity: [
+  [273.0, 0.697],
+  [293.0, 0.667],
+  [323.0, 0.663],
+  [373.0, 0.656],
+  [423.0, 0.649],
+  [473.0, 0.643]
+] (K), M(kg^-1*m^-3*s^3*A^2)    # kelvin : siemens

@@ -48,8 +48,13 @@ class Deserialize:
         # Check null/None
         if text.lower() in ("null", "none"): return None
 
-        # Default to string
-        return str(text)
+        # Check for format/version
+        parts = text.split('.')
+        if len(parts) >= 2 and all(part.isdigit() for part in parts):
+            return str(text)
+
+        err = "Could not parse as int, float, complex, bool, None, or quoted string. "
+        raise FailedCasting(text, err) from None
 
     @classmethod
     def is_quoted(cls, text: str) -> bool:
@@ -84,7 +89,7 @@ class Deserialize:
         """ case list notation Ex. "[1, 2, 3]" -> [1, 2, 3] """
         if not isinstance(text, str):
             err = f"Expected str, got {type(text).__name__}"
-            raise FailedCasting(text, err)
+            raise FailedCasting(text, err) from None
 
         text = text.strip()
         ParseListStructure.valid_list(text)
@@ -107,10 +112,10 @@ class ParseListStructure:
                 return
 
             msg = f"Malformed nested list (missing closing ']'): {text!r}"
-            raise ParseListFailure(cls.__name__, msg)
+            raise ParseListFailure(cls.__name__, msg) from None
 
         msg = f"Expected [item_1,...item_n], got: {text!r}"
-        raise ParseListFailure(cls.__name__, msg)
+        raise ParseListFailure(cls.__name__, msg) from None
 
     @classmethod
     def construct_list(cls, content: str) -> list:
@@ -131,7 +136,7 @@ class ParseListStructure:
 
             if not item_str:
                 msg = f"Empty element found in list (item at position {start})"
-                raise ParseListFailure(cls.__name__, msg)
+                raise ParseListFailure(cls.__name__, msg) from None
 
             # Recursive descent for nested lists
             result.append(cls._recursive_descent(item_str))
@@ -168,7 +173,7 @@ class ParseListStructure:
                     depth -= 1
                     if depth < 0:
                         msg = f"Unbalanced brackets in {content!r}"
-                        raise ParseListFailure(cls.__name__, msg)
+                        raise ParseListFailure(cls.__name__, msg) from None
                 elif character == ',' and depth == 0:
                     break
             else:
@@ -178,7 +183,7 @@ class ParseListStructure:
                     index += 1
                     if index >= length:
                         msg = f"unterminated escape in {content!r}"
-                        raise ParseListFailure(cls.__name__, msg)
+                        raise ParseListFailure(cls.__name__, msg) from None
 
                 elif character == quote_char:
                     quote_char = None
@@ -188,11 +193,11 @@ class ParseListStructure:
         # Validate at the end of the string
         if quote_char is not None:
             msg = f"Unterminated string in {content!r}"
-            raise ParseListFailure(cls.__name__, msg)
+            raise ParseListFailure(cls.__name__, msg) from None
 
         if depth != 0:
             msg = f"Unbalanced brackets in {content!r}"
-            raise ParseListFailure(cls.__name__, msg)
+            raise ParseListFailure(cls.__name__, msg) from None
 
         return index
 
@@ -204,6 +209,6 @@ class ParseListStructure:
                 return cls.construct_list(content[1:-1])
 
             msg = f"Malformed nested list (missing closing ']'): {content!r}"
-            raise ParseListFailure(cls.__name__, msg)
+            raise ParseListFailure(cls.__name__, msg) from None
 
         return Deserialize.cast(content)

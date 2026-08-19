@@ -103,7 +103,7 @@ class ConstructQuantity:
             if 0 <= index < len(prefix):
                 return prefix[index]
 
-            raise ColumnAttribute(prefix)
+            raise ColumnAttribute(prefix) from None
 
         # Defaults to base prefix.
         return ""
@@ -114,7 +114,7 @@ class ConstructQuantity:
         if 0 <= index < len(unit):
             return unit[index]
 
-        raise ColumnAttribute(unit)
+        raise ColumnAttribute(unit) from None
 
 
 class ConstructPrefix:
@@ -128,7 +128,7 @@ class ConstructPrefix:
 
         # Unknown prefix error
         valid_prefixes = PrefixScale.all_symbols()
-        raise UnknownPrefix(prefix, valid_prefixes)
+        raise UnknownPrefix(prefix, valid_prefixes) from None
 
 
 class ConstructUnits:
@@ -138,7 +138,7 @@ class ConstructUnits:
         """ Construct unit from parsed unit strings """
         if not isinstance(unit_str, str):
             # Handles unknown types by rasing a construction error
-            raise UnsupportedType(type(unit_str))
+            raise UnsupportedType(type(unit_str)) from None
 
         if not unit_str:
             # Handles dimensionless values

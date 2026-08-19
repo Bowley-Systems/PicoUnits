@@ -42,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - .fundamental for exposing raw dimensions for debugging
 - Implemented errors and warning codes from UnitValues specification document
 - Custom loaders structures for .uiv parsing
+- Exposed the node attribute name within the API
+- Parser passes the file stem to the loader to use as name
 
 ### Changed
 - Changed the `unit_test` folder to `tests` in `/src`

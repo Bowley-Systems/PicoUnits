@@ -23,7 +23,7 @@ It is not automatic.
 
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
-![Coverage](https://img.shields.io/badge/coverage-68%25-E14F4C?style=flat-square)
+![Coverage](https://img.shields.io/badge/coverage-60%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
   
 Here we go again! Version 1.1.0 lets go.
@@ -38,7 +38,6 @@ Here we go again! Version 1.1.0 lets go.
 
 ### Finish a lot of these issues:
 
-- Fix array qualities to return as array qualities and also allow for non-prefixed ones to work
 - Implement Errors and warning codes from .uiv and .ut from UnitValues language specification
 - Direct integration with `matplotlib` instead of having to do .stripped 
 - Readme fix, forgot ### features in the overview of the readme
@@ -51,3 +50,4 @@ Here we go again! Version 1.1.0 lets go.
 - ~~Enable constants to show up in text editors when doing from picounits import~~
 - ~~Fix arrays such that they can encoded with dimensions other than just dimensionless~~
 - ~~Improve `introduction.py` to show derived units and debugging features like `.strip` and `.fundamental`.~~
+- ~~Fix array qualities to return as array qualities, allow for non-prefixed ones to work and loader improvements.~~
