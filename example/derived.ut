@@ -1,0 +1,13 @@
+[version]
+format: 0.1.0
+
+[units.electrical]
+V: kg*m^2*s^-3*A^-1
+V/s: kg*m^2*s^-4*A^-1
+
+Ω: kg*m^2*s^-3*A^-2
+F: kg^-1*m^-2*s^4*A^2
+H: kg*m^2*s^-2*A^-2
+
+W: kg*m^2*s^-3
+J: kg*m^2*s^-2

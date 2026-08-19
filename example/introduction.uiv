@@ -2,6 +2,10 @@
 format: 0.1.0
 notes: "Example usage of .uiv for introduction.py"
 
+[circuit]
+voltage_range: [5, 12, 24] k(kg*m^2*s^-3*A^-1)
+current_phasor: 10+1j (A)
+
 [coil]
 axial_length: 50 m(m)
 outer_radius: 17.5 m(m)

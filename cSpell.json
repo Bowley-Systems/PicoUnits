@@ -112,6 +112,8 @@
     "ZEPTO",
     "ZETTA",
     "zlabel",
-    "zlim"
+    "zlim",
+    "latexmk",
+    "matplotlib"
   ]
 }

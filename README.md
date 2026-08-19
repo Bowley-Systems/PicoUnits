@@ -38,7 +38,9 @@ Here we go again! Version 1.1.0 lets go.
 
 ### Finish a lot of these issues:
 
+- Fix array qualities to return as array qualities and also allow for non-prefixed ones to work
 - Implement Errors and warning codes from .uiv and .ut from UnitValues language specification
+- Direct integration with `matplotlib` instead of having to do .stripped 
 - Readme fix, forgot ### features in the overview of the readme
 - Unit test coverage for picounits: Objective 80% or greater
 
@@ -48,3 +50,4 @@ Here we go again! Version 1.1.0 lets go.
 - ~~fundamental for qualities to expose the raw dimensions instead of any derived units~~
 - ~~Enable constants to show up in text editors when doing from picounits import~~
 - ~~Fix arrays such that they can encoded with dimensions other than just dimensionless~~
+- ~~Improve `introduction.py` to show derived units and debugging features like `.strip` and `.fundamental`.~~
