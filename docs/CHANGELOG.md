@@ -12,13 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `.picounits` configuration file inheritance for base symbols and order
 - Unit tests for extensions: construction, deserialization, syntax
-- New `extensions\core` module structure with `construction.py`, `deserialization.py`, `syntax.py`
+- New `extensions/core` module structure with `construction.py`, `deserialization.py`, `syntax.py`
 - Validation for derived unit imports (only one `.ut` file allowed)
-- lowercase names for all constant prefixes, dimensions and quality
+- Lowercase names for all constant prefixes, dimensions, and quantities
 
 ### Changed
-- Major refactor of `DynamicLoader` with identity behavior
-- Refactored `Parser` class for better maintainability / traceability
+- Major refactor of `DynamicLoader` with identity behaviour
+- Refactored `Parser` class for better maintainability and traceability
 - Improved module search path for users
 - Renamed `unit_validator` module to `expects`
 - Better error messages for parsing failures
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Reciprocal unit scaling error
 - Squared scaling for length (instead of linear scaling)
-- Area notion inconsistencies
+- Area notation inconsistencies
 - Missing format key warning handling
 - Column-wise prefix extraction for lists
 
@@ -36,26 +36,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved logo with dark/light mode support
 - New color palettes
 
-## [1.1.0] - 2027-08-24
+## [1.1.0] - 2027-08-21
 
 ### Added
-- Custom loaders structures for .uiv parsing
+- Custom loader structures for `.uiv` parsing
 - Exposed the node attribute name within the API
 - Parser passes the file stem to the loader to use as name
-- .fundamental for exposing raw dimensions for debugging
+- `.fundamental` for exposing raw dimensions for debugging
 - Implemented section and key attribute checking
 - Implemented duplicate section detection
 - Implemented errors and warning codes from UnitValues specification document
 
 ### Changed
 - Changed the `unit_test` folder to `tests` in `/src`
-- Limited strings to quoted strings aligning with `UnitValues` language specification
+- Limited strings to quoted strings, aligning with UnitValues language specification
 
 ### Fixed
-- Enabled constants to show up in the api promises for PicoUnits
-- Fixed array qualities in .uiv parsing to allow them to have dimensions
+- Enabled constants to show up in the API promises for PicoUnits
+- Fixed array quantities in `.uiv` parsing to allow them to have dimensions
 
 ### Documentation
 - Added a contributors file rather than using `README.md` in `/docs`
-- Added a api reference document implemented in latex in `/docs`
-- Added a runtime specification document implement in latex in `/docs`
+- Added an API reference document implemented in LaTeX in `/docs`
