@@ -42,9 +42,10 @@ It is not automatic.
 PicoUnits is a dynamic runtime dimensional typing system for numerical quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
 > [!important]
+>
 > ### Features:
 > - Configurable `unit frames` with custom symbols and dimension ordering
-> - Parses `UnitValues` language formats (`.ut`) and unit-informed values (`.uiv`)
+> - Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`)
 > - Numerical support for real, complex, and vector quantities
 
 ## Why convert at all?

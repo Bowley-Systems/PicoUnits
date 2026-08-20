@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "PicoUnits"
-version = "1.1.0"
-description = "A runtime type system for numerical quantities"
+version = "1.0.9"
+description = "A Dynamic Runtime Type System for Dimensional Numerical Quantities."
 
 readme = "README.md"
 requires-python = ">=3.10"
