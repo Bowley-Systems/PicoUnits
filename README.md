@@ -91,7 +91,7 @@ See the [.picounit](.picounits) file for implementation details.
 
 ## What are `.ut` and `.uiv`?
 
-Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes qualities as value:unit pairs.
+Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes qualities as `value prefix(unit)` groups.
 
 `.ut` defines the custom units for your unit system:
 ```
@@ -108,7 +108,9 @@ inlet_pressure: 101 k(ρ)  # 101 kPa using the defined unit ρ
 See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) for notation and language specification.
 
 ## Quick Start
- 
+
+A standard introduction example is available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
+
 ```py
 from picounits import expects, VOLTAGE, CURRENT, RESISTANCE
  
@@ -134,4 +136,4 @@ pip install PicoUnits
 
 ### Documentation
  
-Documentation is available in [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs), with a standard introduction example available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
+Documentation is available in [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs)
