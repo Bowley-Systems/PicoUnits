@@ -88,7 +88,7 @@ The dimensional environment is independent of the notation used to represent it.
 
 See the [.picounit](.picounits) file for implementation details.
 
-## What are `.ut` and `.uiv`:
+## What are `.ut` and `.uiv`?
 
 Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes value:unit pairs.
 
