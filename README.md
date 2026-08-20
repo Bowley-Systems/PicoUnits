@@ -134,6 +134,6 @@ To install:
 pip install PicoUnits
 ```
 
-## Documentation
+### Documentation
 
 Full documentation is available in the [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs) folder, including API reference, changelog, and contributors.
