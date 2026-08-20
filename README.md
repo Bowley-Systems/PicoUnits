@@ -41,7 +41,7 @@ PicoUnits is a dynamic runtime dimensional typing system for numerical quantitie
 
 > [!important]
 > ### Features:
-> - Pluggable unit systems via `Unit Frames` for custom fundamental dimensions
+> - Configurable `unit frames` with custom symbols and dimension ordering
 > - Parses `UnitValues` language formats (`.ut`) and unit-informed values (`.uiv`)
 > - Numerical support for real, complex, and vector quantities
 
@@ -82,7 +82,9 @@ luminosity: cd
 dimensionless: ∅
 ```
 
-The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used.
+The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes
+
+See the [.picounit](.picounits) file for implementation details.
 
 ## What are `.ut` and `.uiv` 
 
@@ -100,7 +102,7 @@ Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` e
 [model]
 inlet_pressure: 101 k(ρ)  # 101 kPa using the defined unit ρ
 ```
-See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) for more information.
+See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) for notation and language specification.
 
 ## Quick Start
  

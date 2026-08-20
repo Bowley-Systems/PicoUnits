@@ -5,27 +5,30 @@ DEFAULT_CONFIG = """
 # ==============================================================
 # PicoUnits project configuration
 #
-# Drop this file in your project root (or any parent folder)
-# PicoUnits will automatically detect and use it.
-# Edit symbols and order to match your preferred notation
+# Drop this file or run `picounits generate` in your project root.
+#
+# NOTE:
+#   PicoUnits uses a fixed set of fundamental dimensions.
+#   Dimensions cannot be added or removed, but their symbols and
+#   ordering may be customized.
 # ==============================================================
 
 [symbols]
-# Change the name of fundamental dimensions
-time: s
-length: m
-mass: kg
-current: A
+# Change the symbol used to represent each fundamental dimension.
+TIME: s
+LENGTH: m
+MASS: kg
+CURRENT: A
 TEMPERATURE: K
-amount: mol
-luminosity: cd
-dimensionless: ∅
+AMOUNT: mol
+LUMINOSITY: cd
+DIMENSIONLESS: ∅
 
 [order]
-# Change the order of dimensions
-MASS: 0
+# Change the order in which dimensions are represented.
+TIME: 0
 LENGTH: 1
-TIME: 2
+MASS: 2
 CURRENT: 3
 TEMPERATURE: 4
 AMOUNT: 5
