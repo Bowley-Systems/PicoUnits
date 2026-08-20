@@ -87,23 +87,23 @@ dimensionless: ∅
 
 The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
 
-See the [.picounit](.picounits) file for implementation details.
+See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
 
 ## What are `.ut` and `.uiv`?
 
-Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes qualities as `value prefix(unit)` groups.
+Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes quantities as `value prefix(unit)` groups.
 
 `.ut` defines the custom units for your unit system:
 ```
 [units]
-ρ: kg/m^3                 # Defines the unit for density
+p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 ```
 
 `.uiv` defines the quantities within your unit system:
 
 ```
 [model]
-inlet_pressure: 101 k(ρ)  # 101 kPa using the defined unit ρ
+inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
 See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) for notation and language specification.
 
