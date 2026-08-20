@@ -60,7 +60,7 @@ How might one convert between systems at a boundary?
 ↺ Each iteration
 ```
 
-Because for computation, this is fundamentally flawed. It destroys certainty for implementation convenience.
+Because for computation, this is quite flawed. It destroys certainty for implementation convenience.
 
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
