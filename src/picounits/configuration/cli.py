@@ -52,7 +52,8 @@ def generate(args: argparse.Namespace | None = None) -> None:
 def main(args: argparse.Namespace | None = None) -> None:
     """ Adds the argparse argument """
     parser = argparse.ArgumentParser(
-        prog="picounits", description="picounits — flexible, project-aware units for Python"
+        prog="picounits",
+        description="A Dynamic Runtime Type System for Dimensional Numerical Quantities."
     )
 
     # Adds the `generate` argument for `picounits`

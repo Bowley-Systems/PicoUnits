@@ -3,7 +3,7 @@ Filename: dsl_parser.py
 
 Description:
     Domain specific language parser for .ut (unit types)
-    & .uiv (unit informed values).
+    & .uiv (unit informed values) supports v1.0 and v1.1.
     
     Orchestrates deserialization, syntax analysis & 
     construction of units
@@ -11,49 +11,50 @@ Description:
 
 
 from __future__ import annotations
-
 from pathlib import Path
-from typing import IO, Any
 
 from picounits.configuration.management import add_derived_units
 
-from picounits.extensions.loader import DynamicLoader
+from picounits.extensions.loader import Loader, DynamicLoader
+from picounits.extensions.utilities.attributes import AttributeCheck
 from picounits.extensions.core.syntax import ExtractPairs, QualityExtraction
 from picounits.extensions.core.construction import ConstructQuantity, ConstructUnits
 
-from picounits.extensions.utilities.errors import ParserError, BackCompatibilityWarning
-
+from picounits.extensions.utilities.errors import (
+    ParserError, BackCompatibilityWarning, DuplicateSectionError
+)
 
 class Parser:
     """ Parser for .ut & .uiv file formats"""
     @classmethod
     def open(
-        cls, filepath: Path | str | IO | Any, derived: Path | str | IO | Any = None
-    ) -> DynamicLoader:
+        cls,
+        filepath: Path | str,
+        derived: Path | str = None,
+        loader: Loader = DynamicLoader
+    ) -> Loader:
         """ Parses .uiv file into an attribute tree structure """
-        if derived:
-            # Imports derived units if available
-            cls.import_derived(derived)
+        # Imports derived units if available
+        if derived: cls.import_derived(derived)
 
         # Checks file type and reads lines into memory
-        if isinstance(filepath, (str, Path)):
-            path = Path(filepath)
-            if path.suffix.lower() != '.uiv':
-                raise ValueError(f"Expected .uiv file, got {path.suffix}")
+        path = Path(filepath)
+        if path.suffix.lower() != '.uiv':
+            raise ValueError(f"Expected .uiv file, got {path.suffix}") from None
 
         lines = cls._read_lines(filepath)
 
-        # Parses lines into dynamic loader
+        # Parses lines and filename into dynamic loader
         data = ParseLines.parse(lines, filepath)
-        return DynamicLoader(data)
+        return loader(data, path.stem)
 
     @classmethod
-    def import_derived(cls, filepath: Path | str | IO | Any) -> None:
+    def import_derived(cls, filepath: Path | str) -> None:
         """ Parses .ut file and interprets unit strings into runtime registry """
         # Checks file type and read lines into memory
         derived_path = Path(filepath)
         if derived_path.suffix.lower() != '.ut':
-            raise ValueError(f"Expected .ut file, got {derived_path.suffix}")
+            raise ValueError(f"Expected .ut file, got {derived_path.suffix}") from None
 
         lines = cls._read_lines(filepath)
 
@@ -90,12 +91,8 @@ class Parser:
         return add_derived_units(registry)
 
     @staticmethod
-    def _read_lines(filepath_or_file: Path | str | IO | Any) ->  list[str]:
-        """Read lines from file path or file-like object."""
-        if hasattr(filepath_or_file, 'read') and hasattr(filepath_or_file, 'readlines'):
-            # Check if it's a file-like object
-            return filepath_or_file.readlines()
-
+    def _read_lines(filepath_or_file: Path | str) ->  list[str]:
+        """ Read lines from file path or file-like object. """
         # Convert to Path and validate
         filepath = Path(filepath_or_file)
         if not filepath.exists():
@@ -117,7 +114,7 @@ class ParseLineState:
 class ParseLines:
     """ Parse lines for .ut & .uiv files formats """
     @classmethod
-    def parse(cls, lines: list[str], filepath: Path | str | IO | Any) -> dict:
+    def parse(cls, lines: list[str], filepath: Path | str) -> dict:
         """ Parses and extracts logic from raw text into qualities """
         # Initializes the parser state
         state = ParseLineState()
@@ -133,6 +130,12 @@ class ParseLines:
 
             is_section, name = cls._is_section(line)
             if is_section:
+                # Ensures section is validate and not a duplication
+                AttributeCheck.validate_section(name, state.index)
+                if name in state.content:
+                    # Section Duplication check
+                    raise DuplicateSectionError(name, state.index)
+
                 # Updates section based if identified
                 state.section = name
                 state.content[name] = {}
@@ -149,9 +152,12 @@ class ParseLines:
             if state.section is None:
                 # Key-value pair found outside a parent section
                 msg = f"key-value pair outside section {line!r}"
-                raise ParserError(cls.__name__, msg)
+                raise ParserError(cls.__name__, msg) from None
 
+            # Extracts key and ensure the key name is validate
             key, raw_value = split_result
+            AttributeCheck.validate_key(key, state.index)
+
             if raw_value.startswith('['):
                 # Handles multi-line values (lists that span multiple lines)
                 raw_value = cls._handle_multi_line(state, lines, raw_value)
@@ -162,23 +168,10 @@ class ParseLines:
                     # If format is found within the [version] section
                     state.format_status = True
 
-            # Extracts value, prefix and unit
+            # Extracts value, prefix and unit then constructs the quality
             value, prefix, unit = QualityExtraction.extract(raw_value)
-
-            # Constructs array of quantity (value_1: unit_1, ..., value_n: unit_n)
-            if isinstance(unit, list) and isinstance(value, list):
-                if all(isinstance(entry, (complex, int, float)) for entry in value):
-                    # If all values are complex, int or float than construct array
-                    array = []
-                    for idx, val in enumerate(value):
-                        quantity = ConstructQuantity.quantity(val, prefix[idx], unit[idx])
-                        array.append(quantity)
-
-                    state.content[state.section][key] = array
-                    continue
-
-            # Construct the quantity (Arrays, single value unit pairs)
             quantity = ConstructQuantity.quantity(value, prefix, unit)
+
             state.content[state.section][key] = quantity
 
         if not state.format_status:
@@ -204,6 +197,10 @@ class ParseLines:
         while open_count > close_count and state.index < len(lines):
             # Removes whitespaces and adds next_line
             next_line = lines[state.index].strip()
+
+            # Remove inline comments first
+            if '#' in next_line: next_line = next_line[:next_line.index('#')].rstrip()
+
             state.index += 1
             raw_value += ' ' + next_line
 

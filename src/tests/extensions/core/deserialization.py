@@ -108,8 +108,8 @@ class TestDeserialize(unittest.TestCase):
         items = ["Hello", "Ich bin William", "Sohn", "Value is 121", "Ich bin 19"]
 
         for item in items:
-            result = Deserialize.cast(item)
-            self.assertIsInstance(result, str)
+            with self.assertRaises(FailedCasting): 
+                Deserialize.cast(item)
 
     def test_parse_list(self):
         """ Test casting a list from text to list structure """
@@ -118,6 +118,15 @@ class TestDeserialize(unittest.TestCase):
         for item in items:
             result = Deserialize.case_list(item)
             self.assertIsInstance(result, list)
+    
+    def test_cast_version_string(self):
+        """ Test casting version-like strings (e.g., 0.1.0) as strings """
+        versions = ["0.1.0", "1.2.3", "10.5.2", "0.0.1"]
+        
+        for version in versions:
+            result = Deserialize.cast(version)
+            self.assertIsInstance(result, str)
+            self.assertEqual(result, version)
     
     def test_parse_list_with_non_strings(self):
         """ Test casting a list from non-string types """

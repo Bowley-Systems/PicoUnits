@@ -1,68 +1,75 @@
-<!-- 
-Color palette: 
+<!--
 #006d77ff, 
 #d92c2aff 
+Hello,
+PicoUnits only exists because I got annoyed by the 
+uncertainty of other unit systems and I wanted a 
+language that can encode parameters into it (UnitValues).
+
+I think the final result here is quite reasonable for 
+that initial problem. I hope you enjoy using PicoUnits.
+
+William Bowley, 
+20th August, 2026
+
+P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 -->
- 
+
+<!-- Make sure to update the logo with the github link before release if changed -->
+
 <p align="center">
-  <a href="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit_logo.png">
-    <img src="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit_logo.png" alt="PicoUnits logo">
-  </a>
+<img src="https://raw.githubusercontent.com/wgbowley/PicoUnits/main/media/picounit.png" alt="PicoUnits logo" style="width:100%; max-width:100%; display:block;"></p>
 </p>
-<p align="center">A dimensional constraint system for computational engineering.</p>
+<h4 align="center">A Dynamic Runtime Type System for Dimensional Numerical Quantities.</h4>
 <p align="center">
-  Define the dimensional environment of your application.<br>
-  Keep physical meaning attached to computation.
+  Define the type. Define the variable. Execute. <br>
+  Automate physical meaning throughout your pipeline.
 </p>
 
----
- 
+## Overview
+
+<!--
+Make sure to update the coverage value 
+(if unit tests are done for the update). 
+It is not automatic. 
+--> 
+
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
-[![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=E14F4C)](https://pepy.tech/projects/picounits)
- 
-> [!NOTE]
-> PicoUnits is the dimensional environment underlying `PyFea`, `PicoMaterials`, and other cross-domain engineering projects.
- 
-## Overview
- 
-PicoUnits is a dimensional constraint system for computational engineering.
-  
-Unlike general-purpose unit libraries, PicoUnits separates:
- 
-- The underlying algebraic structure of a physical quantity.
-- Prefixes represent scale along an existing dimensional axis.
-- The symbols used to represent dimensions and derived units belong to the application's `unit frame`.
+![Coverage](https://img.shields.io/badge/coverage-61%25-E14F4C?style=flat-square)
+[![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
+
+PicoUnits is a dynamic runtime dimensional typing system for numerical quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
 > [!important]
-> - Pluggable unit systems via `Unit Frames` (domain-specific base dimensions)
-> - Algebra-first unit system: no implicit or explicit unit conversion
-> - Prefixes are representational and do not participate in unit algebra
-> - Configuration format: `.uiv` and `.ut` with embedded validation
-> - Boundary validation via `@expects`
-> - Full numeric support: real, complex, and vector quantities
+>
+> ### Features:
+> - Configurable `unit frames` with custom symbols and dimension ordering
+> - Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`)
+> - Numerical support for real, complex, and vector quantities
 
-## Not a Unit Conversion Library
- 
-PicoUnits was never intended or designed as a universal unit conversion system.
- 
+## Why convert at all?
+
+PicoUnits removes uncertainty by reducing the set of units to one canonical set defined by the user.
+
 It does not attempt to answer:
- 
-```text
-3 metres → ? feet
+
+How might one convert between systems at a boundary?
 ```
- 
-Instead, it answers questions such as:
- 
-```text
-- Does this quantity have the required dimensions?
-- Are these two physical quantities algebraically compatible?
-- Can this solver safely consume this value?
+3 feet → ? metre (1/3.280839895...?) 
+↺ Each iteration
 ```
- 
-## What is a unit frame?
- 
-A unit frame defines the dimensional environment used by an application.
+
+Because for computation, this is quite flawed. It destroys certainty for implementation convenience.
+
+```
+Define unit frame → Define derived units → Work within it, not outside it.
+```
+
+
+## What is a Unit Frame?
+
+A unit frame defines the dimensional system used by an application.
  
 For example:
  
@@ -72,58 +79,38 @@ time: s
 length: m
 mass: kg
 current: A
-TEMPERATURE: K
+temperature: K
 amount: mol
 luminosity: cd
 dimensionless: ∅
 ```
- 
-The underlying dimensional basis is independent of the notation used to represent it. The notation is simply a semantic layer applied over the same mathematical rules.
- 
-## What are .uiv & .ut?
- 
-Both are dimensionally aware formats. `.ut (unit types)` encodes custom base units for your system and `.uiv (unit informed values)` encodes value:unit pairs:
- 
-### `.ut`
- 
+
+The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
+
+See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
+
+## What are `.ut` and `.uiv`?
+
+Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes quantities as `value prefix(unit)` groups.
+
+`.ut` defines the custom units for your unit system:
 ```
-# Coilgun Units - Derived from Base Dimensions (kg, m, s, A, etc.)
-[version]
-format: 0.1.0
- 
 [units]
-ρ: kg/m^3
-V: kg*m^2*s^-3*A^-1
+p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 ```
- 
-### `.uiv`
- 
-All `value : unit` pairs exist in the form value `prefix(unit)`, for example:
- 
+
+`.uiv` defines the quantities within your unit system:
+
 ```
-[version]
-format: 0.1.0
-unit_frame: units.ut
- 
-[notes]
-# Analytical model for a multi-stage coil-gun
-# Models electrical, magnetic and motional dynamics
- 
 [model]
-number_stages: 10 (∅)    # Explicitly dimensionless
- 
-# Millimeter -> prefix `m` and unit `m` hence prefix(unit), m(m)
-stage_gap: 10 m(m)
- 
-# Value without prefix (volts - empty prefix)
-voltage: 18 (V)         # Equivalent to ""(V)
-current_limit: 40 (A) 
-time_steps: 50 u(s)
-atmospheric_density: 1.225 (ρ)
+inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
- 
+See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) for notation and language specification.
+
 ## Quick Start
- 
+
+A standard introduction example is available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
+
 ```py
 from picounits import expects, VOLTAGE, CURRENT, RESISTANCE
  
@@ -131,30 +118,22 @@ from picounits import expects, VOLTAGE, CURRENT, RESISTANCE
 def ohm_law(i, r):
     return i * r
  
-# Correct usage
-v = ohm_law(10 * CURRENT, 5 * RESISTANCE) 
-print(v) # Output: 50.0 (kg·m²·s⁻³·A⁻¹) (Derived units need to be pulled in via .ut)
- 
-# This would raise a DimensionError:
-# 'ohm_law' returned kg²·m⁴·s⁻⁶·A⁻³, expected kg·m²·s⁻³·A⁻¹ 
+# Correct Usage
+ohm_law(10 * CURRENT, 5 * RESISTANCE) 
+# > Output: 50.0 (kg·m²·s⁻³·A⁻¹)
+
+# Incorrect Usage
+ohm_law(10 * CURRENT, 5 * VOLTAGE)
+# > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
- 
+
 ## Installation 
  
 To install:
 ```bash
-# Recommended for most users
 pip install PicoUnits
 ```
-or use `setuptools` locally:
- 
-```bash
-git clone https://github.com/wgbowley/PicoUnits.git
-cd PicoUnits
-pip install -e .
-```
- 
-## Documentation
- 
-> [!NOTE]
-> Documentation is available in [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs), with a standard introduction example available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
+
+### Documentation
+
+Full documentation is available in the [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs) folder, including API reference, changelog, and contributors.

@@ -35,7 +35,7 @@ class Operations(Enum):
         operator = _LOOKUP_STRINGS.get(char)
         if operator is None:
             ops = list(_LOOKUP_STRINGS.keys())
-            raise UnknownOperator(char, ops)
+            raise UnknownOperator(char, ops) from None
 
         return operator
 

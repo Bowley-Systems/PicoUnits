@@ -102,36 +102,44 @@ class Unit:
 
         return Unit(*new_dimensions)
 
-    @property
-    def name(self) -> str:
+    def name(self, fundamental: bool = False) -> str:
         """ Returns the units name as dimensions """
+        derived = {}
+        if fundamental is True:
+            # Returns fundamental notation
+            return self.unit_construction(derived)
+
         if self._name_cache is None:
+            # Constructs and caches the full notation
             derived = get_derived_units()
-
-            # Primary: Check exact match first
-            for symbol, unit in derived.items():
-                if self.dimensions == unit.dimensions:
-                    self._name_cache = symbol
-                    return self._name_cache
-
-            # Secondary: Try partial substitution
-            remaining = list(self.dimensions)
-            result_parts = []
-
-            for symbol, unit in derived.items():
-                derived_dims = list(unit.dimensions)
-                if all(d in remaining for d in derived_dims):
-                    # Remove matched dimensions from remaining
-                    for d in derived_dims:
-                        remaining.remove(d)
-
-                    result_parts.append(symbol)
-
-            # Fallback: Append non-substituted dimensions
-            result_parts.extend(str(d.name) for d in remaining)
-            self._name_cache = "·".join(result_parts)
+            self._name_cache = self.unit_construction(derived)
 
         return self._name_cache
+
+    def unit_construction(self, derived: dict) -> str:
+        """ Constructs the unit with fundamental and/or derived notation """
+        # Primary: Check exact match first
+        for symbol, unit in derived.items():
+            if self.dimensions == unit.dimensions:
+                self._name_cache = symbol
+                return self._name_cache
+
+        # Secondary: Try partial substitution
+        remaining = list(self.dimensions)
+        result_parts = []
+
+        for symbol, unit in derived.items():
+            derived_dims = list(unit.dimensions)
+            if all(d in remaining for d in derived_dims):
+                # Remove matched dimensions from remaining
+                for d in derived_dims:
+                    remaining.remove(d)
+
+                result_parts.append(symbol)
+
+        # Fallback: Append non-substituted dimensions
+        result_parts.extend(str(d.name) for d in remaining)
+        return "·".join(result_parts)
 
     @property
     def length(self) -> int:
@@ -241,8 +249,8 @@ class Unit:
 
     def __str__(self) -> str:
         """ returns the unit name as a string"""
-        return self.name
+        return self.name()
 
     def __repr__(self) -> str:
         """ Displays the unit name """
-        return f"<Unit: {self.name}>"
+        return f"<Unit: {self.name()}>"

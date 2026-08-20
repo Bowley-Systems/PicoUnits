@@ -43,9 +43,8 @@ class Packet(ABC):
         """
         return
 
-    @property
     @abstractmethod
-    def name(self) -> str:
+    def name(self, fundamental: bool) -> str:
         """ Returns the packet name as value + prefix(unit) """
         return
 
@@ -133,15 +132,19 @@ class Packet(ABC):
         """ Strips the unit object away, returns non-scaled value """
         return self.value
 
+    @property
+    def fundamental(self) -> str:
+        """ Returns the fundamental string representation of the packet name """
+        return str(self.name(True))
+
     def __hash__(self):
         """ Defines behavior for hashing the packet """
         return hash((self.value, self.unit))
 
     def __str__(self) -> str:
         """ Return string representation of the packet name """
-        return str(self.name)
+        return str(self.name(fundamental=False))
 
-    @abstractmethod
     def __repr__(self) -> str:
-        """ Must be defined by children to avoid automatic generation """
-        return ""
+        """ Returns representation of the packet name """
+        return str(self.name(fundamental=False))

@@ -1,3 +1,7 @@
 *.pyc
 *.log
 *.coverage
+*.aux
+*.fdb_latexmk
+*.fls
+*.gz

@@ -68,8 +68,8 @@ def strip_quantity(quantity: Quantity, reference: Quantity) -> Any:
 
 
 # API Promises
-# NOTE: this also concludes all constructed quantities constants in constants.py
 __all__ = [
+    # API
     "UnitError",
     "DynamicLoader",
     "strip_quantity",
@@ -79,4 +79,91 @@ __all__ = [
     "Q",
     "q",
     "expects"
+    
+    # Scales
+    "GIGA", "giga",
+    "MEGA", "mega",
+    "KILO", "kilo",
+    "CENTI", "centi",
+    "MILLI", "milli",
+    "MICRO", "micro",
+    "NANO", "nano",
+    "PICO", "pico",
+    
+    # Fundamental dimensions
+    "TIME", "time",
+    "LENGTH", "length",
+    "MASS", "mass",
+    "CURRENT", "current",
+    "TEMPERATURE", "temperature",
+    "AMOUNT", "amount",
+    "LUMINOSITY", "luminosity",
+    "DIMENSIONLESS", "dimensionless",
+    "NULLSET", "nullset",
+    
+    # Geometric quantities
+    "AREA", "area",
+    "VOLUME", "volume",
+    
+    # Kinematics
+    "DISPLACEMENT", "displacement",
+    "DISTANCE", "distance",
+    "VELOCITY", "velocity",
+    "SPEED", "speed",
+    "ACCELERATION", "acceleration",
+    "FREQUENCY", "frequency",
+    "PERIOD", "period",
+    "WAVENUMBER", "wavenumber",
+    "ANGULAR_FREQUENCY", "angular_frequency",
+    "PHASE", "phase",
+    
+    # Classical mechanics
+    "FORCE", "force",
+    "MOMENTUM", "momentum",
+    "ANGULAR_MOMENTUM", "angular_momentum",
+    "TORQUE", "torque",
+    "ENERGY", "energy",
+    "POWER", "power",
+    "PRESSURE", "pressure",
+    "DENSITY", "density",
+    "WEIGHT", "weight",
+    
+    # Thermodynamics
+    "ENTROPY", "entropy",
+    "HEAT_CAPACITY", "heat_capacity",
+    "SPECIFIC_HEAT", "specific_heat",
+    "THERMAL_CONDUCTIVITY", "thermal_conductivity",
+    "CONVECTION_COEFFICIENT", "convection_coefficient",
+    "VOLUMETRIC_HEAT_CAPACITY", "volumetric_heat_capacity",
+    "VOLUMETRIC_HEATING", "volumetric_heating",
+    "DIFFUSIVITY", "diffusivity",
+    
+    # Electromagnetism
+    "CHARGE", "charge",
+    "ELECTRIC_FIELD", "electric_field",
+    "ELECTRIC_POTENTIAL", "electric_potential",
+    "VOLTAGE", "voltage",
+    "RESISTANCE", "resistance",
+    "CONDUCTANCE", "conductance",
+    "CAPACITANCE", "capacitance",
+    "IMPEDANCE", "impedance",
+    "INDUCTANCE", "inductance",
+    "MAGNETIC_FIELD", "magnetic_field",
+    "MAGNETIC_FLUX", "magnetic_flux",
+    "PERMEABILITY", "permeability",
+    "FLUX_DENSITY", "flux_density",
+    "COERCIVITY", "coercivity",
+    "CONDUCTIVITY", "conductivity",
+    
+    # Waves & radiation
+    "INTENSITY", "intensity",
+    "LUMINANCE", "luminance",
+    "RADIANT_FLUX", "radiant_flux",
+    
+    # Dimensionless quantities
+    "STRAIN", "strain",
+    "REFRACTIVE_INDEX", "refractive_index",
+    "EFFICIENCY", "efficiency",
+    "COEFFICIENT", "coefficient",
+    "PROBABILITY", "probability",
 ]

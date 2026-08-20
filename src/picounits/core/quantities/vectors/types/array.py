@@ -78,20 +78,19 @@ class ArrayPacket(VectorPacket):
         self.value = array(new_value)
 
     @property
-    def name(self) -> str:
-        """ Returns the packet name as value + prefix(unit) """
-        value, prefix = self._normalize()
-        rounded_value = np_round(value, DEFAULT_SIGNIFICANT_FIGURES)
-
-        return f"{rounded_value} {prefix}({self.unit.name})"
-
-    @property
     def magnitude(self) -> float:
         """ Returns the magnitude of vector with units """
         factory = import_factory("ArrayPacket.magnitude")
 
         value = float(linalg.norm(self.value))
         return factory.create(value, self.unit)
+
+    def name(self, fundamental: bool) -> str:
+        """ Returns the packet name as value + prefix(unit) """
+        value, prefix = self._normalize()
+        rounded_value = np_round(value, DEFAULT_SIGNIFICANT_FIGURES)
+
+        return f"{rounded_value} {prefix}({self.unit.name(fundamental)})"
 
     def append(self, item: Packet) -> None:
         """ Appends a Packet to the array. """
@@ -124,16 +123,12 @@ class ArrayPacket(VectorPacket):
 
         return self.value / (10 ** closest.value), closest
 
-    def __format__(self, format_spec: str) -> str:
-        """ Formats the string based on user input through 'format_spec'"""
-        _ = format_spec
-        return self.name
-
     def __ceil__(self) -> Packet:
         """ Defines the behavior for ceiling method """
         factory = import_factory("ArrayPacket.__ceil__")
         return factory.create(ceil(self.value), self.unit)
 
-    def __repr__(self) -> str:
-        """ Displays the packet name """
-        return str(self.name)
+    def __format__(self, format_spec: str) -> str:
+        """ Formats the string based on user input through 'format_spec'"""
+        _ = format_spec
+        return self.name(fundamental=False)

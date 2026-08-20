@@ -51,13 +51,12 @@ class RealPacket(ScalarPacket):
         prefix_difference = prefix.value - PrefixScale.BASE.value
         self.value *= self._get_factor(prefix_difference)
 
-    @property
-    def name(self) -> str:
+    def name(self, fundamental: bool) -> str:
         """ Returns the packet name as value + prefix(unit) """
         value, prefix = self._normalize()
         rounded_value = round(value, DEFAULT_SIGNIFICANT_FIGURES)
 
-        return f"{rounded_value} {prefix}({self.unit.name})"
+        return f"{rounded_value} {prefix}({self.unit.name(fundamental)})"
 
     @property
     def magnitude(self) -> int | float:
@@ -68,12 +67,11 @@ class RealPacket(ScalarPacket):
     @property
     def sign(self) -> int:
         """ Returns the sign of self.value """
-        if self.value > 0:
-            return 1
-        elif self.value < 0:
-            return -1
-        else:
-            return 0
+        if self.value > 0: return 1
+        if self.value < 0: return -1
+
+        # Defaults to zero, if edge-case
+        return 0
 
     def _normalize(self) -> tuple[float | int, PrefixScale]:
         """ Normalizes the value for packet name representation """
@@ -105,7 +103,7 @@ class RealPacket(ScalarPacket):
             format_spec = f".{DEFAULT_SIGNIFICANT_FIGURES}f"
 
         formatted_value = format(value, format_spec)
-        return f"{formatted_value} {prefix}({self.unit.name})"
+        return f"{formatted_value} {prefix}({self.unit.name()})"
 
     def __ceil__(self) -> Packet:
         """ Defines the behavior for ceiling method """
@@ -181,7 +179,7 @@ class RealPacket(ScalarPacket):
 
     def __repr__(self) -> str:
         """ Displays the packet name """
-        return str(self.name)
+        return str(self.name(fundamental=False))
 
 
     # TRANSCENDENTAL METHODS

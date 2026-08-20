@@ -8,7 +8,7 @@ Description:
     parser, dynamic-loader and configurations.
     
     NOTE: Reference commands:
-    coverage run src/unit_test/runner.py
+    coverage run src/tests/runner.py
     coverage report -m
     
     
@@ -27,18 +27,18 @@ Description:
 
 import unittest
 
-from unit_test.unit.dimensional_algebra import DimensionAlgebra
-from unit_test.unit.dimensional_construction import DimensionConstruction
-from unit_test.quantities.quantities_construction import QualityScalingConstruction
+from tests.unit.dimensional_algebra import DimensionAlgebra
+from tests.unit.dimensional_construction import DimensionConstruction
+from tests.quantities.quantities_construction import QualityScalingConstruction
 
-from unit_test.extensions.core.deserialization import TestParseList, TestDeserialize
-from unit_test.extensions.utilities.operations import TestOperators
+from tests.extensions.core.deserialization import TestParseList, TestDeserialize
+from tests.extensions.utilities.operations import TestOperators
 
-from unit_test.extensions.core.construction import (
+from tests.extensions.core.construction import (
     TestConstructPrefix, TestConstructUnits, TestConstructQuality
 )
 
-from unit_test.extensions.core.syntax import (
+from tests.extensions.core.syntax import (
     TestExtractionState, TestExtractPairs, TestExtractBrackets, TestExtractParentheses,
     TestQualityExtraction
 )

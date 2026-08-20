@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "PicoUnits"
-version = "1.0.8"
-description = "Explicit Units and Dimensional Analysis for Scientific Python"
+version = "1.0.9"
+description = "A Dynamic Runtime Type System for Dimensional Numerical Quantities."
 
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = { file = "LICENSE" }
 keywords = ["units", "si", "minimal", "physics", "error-checking"]
 

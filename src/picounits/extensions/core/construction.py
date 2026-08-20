@@ -22,7 +22,8 @@ from picounits.core.quantities.factory import Factory
 
 from picounits.extensions.utilities.operations import Operations
 from picounits.extensions.utilities.errors import (
-    ParserError, UnknownPrefix, ColumnAttribute, UnsupportedType, UnknownOperator
+    ParserError, UnknownPrefix, ColumnAttribute, UnsupportedType,
+    UnknownOperator, UnitNotFoundError 
 )
 
 from picounits.configuration.management import get_derived_units
@@ -66,6 +67,9 @@ class ConstructQuantity:
                 # Applies different units to each column
                 return cls._nested_array(value, prefix, unit)
 
+        # Pops the first unit to use for construction
+        if isinstance(unit, list): unit = unit.pop(0)
+
         # Simple lists, create array quantity e.x [10, 2] (kg*m*s^-2)
         prefix_obj = ConstructPrefix.construct_prefix(prefix)
         unit_obj = ConstructUnits.construct_unit(unit)
@@ -99,7 +103,7 @@ class ConstructQuantity:
             if 0 <= index < len(prefix):
                 return prefix[index]
 
-            raise ColumnAttribute(prefix)
+            raise ColumnAttribute(prefix) from None
 
         # Defaults to base prefix.
         return ""
@@ -110,7 +114,7 @@ class ConstructQuantity:
         if 0 <= index < len(unit):
             return unit[index]
 
-        raise ColumnAttribute(unit)
+        raise ColumnAttribute(unit) from None
 
 
 class ConstructPrefix:
@@ -124,7 +128,7 @@ class ConstructPrefix:
 
         # Unknown prefix error
         valid_prefixes = PrefixScale.all_symbols()
-        raise UnknownPrefix(prefix, valid_prefixes)
+        raise UnknownPrefix(prefix, valid_prefixes) from None
 
 
 class ConstructUnits:
@@ -134,7 +138,7 @@ class ConstructUnits:
         """ Construct unit from parsed unit strings """
         if not isinstance(unit_str, str):
             # Handles unknown types by rasing a construction error
-            raise UnsupportedType(type(unit_str))
+            raise UnsupportedType(type(unit_str)) from None
 
         if not unit_str:
             # Handles dimensionless values
@@ -178,8 +182,7 @@ class ConstructUnits:
 
         except KeyError:
             symbols = FBase.all_symbols()
-            msg = f"{token!r} is an unknown dimension. Supported dimensions are {symbols!r}"
-            raise ParserError(cls.__name__, msg) from None
+            raise UnitNotFoundError(token, symbols) from None
 
     @classmethod
     def _construct_unit_from_tokens(cls, tokens: list[str]) -> Unit:
