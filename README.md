@@ -47,7 +47,7 @@ PicoUnits is a dynamic runtime dimensional typing system for numerical quantitie
 > - Parses `UnitValues` language formats (`.ut`) and unit-informed values (`.uiv`)
 > - Numerical support for real, complex, and vector quantities
 
-## Unit conversion is uncertainty
+## Why convert at all?
 
 PicoUnits removes uncertainty by reducing the set of units to one canonical set defined by the user.
 
@@ -88,7 +88,7 @@ The dimensional environment is independent of the notation used to represent it.
 
 See the [.picounit](.picounits) file for implementation details.
 
-## What are `.ut` and `.uiv` 
+## What are `.ut` and `.uiv`:
 
 Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes value:unit pairs.
 
