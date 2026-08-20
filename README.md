@@ -36,7 +36,7 @@ It is not automatic.
 
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
-![Coverage](https://img.shields.io/badge/coverage-60%25-E14F4C?style=flat-square)
+![Coverage](https://img.shields.io/badge/coverage-61%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
 PicoUnits is a dynamic runtime dimensional typing system for numerical quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.

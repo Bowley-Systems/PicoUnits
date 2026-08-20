@@ -49,8 +49,7 @@ class Deserialize:
         if text.lower() in ("null", "none"): return None
 
         # Check for format/version
-        parts = text.split('.')
-        if len(parts) >= 2 and all(part.isdigit() for part in parts):
+        if '.' in text and len(text.split('.')) >= 2:
             return str(text)
 
         err = "Could not parse as int, float, complex, bool, None, or quoted string. "
