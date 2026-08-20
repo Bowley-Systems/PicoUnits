@@ -18,7 +18,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <!-- Make sure to update the logo with the github link before release if changed -->
 
 <p align="center">
-<img src="media/logo.png" alt="PicoMaterials logo" style="width:100%; max-width:100%; display:block;"></p>
+<img src="media/logo.png" alt="PicoUnits logo" style="width:100%; max-width:100%; display:block;"></p>
 </p>
 <h4 align="center">A Dynamic Runtime Type System for Dimensional Numerical Quantities.</h4>
 <p align="center">
