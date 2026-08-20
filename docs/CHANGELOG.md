@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved logo with dark/light mode support
 - New color palettes
 
-## [1.1.0] - 2027-08-21
+## [1.0.9-1.1.0] - 2027-08-21
 
 ### Added
 - Custom loader structures for `.uiv` parsing
