@@ -57,7 +57,7 @@ def inject_unit_frame(filepath: Path | str) -> None:
 
     # Converts filepath to Path and Checks file type
     path = Path(filepath)
-    if path.suffix.lower() != '.picounits':
+    if str(path.name.lower()) != '.picounits':
         msg = f"Expected .picounits file, got {path.suffix}"
         raise ImportError(msg) from None
 
