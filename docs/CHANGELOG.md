@@ -68,12 +68,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [1.1.0] - 2026-09-07
 
 #### Added
-- Added non-prefixed integration for real-packets with matplotlib
-- Added non-prefixed integration for array-packets with matplotlib
-- Added `[numerical]` section to `.picounits` with `significant_figures`
+- Non-prefixed integration for real-packets with matplotlib
+- Non-prefixed integration for array-packets with matplotlib
+- `[numerical]` section to `.picounits` with `significant_figures`
+- Implemented significant figures from `.picounits` at runtime
 
 ### Removed
-- Removed deprecated `MAX_EXPONENT` constant from `/configurations`
+- Deprecated `MAX_EXPONENT` constant from `/configurations`
 
 #### Changed
 - Improved the `.picounits` file

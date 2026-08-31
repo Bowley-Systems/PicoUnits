@@ -272,8 +272,8 @@ class QualityExtraction:
                 if not remainder or remainder[-1] in ',)':
                     return before[-1]
 
-        msg = f"Invalid prefixes/unit structure: {unit_strings!r}"
-        raise ParserError(cls.__name__, msg) from None
+        # Returns an empty string for prefix
+        return ""
 
     @classmethod
     def _from_parentheses(

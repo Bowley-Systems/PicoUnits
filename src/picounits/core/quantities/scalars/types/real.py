@@ -21,7 +21,7 @@ from picounits.lazy_imports import import_factory
 
 # Import transcendental logic functions
 from picounits.core.quantities.scalars.methods import transcendental as tlops
-from picounits.configuration.management import _effective_figures
+from picounits.configuration.management import get_significant_figures
 
 
 @dataclass(slots=True, repr=False, unsafe_hash=True)
@@ -54,7 +54,7 @@ class RealPacket(ScalarPacket):
     def name(self, fundamental: bool) -> str:
         """ Returns the packet name as value + prefix(unit) """
         value, prefix = self._normalize()
-        rounded_value = round(value, _effective_figures)
+        rounded_value = round(value, get_significant_figures())
 
         return f"{rounded_value} {prefix}({self.unit.name(fundamental)})"
 
@@ -104,7 +104,7 @@ class RealPacket(ScalarPacket):
 
         if not format_spec:
             # Fall-back if no formatting is provided in the f-string
-            format_spec = f".{_effective_figures}f"
+            format_spec = f".{get_significant_figures()}f"
 
         formatted_value = format(value, format_spec)
         return f"{formatted_value} {prefix}({self.unit.name()})"

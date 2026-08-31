@@ -31,12 +31,12 @@ except ImportError:
         return {}
 
 
-def _symbols(_=None) -> dict[str, str]:
+def _symbols() -> dict[str, str]:
     """ Caches the symbols for FBase """
     return get_base_symbols()
 
 
-def _order(_=None) -> dict[str, int]:
+def _order() -> dict[str, int]:
     """ Caches the order for FBase """
     return get_base_order()
 

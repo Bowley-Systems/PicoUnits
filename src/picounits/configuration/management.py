@@ -24,20 +24,26 @@ _effective_figures: int | None = None
 _effective_derived: Dict[str, Any] = {}
 
 
+
 def get_base_symbols() -> Dict[str, str]:
     """ Gets the base symbol from config """
-    if _effective_symbols is None:
-        _load_config()
+    if _effective_symbols is None: _load_config()
 
     return _effective_symbols
 
 
 def get_base_order() -> Dict[str, int]:
     """ Gets the base order from config """
-    if _effective_order is None:
-        _load_config()
+    if _effective_order is None: _load_config()
 
     return _effective_order
+
+
+def get_significant_figures() -> int:
+    """ Gets the significant figures """
+    if _effective_figures is None: _load_config()
+
+    return _effective_figures
 
 
 def get_derived_units() -> Dict[str, Any]:
@@ -47,22 +53,23 @@ def get_derived_units() -> Dict[str, Any]:
 
 def reload_config() -> None:
     """ reloads configuration """
-    global _effective_symbols, _effective_order
-    _effective_symbols, _effective_order = None, None
+    global _effective_symbols, _effective_order, _effective_figures
+    _effective_symbols, _effective_order, _effective_figures = None, None, None
 
     _load_config()
 
 
 def _load_config() -> None:
     """ Loads the configuration """
-    global _effective_symbols, _effective_order
+    global _effective_symbols, _effective_order, _effective_figures
     local_file = _find_picounits_file()
 
     if local_file:
         try:
-            symbols, order = _load_from_file(local_file)
+            symbols, order, figures = _load_from_file(local_file)
             _effective_symbols = {**DEFAULT_SYMBOLS, **symbols}
             _effective_order = order
+            _effective_figures = figures
             return
 
         except Exception as e:
@@ -73,6 +80,7 @@ def _load_config() -> None:
     # No file or failed use defaults
     _effective_symbols = DEFAULT_SYMBOLS.copy()
     _effective_order = DEFAULT_ORDER.copy()
+    _effective_figures = DEFAULT_SIGNIFICANT_FIGURES
 
 
 def _find_picounits_file() -> Path | None:
@@ -93,7 +101,7 @@ def _load_from_file(filepath: Path) -> tuple[Dict[str, str], Dict[str, int]]:
     config = ConfigParser(delimiters=(":", "="), comment_prefixes=("#", ";"))
     config.read(filepath, encoding="utf-8")
 
-    return _import_symbols(config), _import_order(config)
+    return _import_symbols(config), _import_order(config), _import_figures(config)
 
 
 def _import_symbols(config: dict) -> Dict[str, str]:
@@ -140,6 +148,12 @@ def _import_order(config: dict) -> Dict[str, int]:
 
     # Returns an empty dictionary when `[order]` is missing
     return custom_order
+
+
+def _import_figures(config: dict) -> int:
+    """ Loads the significant figures """
+    raw_figures = config["numerical"]["significant_figures"]
+    return int(raw_figures)
 
 
 def add_derived_units(registry: Dict[str, Any]) -> None:
