@@ -109,7 +109,7 @@ See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) fo
 
 ### Quick Start
 
-A standard introduction example is available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
+A standard introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
 
 ```py
 from picounits import expects, VOLTAGE, CURRENT, RESISTANCE
@@ -138,6 +138,6 @@ pip install PicoUnits
 
 #### Documentation
 
-Full documentation is available in the [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs) folder, including API reference, changelog, and contributors.
+Full documentation is available in the [`docs/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/docs) folder, including API reference, changelog, and contributors.
 
 ---
