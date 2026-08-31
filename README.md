@@ -137,6 +137,7 @@ ohm_law(10 * CURRENT, 5 * VOLTAGE)
 ### Installation 
  
 To install:
+
 ```bash
 pip install PicoUnits
 ```
