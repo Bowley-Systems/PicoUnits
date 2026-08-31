@@ -103,7 +103,8 @@ p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 [model]
 inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
-See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) for notation and language specification.
+
+See the [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
 
 ---
 
