@@ -20,7 +20,6 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <p align="center">
 <img src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" alt="PicoUnits logo" style="width:100%; max-width:100%; display:block;"></p>
 </p>
-<h4 align="center">A Dynamic Runtime Type System for Dimensional Numerical Quantities.</h4>
 <p align="center">
   Define the type. Define the variable. Execute. <br>
   Automate physical meaning throughout your pipeline.
