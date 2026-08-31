@@ -114,6 +114,8 @@
     "zlabel",
     "zlim",
     "latexmk",
-    "matplotlib"
+    "matplotlib",
+    "munits",
+    "axisinfo"
   ]
 }

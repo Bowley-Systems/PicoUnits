@@ -85,6 +85,10 @@ class ArrayPacket(VectorPacket):
         value = float(linalg.norm(self.value))
         return factory.create(value, self.unit)
 
+    def __array__(self, dtype=None, copy=None) -> ndarray:
+        """ Return the underlying numerical array. """
+        return array(self.value, dtype=dtype, copy=copy)
+
     def name(self, fundamental: bool) -> str:
         """ Returns the packet name as value + prefix(unit) """
         value, prefix = self._normalize()

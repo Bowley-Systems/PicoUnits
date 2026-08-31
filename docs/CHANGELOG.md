@@ -68,13 +68,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [1.1.0] - 2026-09-07
 
 #### Added
-*Work In Progress*
+- Added non-prefixed integration for real-packets with matplotlib
+- Added non-prefixed integration for array-packets with matplotlib
 
 #### Changed
 *Work In Progress*
 
 #### Fixed
-*Work In Progress*
+- Single unit arrays without prefixes in .uiv files.
 
 #### Documentation
 *Work In Progress*

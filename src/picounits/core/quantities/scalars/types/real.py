@@ -73,6 +73,10 @@ class RealPacket(ScalarPacket):
         # Defaults to zero, if edge-case
         return 0
 
+    def __float__(self) -> float:
+        """ Returns the quality as a float """
+        return float(self.stripped)
+
     def _normalize(self) -> tuple[float | int, PrefixScale]:
         """ Normalizes the value for packet name representation """
         value = self.value
