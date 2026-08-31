@@ -32,7 +32,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 ![Coverage](https://img.shields.io/badge/coverage-61%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
-PicoUnits is a dynamic runtime dimensional typing system for numerical quantities. 
+PicoUnits is a dynamic runtime typing system for numerical quantities. 
 It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
 
