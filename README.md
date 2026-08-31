@@ -89,7 +89,7 @@ dimensionless: ∅
 The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. 
 However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
 
-See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
+> See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
 
 ---
 
@@ -112,7 +112,7 @@ p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
 
-See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
+> See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
 
 ---
 
