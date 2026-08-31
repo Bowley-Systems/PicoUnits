@@ -1,6 +1,7 @@
 <!--
-#006d77ff, 
-#d92c2aff 
+#006d77ff -> deep, muted teal-green 
+#d92c2aff -> bold, warm crimson-red 
+
 Hello,
 PicoUnits only exists because I got annoyed by the 
 uncertainty of other unit systems and I wanted a 
