@@ -54,6 +54,8 @@ How might one convert between systems at a boundary?
 ↺ Each iteration
 ```
 
+<br>
+
 Because for computation, this is quite flawed. It destroys certainty for implementation convenience.
 
 ```
