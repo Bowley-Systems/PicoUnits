@@ -20,11 +20,12 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <p align="center">
 <img src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" alt="PicoUnits logo" style="width:100%; max-width:100%; display:block;"></p>
 </p>
-<br>
 <p align="center">
   Define the type. Define the variable. Execute. <br>
   Automate physical meaning throughout your pipeline.
 </p>
+
+<br>
 
 ### Overview
 
