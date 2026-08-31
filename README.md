@@ -55,7 +55,7 @@ PicoUnits removes uncertainty by reducing the set of units to one canonical set 
 
 How might one convert between systems at a boundary?
 ```
-3 feet → ? metre (1/3.280839895...?) 
+3 feet → 0.9144... metre (1/3.280839895...?) 
 ↺ Each iteration
 ```
 
