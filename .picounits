@@ -30,3 +30,7 @@ TEMPERATURE: 4
 AMOUNT: 5
 LUMINOSITY: 6
 DIMENSIONLESS: 7
+
+[numerical]
+# Limits for numeric representation.
+significant_figures: 3

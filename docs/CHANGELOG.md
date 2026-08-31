@@ -70,14 +70,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Added
 - Added non-prefixed integration for real-packets with matplotlib
 - Added non-prefixed integration for array-packets with matplotlib
+- Added `[numerical]` section to `.picounits` with `significant_figures`
+
+### Removed
+- Removed deprecated `MAX_EXPONENT` constant from `/configurations`
 
 #### Changed
-*Work In Progress*
+- Improved the `.picounits` file
 
 #### Fixed
+- Reordered the dimensional ordering for the `.picounits` file to reflect SI/metric ordering.
 - Single unit arrays without prefixes in .uiv files.
 
 #### Documentation
-*Work In Progress*
+- Added prefix set to `/docs` and also reformated `/docs` section
+- Improved the readme and reformatted it.
 
 ---

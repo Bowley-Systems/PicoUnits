@@ -16,6 +16,7 @@ from picounits.configuration.picounits import DEFAULT_CONFIG
 
 # pylint: disable=line-too-long
 
+
 def generate(args: argparse.Namespace | None = None) -> None:
     """ Generates the '.picounits' file in working directories """
     _ = args
