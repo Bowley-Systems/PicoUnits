@@ -14,6 +14,8 @@ from pathlib import Path
 
 from picounits.configuration.picounits import DEFAULT_CONFIG
 
+# pylint: disable=line-too-long
+
 
 def generate(args: argparse.Namespace | None = None) -> None:
     """ Generates the '.picounits' file in working directories """
@@ -31,20 +33,19 @@ def generate(args: argparse.Namespace | None = None) -> None:
 
     try:
         target.write_text(DEFAULT_CONFIG.strip() + "\n", encoding="utf-8")
-        print(f"Successfully created .picounits at:\n   {target}")
-        print("\n You can now edit it to switch to custom symbols (t/l/m)")
-        print(" or change the dimension order.")
-        print(" picounits will automatically use your settings in this project!")
+        print(f"Successfully created .picounits at: {target}")
+        print("\n\nYou can now edit it to switch to custom symbols (t/l/m) or change the dimension order.")
+        print("picounits will automatically use your settings in this project!")
 
     except OSError as e:
         print(f"Failed to write .picounits to {target}: {e}")
         return
 
     # Asks the user if they want to see the configuration structure
-    reply = input("   Show the generated config now? (Y/n): ").strip().lower()
+    reply = input("Show the generated config now? (Y/n): ").strip().lower()
 
     if reply == "y":
-        print("\n--- Generated .picounits content ---")
+        print("\n\n--- Generated .picounits content ---")
         print(DEFAULT_CONFIG)
         print("------------------------------------")
 
