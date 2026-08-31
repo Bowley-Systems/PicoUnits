@@ -108,7 +108,7 @@ p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
 
-See the [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
+See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
 
 ---
 
@@ -117,11 +117,11 @@ See the [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview 
 A standard introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
 
 ```py
-from picounits import expects, VOLTAGE, CURRENT, RESISTANCE
+from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
  
 @expects(VOLTAGE)
-def ohm_law(i, r):
-    return i * r
+def ohm_law(i: Q, r: Q) -> Q:
+  return i * r
  
 # Correct Usage
 ohm_law(10 * CURRENT, 5 * RESISTANCE) 
