@@ -25,20 +25,24 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
   Automate physical meaning throughout your pipeline.
 </p>
 
-### Overview
+#### Overview
 
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
-![Python Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
+![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
 ![Coverage](https://img.shields.io/badge/coverage-61%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
 PicoUnits is a dynamic runtime dimensional typing system for numerical quantities. 
 It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
-#### Features:
-- Configurable `unit frames` with custom symbols and dimension ordering
-- Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`)
-- Numerical support for real, complex, and vector quantities
+
+
+```
+- Configurable `unit frames` with custom symbols and dimension ordering.
+- Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`).
+- Numerical support for real, complex, and vector quantities with type-specific operations.
+- Type checking at functional boundaries, defined by the user.
+```
 
 ---
 
