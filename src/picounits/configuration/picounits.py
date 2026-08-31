@@ -1,7 +1,10 @@
 # pylint: skip-file
 # picounits\configuration\picounits.py
 
-DEFAULT_CONFIG = """
+
+# Default configuration file structure
+DEFAULT_CONFIG = (
+"""
 # ==============================================================
 # PicoUnits project configuration
 #
@@ -34,7 +37,12 @@ TEMPERATURE: 4
 AMOUNT: 5
 LUMINOSITY: 6
 DIMENSIONLESS: 7
+
+[numerical]
+# Limits for numeric representation.
+significant_figures: 3
 """.lstrip()
+)
 
 
 # Package defaults symbols and order (SI)
@@ -61,7 +69,5 @@ DEFAULT_ORDER = {
     "DIMENSIONLESS":    7,
 }
 
-
-# Dimension maximum exponent size
-MAX_EXPONENT = 10
+# Numerical constants
 DEFAULT_SIGNIFICANT_FIGURES = 3

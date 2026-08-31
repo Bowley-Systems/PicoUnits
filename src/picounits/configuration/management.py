@@ -12,14 +12,15 @@ from configparser import ConfigParser
 from pathlib import Path
 from typing import Dict, Any
 
-from picounits.configuration.picounits import (
-    DEFAULT_ORDER, DEFAULT_SYMBOLS
-)
+from picounits.configuration.picounits import DEFAULT_ORDER, DEFAULT_SYMBOLS
+from picounits.configuration.picounits import DEFAULT_SIGNIFICANT_FIGURES
 
 
 # Effective preferences after first load
 _effective_symbols: Dict[str, str] | None = None
 _effective_order: Dict[str, int] | None = None
+_effective_figures: int | None = None
+
 _effective_derived: Dict[str, Any] = {}
 
 
@@ -38,13 +39,14 @@ def get_base_order() -> Dict[str, int]:
 
     return _effective_order
 
+
 def get_derived_units() -> Dict[str, Any]:
-    """ Gets the derived units from config. """
+    """ Gets the derived units from config """
     return _effective_derived
 
 
 def reload_config() -> None:
-    """ reloads configuration. """
+    """ reloads configuration """
     global _effective_symbols, _effective_order
     _effective_symbols, _effective_order = None, None
 
@@ -52,7 +54,7 @@ def reload_config() -> None:
 
 
 def _load_config() -> None:
-    """ Loads the configuration. """
+    """ Loads the configuration """
     global _effective_symbols, _effective_order
     local_file = _find_picounits_file()
 
@@ -74,7 +76,7 @@ def _load_config() -> None:
 
 
 def _find_picounits_file() -> Path | None:
-    """ Search upwards from cwd for .picounits. """
+    """ Search upwards from cwd for .picounits """
     cwd = Path.cwd()
     for path in [cwd, *cwd.parents]:
         # Search for exact filename in subtree
@@ -87,7 +89,7 @@ def _find_picounits_file() -> Path | None:
 
 
 def _load_from_file(filepath: Path) -> tuple[Dict[str, str], Dict[str, int]]:
-    """ Parse [symbols] and [order] sections from .picounits. """
+    """ Parse [symbols] and [order] sections from .picounits """
     config = ConfigParser(delimiters=(":", "="), comment_prefixes=("#", ";"))
     config.read(filepath, encoding="utf-8")
 
@@ -95,7 +97,7 @@ def _load_from_file(filepath: Path) -> tuple[Dict[str, str], Dict[str, int]]:
 
 
 def _import_symbols(config: dict) -> Dict[str, str]:
-    """ Loads the symbol dictionary from configuration."""
+    """ Loads the symbol dictionary from configuration"""
     symbols: Dict[str, str] = {}
 
     if "symbols" in config:
@@ -119,7 +121,7 @@ def _import_symbols(config: dict) -> Dict[str, str]:
 
 
 def _import_order(config: dict) -> Dict[str, int]:
-    """ Loads the order dictionary. """
+    """ Loads the order dictionary """
     custom_order: dict[str, int] = {}
     if "order" in config:
         for key, value_str in config["order"].items():
@@ -141,7 +143,7 @@ def _import_order(config: dict) -> Dict[str, int]:
 
 
 def add_derived_units(registry: Dict[str, Any]) -> None:
-    """ Gets the derived unit registry if a .ut file exists. """
+    """ Gets the derived unit registry if a .ut file exists """
     global _effective_derived
 
     if registry == _effective_derived:

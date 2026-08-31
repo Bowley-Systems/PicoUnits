@@ -116,6 +116,8 @@
     "latexmk",
     "matplotlib",
     "munits",
-    "axisinfo"
+    "axisinfo",
+    "coveragerc",
+    "tera"
   ]
 }

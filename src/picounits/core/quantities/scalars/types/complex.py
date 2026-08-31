@@ -21,7 +21,7 @@ from picounits.core.quantities.packet import Packet
 from picounits.core.quantities.scalars.scalar import ScalarPacket
 
 from picounits.lazy_imports import import_factory
-from picounits.configuration.picounits import DEFAULT_SIGNIFICANT_FIGURES
+from picounits.configuration.management import _effective_figures
 
 
 @dataclass(slots=True, repr=False, unsafe_hash=True)
@@ -61,11 +61,11 @@ class ComplexPacket(ScalarPacket):
 
         if isinstance(value, complex):
             # Rounds imaginary & real parts if complex
-            real = round(value.real, DEFAULT_SIGNIFICANT_FIGURES)
-            imag = round(value.imag, DEFAULT_SIGNIFICANT_FIGURES)
+            real = round(value.real, _effective_figures)
+            imag = round(value.imag, _effective_figures)
             value = complex(real, imag)
         else:
-            value = round(value, DEFAULT_SIGNIFICANT_FIGURES)
+            value = round(value, _effective_figures)
 
         return f"{value} {prefix}({self.unit.name(fundamental)})"
 
@@ -154,7 +154,7 @@ class ComplexPacket(ScalarPacket):
 
         if not format_spec:
             # Fall-back if no formatting is provided in the f-string
-            format_spec = f".{DEFAULT_SIGNIFICANT_FIGURES}f"
+            format_spec = f".{_effective_figures}f"
 
         formatted_value = format(value, format_spec)
         return f"{formatted_value} {prefix}({self.unit.name()})"

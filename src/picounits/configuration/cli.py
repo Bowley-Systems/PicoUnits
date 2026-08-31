@@ -2,10 +2,10 @@
 Filename: cli.py
 
 Description:
-    Simple command line tool to generate the '.picounits'
-    automatically to working directories
+    Simple command line tool to generate the 
+    '.picounits' automatically to working
+    directories.
 """
-
 
 from __future__ import annotations
 
@@ -15,7 +15,6 @@ from pathlib import Path
 from picounits.configuration.picounits import DEFAULT_CONFIG
 
 # pylint: disable=line-too-long
-
 
 def generate(args: argparse.Namespace | None = None) -> None:
     """ Generates the '.picounits' file in working directories """
@@ -68,6 +67,7 @@ def main(args: argparse.Namespace | None = None) -> None:
         )
     )
 
+    # Sets the python function `generate` as the route for `picounit generate`
     gen_parser.set_defaults(func=generate)
 
     args = parser.parse_args()

@@ -48,15 +48,14 @@ class FBase(Enum):
     Represents the seven SI base units plus dimensionless quantities.
     Supports custom symbols and ordering via configurations
     """
-    TIME    = auto()
-    LENGTH  = auto()
-    MASS    = auto()
-    CURRENT = auto()
-    TEMPERATURE = auto()
-    AMOUNT  = auto()
-    LUMINOSITY  = auto()
-    DIMENSIONLESS = auto()
-
+    TIME            = auto()
+    LENGTH          = auto()
+    MASS            = auto()
+    CURRENT         = auto()
+    TEMPERATURE     = auto()
+    AMOUNT          = auto()
+    LUMINOSITY      = auto()
+    DIMENSIONLESS   = auto()
 
     @property
     def symbol(self) -> str:

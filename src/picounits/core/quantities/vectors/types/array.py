@@ -23,8 +23,7 @@ from picounits.core.quantities.packet import Packet
 from picounits.core.quantities.vectors.vector import VectorPacket
 
 from picounits.lazy_imports import import_factory
-from picounits.configuration.picounits import DEFAULT_SIGNIFICANT_FIGURES
-
+from picounits.configuration.management import _effective_figures
 
 @dataclass(slots=True, repr=False, unsafe_hash=True)
 class ArrayPacket(VectorPacket):
@@ -92,7 +91,7 @@ class ArrayPacket(VectorPacket):
     def name(self, fundamental: bool) -> str:
         """ Returns the packet name as value + prefix(unit) """
         value, prefix = self._normalize()
-        rounded_value = np_round(value, DEFAULT_SIGNIFICANT_FIGURES)
+        rounded_value = np_round(value, _effective_figures)
 
         return f"{rounded_value} {prefix}({self.unit.name(fundamental)})"
 
