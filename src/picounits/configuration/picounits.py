@@ -26,9 +26,9 @@ DIMENSIONLESS: ∅
 
 [order]
 # Change the order in which dimensions are represented.
-TIME: 0
-LENGTH: 1
-MASS: 2
+LENGTH: 0
+MASS: 1
+TIME: 2
 CURRENT: 3
 TEMPERATURE: 4
 AMOUNT: 5
