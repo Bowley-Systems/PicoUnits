@@ -24,7 +24,8 @@ class Packet(ABC):
     """
     An Abstract Physical Packet: A Prefix, Value and Unit
 
-    NOTE: Prefix is init-only (InitVar)
+    NOTE: 
+    Prefix is init-only (InitVar)
     All packets, normalize value to BASE unit during init
     """
     value: Any

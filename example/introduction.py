@@ -16,8 +16,6 @@ def next_step(title: str, first: bool = False):
     input(">>> Press Enter to see this example...")
 
 
-# ============ Set a value:unit pair ============
-
 next_step("0a: How to set a prefix(value:unit) pair", True)
 
 # Import the dimension & prefix you want to use
@@ -30,7 +28,6 @@ william_height_mm = 1750 * MILLI * LENGTH
 print(f"William (defined as m):  {william_height_m}")
 print(f"William (defined as mm): {william_height_mm}")
 print("Result: Picounits normalized both to 1.75 meters.")
-
 
 next_step("0b: Due to prefix(value:unit) prefixes don't carry")
 
@@ -48,7 +45,6 @@ print(f"Square length: {square_length:.3f}, Square width: {square_width:.3f}")
 print(f"Square Area: {square_area:.3f}")
 
 
-# ============ Math Operations with value:units ============
 next_step("1: Math Operations with value:units")
 
 # Import the dimension & prefix you want to use
@@ -67,7 +63,6 @@ print(f"Lily Acceleration: {lily_acceleration:.3f}")
 print(f"Car Acceleration:   {car_acceleration:.3f}")
 
 
-# ============ Validation functions ============
 next_step("2: Validates the output is the correct dimension")
 
 # Import the quantity for type hinting, the validator for checking and dimensions to use
@@ -89,7 +84,6 @@ print("Re-entry with calculate_voltage(10 A, 10 Ω)....")
 print(f"Element voltage: {calculate_voltage(10 * CURRENT, 10 * RESISTANCE)}")
 
 
-# ============ Example 4: Complex Numbers & SUVAT ============
 next_step("4: Physics with Complex Numbers (SUVAT)")
 
 from picounits import Q, expects, VELOCITY, TIME
@@ -109,7 +103,6 @@ final_v = suvat(initial_velocity, acceleration, displacement)
 print(f"Complex Velocity Result: {final_v:.3f}")
 
 
-# ============ Example 5: Scaling Collections ============
 next_step("5: Scaling Lists/Arrays with Units")
 
 from picounits import VOLTAGE, KILO, VOLTAGE
@@ -122,7 +115,6 @@ print(f"Standard Voltages: {voltages}")
 print(f"High Voltages (kV scaled): {high_voltages}")
 
 
-# ============ Example 6: Kinetic Energy ============
 next_step("6: Derived Energy Calculation")
 
 from picounits import Q, expects, ENERGY
@@ -137,7 +129,6 @@ energy = kinetic_energy(Projectile_Mass, final_v)
 print(f"Final Kinetic Energy: {energy:.3f}")
 
 
-# ============ Example 7: Parser (introduction.uiv) ============
 next_step("7: Parser (introduction.uiv)")
 
 from math import pi
@@ -159,7 +150,6 @@ print("Calculating pole volume using parameters")
 print(f"Pole Volume: {volume:.3f}")
 
 
-# ============ Example 8: Parser Derived (derived.ut) ============
 next_step("8: Parser (derived.ut)")
 
 from pathlib import Path
@@ -184,7 +174,6 @@ energy = power * 1 * TIME
 print(f"power: {power:.3f}, energy: {energy:.3f}")
 
 
-# ============ Example 9: Debugging features ============
 next_step("9: Debugging with derived units")
 
 from picounits import KILO, POWER, TIME
@@ -199,7 +188,6 @@ print(f"Fundamental (.fundamental): {power.fundamental}, {energy.fundamental}")
 print(f"Stripped (.stripped): {power.stripped}, {energy.stripped}")
 
 
-# ============ Example 10: Validation Boundary ============
 next_step("10: Validation Boundary Class")
 
 from picounits import Q, strip_quantity

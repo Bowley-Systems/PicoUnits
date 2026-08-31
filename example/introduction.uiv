@@ -6,6 +6,7 @@ notes: "Example usage of .uiv for introduction.py"
 [circuit]
 # The current represented as a complex number
 current_phasor: 10+1j (A)
+current_range: [0, 3] (A)
 voltage_range: [5, 12, 24] k(kg*m^2*s^-3*A^-1)  # Voltage
 
 [coil]

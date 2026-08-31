@@ -27,18 +27,18 @@ Description:
 
 import unittest
 
-from tests.unit.dimensional_algebra import DimensionAlgebra
-from tests.unit.dimensional_construction import DimensionConstruction
-from tests.quantities.quantities_construction import QualityScalingConstruction
+from unit.dimensional_algebra import DimensionAlgebra
+from unit.dimensional_construction import DimensionConstruction
+from quantities.quantities_construction import QualityScalingConstruction
 
-from tests.extensions.core.deserialization import TestParseList, TestDeserialize
-from tests.extensions.utilities.operations import TestOperators
+from extensions.core.deserialization import TestParseList, TestDeserialize
+from extensions.utilities.operations import TestOperators
 
-from tests.extensions.core.construction import (
+from extensions.core.construction import (
     TestConstructPrefix, TestConstructUnits, TestConstructQuality
 )
 
-from tests.extensions.core.syntax import (
+from extensions.core.syntax import (
     TestExtractionState, TestExtractPairs, TestExtractBrackets, TestExtractParentheses,
     TestQualityExtraction
 )
