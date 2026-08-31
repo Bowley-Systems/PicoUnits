@@ -12,10 +12,10 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from picounits.configuration.picounits import DEFAULT_CONFIG
+from picounits.configuration.picounits import GENERATE_HELP, GENERATE_DESCRIPTION
+from picounits.configuration.picounits import PICOUNITS_DESCRIPTION, DEFAULT_CONFIG
 
 # pylint: disable=line-too-long
-
 
 def generate(args: argparse.Namespace | None = None) -> None:
     """ Generates the '.picounits' file in working directories """
@@ -51,22 +51,12 @@ def generate(args: argparse.Namespace | None = None) -> None:
 
 
 def main(args: argparse.Namespace | None = None) -> None:
-    """ Adds the argparse argument """
-    parser = argparse.ArgumentParser(
-        prog="picounits",
-        description="A Dynamic Runtime Type System for Dimensional Numerical Quantities."
-    )
+    """ Adds the argparse argument `generate` to `picounits` main argument """
+    parser = argparse.ArgumentParser(prog="picounits", description=PICOUNITS_DESCRIPTION)
 
     # Adds the `generate` argument for `picounits`
     subparsers = parser.add_subparsers()
-    gen_parser = subparsers.add_parser(
-        "generate",
-        help=("Create a default .picounits config file in the current directory"),
-        description=(
-            "Generate a ready-to-use .picounits file with helpful"
-            "comments " "and both SI defaults and common alternatives."
-        )
-    )
+    gen_parser = subparsers.add_parser("generate", help=GENERATE_HELP, description=GENERATE_DESCRIPTION)
 
     # Sets the python function `generate` as the route for `picounit generate`
     gen_parser.set_defaults(func=generate)
@@ -78,7 +68,3 @@ def main(args: argparse.Namespace | None = None) -> None:
         return
 
     args.func(args)
-
-
-if __name__ == "__main__":
-    main()

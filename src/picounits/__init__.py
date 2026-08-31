@@ -10,10 +10,10 @@ from picounits.constants import *
 from picounits.core.quantities.validator import expects
 from picounits.core.quantities.packet import Packet as Quantity
 
-from picounits.configuration.management import reload_config
+from picounits.configuration.management import inject_unit_frame
 
-# Reloads the users .picounits configuration file.
-reload_config()
+# Configuration / Management for forcing a unit frame at the application level.
+_ = inject_unit_frame
 
 # References for quantities when doing type hinting.
 Q = Quantity
@@ -79,7 +79,8 @@ __all__ = [
     "Quantity",
     "Q",
     "q",
-    "expects"
+    "expects",
+    "inject_unit_frame",
     
     # Scales
     "GIGA", "giga",

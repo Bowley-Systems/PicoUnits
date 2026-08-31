@@ -40,7 +40,8 @@ class Parser:
         # Checks file type and reads lines into memory
         path = Path(filepath)
         if path.suffix.lower() != '.uiv':
-            raise ValueError(f"Expected .uiv file, got {path.suffix}") from None
+            msg = f"Expected .uiv file, got {path.suffix}"
+            raise ValueError(msg) from None
 
         lines = cls._read_lines(filepath)
 
@@ -54,7 +55,8 @@ class Parser:
         # Checks file type and read lines into memory
         derived_path = Path(filepath)
         if derived_path.suffix.lower() != '.ut':
-            raise ValueError(f"Expected .ut file, got {derived_path.suffix}") from None
+            msg = f"Expected .ut file, got {derived_path.suffix}"
+            raise ValueError(msg) from None
 
         lines = cls._read_lines(filepath)
 
@@ -96,7 +98,8 @@ class Parser:
         # Convert to Path and validate
         filepath = Path(filepath_or_file)
         if not filepath.exists():
-            raise FileNotFoundError(f"File not found: {filepath}")
+            msg = f"File not found: {filepath}"
+            raise FileNotFoundError(msg) from None
 
         with filepath.open('r', encoding='utf-8') as f:
             return f.readlines()

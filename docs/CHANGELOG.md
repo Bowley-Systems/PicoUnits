@@ -70,11 +70,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Added
 - Non-prefixed integration for real-packets with matplotlib
 - Non-prefixed integration for array-packets with matplotlib
+- `[version]` section to `.picounits` with `format` (0.1.0)
 - `[numerical]` section to `.picounits` with `significant_figures`
 - Implemented significant figures from `.picounits` at runtime
+- Implemented unit frame injection for large applications
+- Implemented first sematic loading of ordering & symbols
 
 ### Removed
 - Deprecated `MAX_EXPONENT` constant from `/configurations`
+- Ordering & symbol are not loaded from root `__init__.py`
 
 #### Changed
 - Improved the `.picounits` file

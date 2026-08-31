@@ -27,18 +27,18 @@ Description:
 
 import unittest
 
-from unit.dimensional_algebra import DimensionAlgebra
-from unit.dimensional_construction import DimensionConstruction
-from quantities.quantities_construction import QualityScalingConstruction
+from tests.unit.dimensional_algebra import DimensionAlgebra
+from tests.unit.dimensional_construction import DimensionConstruction
+from tests.quantities.quantities_construction import QualityScalingConstruction
 
-from extensions.core.deserialization import TestParseList, TestDeserialize
-from extensions.utilities.operations import TestOperators
+from tests.extensions.core.deserialization import TestParseList, TestDeserialize
+from tests.extensions.utilities.operations import TestOperators
 
-from extensions.core.construction import (
+from tests.extensions.core.construction import (
     TestConstructPrefix, TestConstructUnits, TestConstructQuality
 )
 
-from extensions.core.syntax import (
+from tests.extensions.core.syntax import (
     TestExtractionState, TestExtractPairs, TestExtractBrackets, TestExtractParentheses,
     TestQualityExtraction
 )
@@ -74,6 +74,7 @@ suite.addTest(loader.loadTestsFromTestCase(TestQualityExtraction))
 suite.addTests(loader.loadTestsFromTestCase(TestOperators))
 
 runner = unittest.TextTestRunner(verbosity=2)
+
 
 if __name__ == "__main__":
     result = runner.run(suite)

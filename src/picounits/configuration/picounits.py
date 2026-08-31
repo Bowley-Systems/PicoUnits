@@ -2,6 +2,13 @@
 # picounits\configuration\picounits.py
 
 
+# PicoUnits Descriptions
+PICOUNITS_DESCRIPTION = "A Dynamic Runtime Type System for Dimensional Numerical Quantities."
+
+# Picounits generate command description & help
+GENERATE_HELP = "Creates a default SI metric .picounits config file in the current directory."
+GENERATE_DESCRIPTION = "Generate a ready-to-use .picounits file with SI metric symbols and ordering."
+
 # Default configuration file structure
 DEFAULT_CONFIG = (
 """
@@ -15,6 +22,9 @@ DEFAULT_CONFIG = (
 #   Dimensions cannot be added or removed, but their symbols and
 #   ordering may be customized.
 # ==============================================================
+
+[version]
+format: 0.1.0
 
 [symbols]
 # Change the symbol used to represent each fundamental dimension.
