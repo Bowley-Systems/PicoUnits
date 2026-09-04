@@ -50,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implemented section and key attribute checking
 - Implemented duplicate section detection
 - Implemented errors and warning codes from UnitValues specification document
+- Updated the formatting for the .info() tree structure for dynamic loaders
 
 #### Changed
 - Changed the `unit_test` folder to `tests` in `/src`

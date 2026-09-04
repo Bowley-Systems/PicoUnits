@@ -20,7 +20,7 @@ class AttributeNotFound(AttributeError):
         self.path = path
         self.attribute = attribute
 
-        msg = f"'{attribute}' not found at '{path}' within loader tree"
+        msg = f"{attribute!r} not found at {path!r} within loader tree"
         super().__init__(msg)
 
 
@@ -30,7 +30,7 @@ class InjectionError(Exception):
         self.path = path
         self.value = value
 
-        msg = f"Failed to inject '{value}' at '{path}'"
+        msg = f"Failed to inject {value!r} at {path!r}"
         super().__init__(msg)
 
 
@@ -66,7 +66,13 @@ class Loader:
             path_items = key.split('.')
             self._set_path(path_items, value)
 
-    def info(self, name: str = "root", inline: int = 4, context: LoaderContext = None) -> None:
+    def info(
+        self,
+        name: str = "root",
+        inline: int = 4,
+        context: LoaderContext = None,
+        is_root: bool = True
+    ) -> None:
         """ Recursively prints the structure of the loader as a tree. """
         if context is None:
             # Initialize context if not provided
@@ -77,11 +83,19 @@ class Loader:
             name = self.lx_name
 
         # Print the current node within the tree
-        connector = context.connector()
-        print(f"{context.indent}{connector}{name}")
+        if is_root:
+            # Print root without connector
+            print(f"{name}:.")
 
-        # Begins routing for next node within the tree
-        child_context = context.next_level()
+            # For root, children should use the same context
+            child_context = context
+        else:
+            connector = context.connector()
+            print(f"{context.indent}{connector}{name}")
+
+            # For non-root, children get indented
+            child_context = context.next_level()
+
         items = list(self._attributes().items())
         for index, (key, value) in enumerate(items):
             last_item = index == len(items) - 1
@@ -91,7 +105,7 @@ class Loader:
         """ Prints a child node based on its type. """ 
         if isinstance(value, self.__class__):
             # Recursively print nested object
-            value.info(key, inline=context.inline, context=context)
+            value.info(key, inline=context.inline, context=context, is_root=False)
             return
 
         if isinstance(value, (list, tuple)):
@@ -149,7 +163,7 @@ class Loader:
         """ Allow dynamic attribute access """
         raise AttributeNotFound(key, self.lx_name)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """ Returns the loaders direct members """
         attributes = self._attributes()
 
