@@ -19,12 +19,19 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <!-- Make sure to update the logo with the github link before release if changed -->
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" alt="PicoUnits logo" style="width:100%; max-width:100%; display:block;"></p>
+  <img 
+    src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" 
+    alt="PicoUnits logo" 
+    width="100%" 
+    style="max-width:100%; display:block;"
+  >
 </p>
+
 <p align="center">
-  Define the type. Define the variable. Execute. <br>
-  Automate physical meaning throughout your pipeline.
+    <strong>Define the type. Define the variable. Execute.</strong><br>
+    Automate physical meaning throughout your pipeline.
 </p>
+
 
 ### Overview
 
@@ -96,7 +103,11 @@ However, PicoUnits operates on a fixed set of fundamental dimensions and prefixe
 
 ### What are `.ut` and `.uiv`?
 
-Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes quantities as `value prefix(unit)` groups.
+Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes quantities as:
+
+```
+attribute: value prefix(unit)
+```
 
 `.ut` defines the custom units for your unit system:
 ```
