@@ -148,7 +148,7 @@ ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
 
-An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+> An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
 
 ---
 
