@@ -97,7 +97,7 @@ dimensionless: ∅
 The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. 
 However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
 
-> See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
+See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
 
 ---
 
@@ -126,7 +126,7 @@ p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
 
-> See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
+See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
 
 ---
 
@@ -148,7 +148,7 @@ ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
 
-> An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
 
 ---
 
