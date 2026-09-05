@@ -16,8 +16,6 @@ William Bowley,
 P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 -->
 
-<!-- Make sure to update the logo with the github link before release if changed -->
-
 <p align="center">
   <img 
     src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" 
@@ -35,6 +33,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 
 ### Overview
 
+![Version](https://img.shields.io/badge/Version-1.1.0-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
 ![Coverage](https://img.shields.io/badge/coverage-61%25-E14F4C?style=flat-square)
@@ -58,7 +57,7 @@ It provides a consistent type system for expressing dimensional quantities throu
 
 PicoUnits removes uncertainty by reducing the set of units to one canonical set defined by the user.
 
-#### It does not attempt to answer:
+<strong>It does not attempt to answer:</strong>
 
 How might one convert between systems at a boundary?
 ```
@@ -147,6 +146,7 @@ ohm_law(10 * CURRENT, 5 * RESISTANCE)
 ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
+<br>
 
 > An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
 
