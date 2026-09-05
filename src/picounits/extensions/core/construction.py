@@ -67,14 +67,18 @@ class ConstructQuantity:
                 # Applies different units to each column
                 return cls._nested_array(value, prefix, unit)
 
-        # Pops the first unit to use for construction
+        # Creates the prefix objects from string
+        prefix_obj = ConstructPrefix.construct_prefix(prefix)
+
+        # Creates column-wise unit-pair array
+        if isinstance(prefix, list) and isinstance(unit, list):
+            return cls._column_wise_array(value, unit, prefix_obj)
+
+        # Pops the first unit to use for simple list construction
         if isinstance(unit, list): unit = unit.pop(0)
 
-        # Simple lists, create array quantity e.x [10, 2] (kg*m*s^-2)
-        prefix_obj = ConstructPrefix.construct_prefix(prefix)
-        unit_obj = ConstructUnits.construct_unit(unit)
-
         # Creates the qualities via the quality factory
+        unit_obj = ConstructUnits.construct_unit(unit)
         return Factory.create(value, unit_obj, prefix_obj)
 
     @classmethod
@@ -116,12 +120,30 @@ class ConstructQuantity:
 
         raise ColumnAttribute(unit) from None
 
+    @classmethod
+    def _column_wise_array(cls, value: list, unit: list, prefix: list) -> list[Packet]:
+        """ Constructs a column-wise array into qualities. """
+        result = []
+
+        for index, item in enumerate(value):
+            # Constructs column-wise qualities within the array.
+            unit_obj = ConstructUnits.construct_unit(unit[index])
+            result.append(Factory.create(item, unit_obj, prefix[index]))
+
+        return result
+
 
 class ConstructPrefix:
     """ Constructs a prefix via token analysis """
     @classmethod
     def construct_prefix(cls, prefix: str) -> PrefixScale:
         """ Constructs a prefix via the o(1) prefix lookup """
+        if isinstance(prefix, list):
+            result = []
+            for item in prefix:
+                result.append(cls.construct_prefix(item))
+            return result
+
         prefix_scale = PrefixScale.from_symbol(prefix.strip())
         if prefix_scale:
             return prefix_scale

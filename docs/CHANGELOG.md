@@ -76,6 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implemented significant figures from `.picounits` at runtime
 - Implemented unit frame injection for large applications
 - Implemented first sematic loading of ordering & symbols
+- Implemented column-wise array qualities for multi-unit, single row qualities.
 
 ### Removed
 - Deprecated `MAX_EXPONENT` constant from `/configurations`
