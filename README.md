@@ -131,6 +131,8 @@ See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and 
 
 ### Quick Start
 
+An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+
 ```py
 from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
  
@@ -146,9 +148,6 @@ ohm_law(10 * CURRENT, 5 * RESISTANCE)
 ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
-<br>
-
-> An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
 
 ---
 
