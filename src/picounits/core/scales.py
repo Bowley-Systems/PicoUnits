@@ -11,7 +11,7 @@ from __future__ import annotations
 from typing import Any, Callable
 from enum import Enum
 
-from picounits.lazy_imports import import_factory, lazy_import
+from picounits.utilities.lazy_imports import import_factory, lazy_import
 
 
 class PrefixScale(Enum):

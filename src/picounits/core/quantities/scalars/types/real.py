@@ -17,19 +17,17 @@ from picounits.core.scales import PrefixScale
 from picounits.core.quantities.packet import Packet
 from picounits.core.quantities.scalars.scalar import ScalarPacket
 
-from picounits.lazy_imports import import_factory
-from picounits.configuration.picounits import DEFAULT_SIGNIFICANT_FIGURES
+from picounits.utilities.lazy_imports import import_factory
 
 # Import transcendental logic functions
 from picounits.core.quantities.scalars.methods import transcendental as tlops
+from picounits.configuration.management import get_significant_figures
 
 
 @dataclass(slots=True, repr=False, unsafe_hash=True)
 class RealPacket(ScalarPacket):
     """
     A Real Packet: A prefix, value (integer or float) and Unit
-
-    NOTE: Prefix is init-only, value is held in absolute form
     """
     def __post_init__(self, prefix: PrefixScale) -> None:
         """ Validates value and unit, then mutates value to BASE """
@@ -54,7 +52,7 @@ class RealPacket(ScalarPacket):
     def name(self, fundamental: bool) -> str:
         """ Returns the packet name as value + prefix(unit) """
         value, prefix = self._normalize()
-        rounded_value = round(value, DEFAULT_SIGNIFICANT_FIGURES)
+        rounded_value = round(value, get_significant_figures())
 
         return f"{rounded_value} {prefix}({self.unit.name(fundamental)})"
 
@@ -72,6 +70,10 @@ class RealPacket(ScalarPacket):
 
         # Defaults to zero, if edge-case
         return 0
+
+    def __float__(self) -> float:
+        """ Returns the quality as a float """
+        return float(self.stripped)
 
     def _normalize(self) -> tuple[float | int, PrefixScale]:
         """ Normalizes the value for packet name representation """
@@ -100,7 +102,7 @@ class RealPacket(ScalarPacket):
 
         if not format_spec:
             # Fall-back if no formatting is provided in the f-string
-            format_spec = f".{DEFAULT_SIGNIFICANT_FIGURES}f"
+            format_spec = f".{get_significant_figures()}f"
 
         formatted_value = format(value, format_spec)
         return f"{formatted_value} {prefix}({self.unit.name()})"

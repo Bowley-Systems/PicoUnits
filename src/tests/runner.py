@@ -75,5 +75,6 @@ suite.addTests(loader.loadTestsFromTestCase(TestOperators))
 
 runner = unittest.TextTestRunner(verbosity=2)
 
+
 if __name__ == "__main__":
     result = runner.run(suite)

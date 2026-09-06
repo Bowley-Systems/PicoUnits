@@ -10,7 +10,7 @@ Description:
 from __future__ import annotations
 from enum import Enum, auto
 
-from picounits.extensions.utilities.errors import UnknownOperator
+from picounits.utilities.errors import UnknownOperator
 
 
 class Operations(Enum):

@@ -21,6 +21,7 @@ from fractions import Fraction
 try:
     # Ensures picounits works even with preferences issues
     from picounits.configuration.management import get_base_symbols, get_base_order
+
 except ImportError:
     def get_base_symbols() -> dict[str, str]:
         """ placeholder """
@@ -31,12 +32,12 @@ except ImportError:
         return {}
 
 
-def _symbols(_=None) -> dict[str, str]:
+def _symbols() -> dict[str, str]:
     """ Caches the symbols for FBase """
     return get_base_symbols()
 
 
-def _order(_=None) -> dict[str, int]:
+def _order() -> dict[str, int]:
     """ Caches the order for FBase """
     return get_base_order()
 
@@ -48,15 +49,14 @@ class FBase(Enum):
     Represents the seven SI base units plus dimensionless quantities.
     Supports custom symbols and ordering via configurations
     """
-    TIME    = auto()
-    LENGTH  = auto()
-    MASS    = auto()
-    CURRENT = auto()
-    TEMPERATURE = auto()
-    AMOUNT  = auto()
-    LUMINOSITY  = auto()
-    DIMENSIONLESS = auto()
-
+    TIME            = auto()
+    LENGTH          = auto()
+    MASS            = auto()
+    CURRENT         = auto()
+    TEMPERATURE     = auto()
+    AMOUNT          = auto()
+    LUMINOSITY      = auto()
+    DIMENSIONLESS   = auto()
 
     @property
     def symbol(self) -> str:
@@ -116,13 +116,7 @@ class FBase(Enum):
 
 @dataclass(frozen=True, slots=True)
 class Dimension:
-    """
-    A Physical dimension: Base unit raised to an signed integer or float power.
-
-    Args:
-        base: The fundamental unit type (FBase Enum)
-        exponent: Integer or float power
-    """
+    """ A Physical dimension: Base unit raised to an signed integer or float power. """
     base: FBase = FBase.DIMENSIONLESS
     exponent: int | float = 1
 

@@ -16,8 +16,6 @@ def next_step(title: str, first: bool = False):
     input(">>> Press Enter to see this example...")
 
 
-# ============ Set a value:unit pair ============
-
 next_step("0a: How to set a prefix(value:unit) pair", True)
 
 # Import the dimension & prefix you want to use
@@ -31,7 +29,6 @@ print(f"William (defined as m):  {william_height_m}")
 print(f"William (defined as mm): {william_height_mm}")
 print("Result: Picounits normalized both to 1.75 meters.")
 
-
 next_step("0b: Due to prefix(value:unit) prefixes don't carry")
 
 # Import the dimension & prefix you want to use
@@ -44,11 +41,10 @@ square_width = 10 * MILLI * LENGTH
 # Calculates width
 square_area = square_width * square_length
 
-print(f"Square length: {square_length:.3f}, Square width: {square_width:.3f}")
-print(f"Square Area: {square_area:.3f}")
+print(f"Square length: {square_length}, Square width: {square_width}")
+print(f"Square Area: {square_area}")
 
 
-# ============ Math Operations with value:units ============
 next_step("1: Math Operations with value:units")
 
 # Import the dimension & prefix you want to use
@@ -63,11 +59,10 @@ force_on_car = -force_on_lily
 lily_acceleration = force_on_lily / lily_mass
 car_acceleration = force_on_car / car_mass
 
-print(f"Lily Acceleration: {lily_acceleration:.3f}")
-print(f"Car Acceleration:   {car_acceleration:.3f}")
+print(f"Lily Acceleration: {lily_acceleration}")
+print(f"Car Acceleration:   {car_acceleration}")
 
 
-# ============ Validation functions ============
 next_step("2: Validates the output is the correct dimension")
 
 # Import the quantity for type hinting, the validator for checking and dimensions to use
@@ -89,7 +84,6 @@ print("Re-entry with calculate_voltage(10 A, 10 Ω)....")
 print(f"Element voltage: {calculate_voltage(10 * CURRENT, 10 * RESISTANCE)}")
 
 
-# ============ Example 4: Complex Numbers & SUVAT ============
 next_step("4: Physics with Complex Numbers (SUVAT)")
 
 from picounits import Q, expects, VELOCITY, TIME
@@ -106,10 +100,9 @@ acceleration = 2.5 * LENGTH / TIME ** 2
 displacement = (10+12j) * KILO * LENGTH
 
 final_v = suvat(initial_velocity, acceleration, displacement)
-print(f"Complex Velocity Result: {final_v:.3f}")
+print(f"Complex Velocity Result: {final_v}")
 
 
-# ============ Example 5: Scaling Collections ============
 next_step("5: Scaling Lists/Arrays with Units")
 
 from picounits import VOLTAGE, KILO, VOLTAGE
@@ -122,7 +115,6 @@ print(f"Standard Voltages: {voltages}")
 print(f"High Voltages (kV scaled): {high_voltages}")
 
 
-# ============ Example 6: Kinetic Energy ============
 next_step("6: Derived Energy Calculation")
 
 from picounits import Q, expects, ENERGY
@@ -134,10 +126,9 @@ def kinetic_energy(mass: Q, velocity: Q) -> Q:
 
 Projectile_Mass = 12 * MASS
 energy = kinetic_energy(Projectile_Mass, final_v)
-print(f"Final Kinetic Energy: {energy:.3f}")
+print(f"Final Kinetic Energy: {energy}")
 
 
-# ============ Example 7: Parser (introduction.uiv) ============
 next_step("7: Parser (introduction.uiv)")
 
 from math import pi
@@ -156,10 +147,9 @@ outer_radius = parameters.stator.pole.outer_radius
 volume = pi * outer_radius ** 2 * axial_length
 
 print("Calculating pole volume using parameters")
-print(f"Pole Volume: {volume:.3f}")
+print(f"Pole Volume: {volume}")
 
 
-# ============ Example 8: Parser Derived (derived.ut) ============
 next_step("8: Parser (derived.ut)")
 
 from pathlib import Path
@@ -181,10 +171,9 @@ power = 10 * VOLTAGE * CURRENT
 energy = power * 1 * TIME
 
 # The notion now has the derived units within `derived.ut` instead of fundamental notion
-print(f"power: {power:.3f}, energy: {energy:.3f}")
+print(f"power: {power}, energy: {energy}")
 
 
-# ============ Example 9: Debugging features ============
 next_step("9: Debugging with derived units")
 
 from picounits import KILO, POWER, TIME
@@ -194,12 +183,11 @@ power = 10 * KILO * POWER
 energy = power * 1 * TIME
 
 # Shows the different print outs
-print(f"Derived Notion: {power:.3f}, {energy:.3f}")
+print(f"Derived Notion: {power}, {energy}")
 print(f"Fundamental (.fundamental): {power.fundamental}, {energy.fundamental}")
 print(f"Stripped (.stripped): {power.stripped}, {energy.stripped}")
 
 
-# ============ Example 10: Validation Boundary ============
 next_step("10: Validation Boundary Class")
 
 from picounits import Q, strip_quantity
@@ -209,7 +197,7 @@ from picounits import VELOCITY, LENGTH, TIME, KILO
 initial_velocity = 10 * VELOCITY
 acceleration = 2.5 * LENGTH / TIME ** 2
 
-print(f"Qualities for `MyClass`: {initial_velocity:.3f}, {acceleration:.3f}")
+print(f"Qualities for `MyClass`: {initial_velocity}, {acceleration}")
 
 class MyClass:
     def __init__(self, velocity: Q, acceleration: Q) -> None:
@@ -234,7 +222,7 @@ Example = MyClass(initial_velocity, acceleration)
 time = 10 * TIME
 output = Example.calculate_vel(time)
 
-print(f"Output of MyClass.calculate_vel(time): {output:.3f} @ {time:.3f}")
+print(f"Output of MyClass.calculate_vel(time): {output} @ {time}")
 print('-' * 65)
 print("[NOTE]: Review the implementation for this example: Line 185-222")
 

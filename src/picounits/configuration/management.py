@@ -12,69 +12,86 @@ from configparser import ConfigParser
 from pathlib import Path
 from typing import Dict, Any
 
-from picounits.configuration.picounits import (
-    DEFAULT_ORDER, DEFAULT_SYMBOLS
-)
+from picounits.configuration.picounits import DEFAULT_ORDER, DEFAULT_SYMBOLS
+from picounits.configuration.picounits import DEFAULT_SIGNIFICANT_FIGURES
 
+# pylint: disable=line-too-long
 
 # Effective preferences after first load
 _effective_symbols: Dict[str, str] | None = None
 _effective_order: Dict[str, int] | None = None
+_effective_figures: int | None = None
+
 _effective_derived: Dict[str, Any] = {}
+
 
 
 def get_base_symbols() -> Dict[str, str]:
     """ Gets the base symbol from config """
-    if _effective_symbols is None:
-        _load_config()
+    if _effective_symbols is None: _load_config(None)
 
     return _effective_symbols
 
 
 def get_base_order() -> Dict[str, int]:
     """ Gets the base order from config """
-    if _effective_order is None:
-        _load_config()
+    if _effective_order is None: _load_config(None)
 
     return _effective_order
 
+
+def get_significant_figures() -> int:
+    """ Gets the significant figures """
+    if _effective_figures is None: _load_config(None)
+
+    return _effective_figures
+
+
 def get_derived_units() -> Dict[str, Any]:
-    """ Gets the derived units from config.  """
+    """ Gets the derived units from config """
     return _effective_derived
 
 
-def reload_config() -> None:
-    """ reloads configuration """
-    global _effective_symbols, _effective_order
-    _effective_symbols, _effective_order = None, None
+def inject_unit_frame(filepath: Path | str) -> None:
+    """ Injects a unit frame for applications from path """
 
-    _load_config()
+    # Converts filepath to Path and Checks file type
+    path = Path(filepath)
+    if str(path.name.lower()) != '.picounits':
+        msg = f"Expected .picounits file, got {path.suffix}"
+        raise ImportError(msg) from None
+
+    _load_config(filepath)
 
 
-def _load_config() -> None:
+def _load_config(filepath: Path | None = None) -> None:
     """ Loads the configuration """
-    global _effective_symbols, _effective_order
-    local_file = _find_picounits_file()
+    global _effective_symbols, _effective_order, _effective_figures
 
-    if local_file:
+    if filepath is None:
+        # If no filepath, searches the local dictionary
+        filepath = _find_picounits_file()
+
+    if filepath:
         try:
-            symbols, order = _load_from_file(local_file)
+            symbols, order, figures = _load_from_file(filepath)
             _effective_symbols = {**DEFAULT_SYMBOLS, **symbols}
             _effective_order = order
+            _effective_figures = figures
             return
 
         except Exception as e:
-            raise RuntimeError(
-                f"picounits: Failed to parse {local_file}, using defaults: {e}"
-            ) from e
+            msg = f"picounits: Failed to parse {filepath}, using defaults: {e}"
+            raise RuntimeError(msg) from e
 
     # No file or failed use defaults
     _effective_symbols = DEFAULT_SYMBOLS.copy()
     _effective_order = DEFAULT_ORDER.copy()
+    _effective_figures = DEFAULT_SIGNIFICANT_FIGURES
 
 
 def _find_picounits_file() -> Path | None:
-    """ Search upwards from cwd for .picounits """
+    """ Search upwards from current working directory for .picounits file """
     cwd = Path.cwd()
     for path in [cwd, *cwd.parents]:
         # Search for exact filename in subtree
@@ -91,11 +108,11 @@ def _load_from_file(filepath: Path) -> tuple[Dict[str, str], Dict[str, int]]:
     config = ConfigParser(delimiters=(":", "="), comment_prefixes=("#", ";"))
     config.read(filepath, encoding="utf-8")
 
-    return _import_symbols(config), _import_order(config)
+    return _import_symbols(config), _import_order(config), _import_figures(config)
 
 
 def _import_symbols(config: dict) -> Dict[str, str]:
-    """Loads the symbol dictionary from configuration."""
+    """ Loads the symbol dictionary from configuration"""
     symbols: Dict[str, str] = {}
 
     if "symbols" in config:
@@ -140,8 +157,14 @@ def _import_order(config: dict) -> Dict[str, int]:
     return custom_order
 
 
+def _import_figures(config: dict) -> int:
+    """ Loads the significant figures """
+    raw_figures = config["numerical"]["significant_figures"]
+    return int(raw_figures)
+
+
 def add_derived_units(registry: Dict[str, Any]) -> None:
-    """Gets the derived unit registry if a .ut file exists."""
+    """ Gets the derived unit registry if a .ut file exists """
     global _effective_derived
 
     if registry == _effective_derived:
@@ -149,10 +172,7 @@ def add_derived_units(registry: Dict[str, Any]) -> None:
         return
 
     if _effective_derived:
-        msg = (
-            "Only one .ut file can be imported at once. "
-            f"Already contains {len(_effective_derived)} units."
-        )
+        msg = f"Only one .ut file can be imported at once. Already contains {len(_effective_derived)} units."
         raise RuntimeError(msg)
 
     if not registry:

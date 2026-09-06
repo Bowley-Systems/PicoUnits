@@ -11,7 +11,7 @@ from typing import Any, Callable
 from numpy import ndarray, integer, floating, complexfloating
 from picounits.core.quantities.packet import Packet
 
-from picounits.lazy_imports import lazy_import
+from picounits.utilities.lazy_imports import lazy_import
 
 
 class Factory:
@@ -22,13 +22,13 @@ class Factory:
     def create(cls, value: Any, unit, prefix=None) -> Packet:
         """
         Finds the type of the value and returns a casted packet
-        NOTE: The usage of import injection is to avoid circular imports
-        NOTE: Cannot type hint unit nor prefix due to circular imports
+
+        NOTE: 
+        The usage of import injection is to avoid circular imports
+        Cannot type hint unit nor prefix due to circular imports
         """
         if prefix is None:
-            prefixscale = lazy_import(
-                "picounits.core.scales", "PrefixScale", "Factory.create"
-            )
+            prefixscale = lazy_import("picounits.core.scales", "PrefixScale", "Factory.create")
             prefix = prefixscale.BASE
 
         match value:

@@ -1,3 +1,5 @@
+# .coveragerc
+
 [run]
 omit =
     src/tests/*

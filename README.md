@@ -1,6 +1,7 @@
 <!--
-#006d77ff, 
-#d92c2aff 
+#006d77ff -> deep, muted teal-green 
+#d92c2aff -> bold, warm crimson-red 
+
 Hello,
 PicoUnits only exists because I got annoyed by the 
 uncertainty of other unit systems and I wanted a 
@@ -15,50 +16,54 @@ William Bowley,
 P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 -->
 
-<!-- Make sure to update the logo with the github link before release if changed -->
-
 <p align="center">
-<img src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" alt="PicoUnits logo" style="width:100%; max-width:100%; display:block;"></p>
-</p>
-<h4 align="center">A Dynamic Runtime Type System for Dimensional Numerical Quantities.</h4>
-<p align="center">
-  Define the type. Define the variable. Execute. <br>
-  Automate physical meaning throughout your pipeline.
+  <img 
+    src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" 
+    alt="PicoUnits logo" 
+    width="100%" 
+    style="max-width:100%; display:block;"
+  >
 </p>
 
-## Overview
+<p align="center">
+    <strong>Define the type. Define the variable. Execute.</strong><br>
+    Automate physical meaning throughout your pipeline.
+</p>
 
-<!--
-Make sure to update the coverage value 
-(if unit tests are done for the update). 
-It is not automatic. 
---> 
 
+### Overview
+
+![Version](https://img.shields.io/badge/Version-1.1.0-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
-![Python Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
-![Coverage](https://img.shields.io/badge/coverage-61%25-E14F4C?style=flat-square)
+![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
+![Coverage](https://img.shields.io/badge/coverage-60%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
-PicoUnits is a dynamic runtime dimensional typing system for numerical quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
+PicoUnits is a dynamic runtime typing system for numerical quantities. 
+It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
-> [!important]
->
-> ### Features:
-> - Configurable `unit frames` with custom symbols and dimension ordering
-> - Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`)
-> - Numerical support for real, complex, and vector quantities
+```
+- Configurable `unit frames` with custom symbols and dimension ordering.
+- Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`).
+- Numerical support for real, complex, and vector quantities with type-specific operations.
+- Type checking at functional boundaries, defined by the user.
+```
 
-## Why convert at all?
+---
+
+### Why convert at all?
 
 PicoUnits removes uncertainty by reducing the set of units to one canonical set defined by the user.
 
-It does not attempt to answer:
+<strong>It does not attempt to answer:</strong>
 
 How might one convert between systems at a boundary?
 ```
-3 feet → ? metre (1/3.280839895...?) 
+3 feet → 0.9144... metre (1/3.280839895...?) 
 ↺ Each iteration
 ```
+
+<br>
 
 Because for computation, this is quite flawed. It destroys certainty for implementation convenience.
 
@@ -66,11 +71,12 @@ Because for computation, this is quite flawed. It destroys certainty for impleme
 Define unit frame → Define derived units → Work within it, not outside it.
 ```
 
+---
 
-## What is a Unit Frame?
+### What is a Unit Frame?
 
 A unit frame defines the dimensional system used by an application.
- 
+
 For example:
  
 ```text
@@ -85,13 +91,22 @@ luminosity: cd
 dimensionless: ∅
 ```
 
-The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
+The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. 
+However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
 
 See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
 
-## What are `.ut` and `.uiv`?
+---
 
-Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes quantities as `value prefix(unit)` groups.
+### What are `.ut` and `.uiv`?
+
+Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` encodes quantities as:
+
+```
+attribute: value prefix(unit)
+```
+
+<br>
 
 `.ut` defines the custom units for your unit system:
 ```
@@ -99,24 +114,27 @@ Both are dimensionally aware formats: `.ut` defines custom units, while `.uiv` e
 p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 ```
 
+<br>
+
 `.uiv` defines the quantities within your unit system:
 
 ```
 [model]
 inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
-See the [UnitValues repository](https://github.com/Bowley-Systems/UnitValues) for notation and language specification.
 
-## Quick Start
+See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
 
-A standard introduction example is available in [`example/`](https://github.com/wgbowley/PicoUnits/tree/main/example).
+---
+
+### Quick Start
 
 ```py
-from picounits import expects, VOLTAGE, CURRENT, RESISTANCE
+from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
  
 @expects(VOLTAGE)
-def ohm_law(i, r):
-    return i * r
+def ohm_law(i: Q, r: Q) -> Q:
+  return i * r
  
 # Correct Usage
 ohm_law(10 * CURRENT, 5 * RESISTANCE) 
@@ -127,13 +145,20 @@ ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
 
-## Installation 
+> An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+
+---
+
+### Installation 
  
 To install:
+
 ```bash
 pip install PicoUnits
 ```
 
-### Documentation
+#### Documentation
 
-Full documentation is available in the [`docs/`](https://github.com/wgbowley/PicoUnits/tree/main/docs) folder, including API reference, changelog, and contributors.
+Full documentation is available in the [`docs/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/docs) folder, including API reference, changelog, and contributors.
+
+---

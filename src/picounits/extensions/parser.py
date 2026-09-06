@@ -9,7 +9,6 @@ Description:
     construction of units
 """
 
-
 from __future__ import annotations
 from pathlib import Path
 
@@ -20,9 +19,9 @@ from picounits.extensions.utilities.attributes import AttributeCheck
 from picounits.extensions.core.syntax import ExtractPairs, QualityExtraction
 from picounits.extensions.core.construction import ConstructQuantity, ConstructUnits
 
-from picounits.extensions.utilities.errors import (
-    ParserError, BackCompatibilityWarning, DuplicateSectionError
-)
+from picounits.utilities.errors import ParserError, BackCompatibilityWarning
+from picounits.utilities.errors import DuplicateSectionError, ExtensionNotFound
+
 
 class Parser:
     """ Parser for .ut & .uiv file formats"""
@@ -40,7 +39,8 @@ class Parser:
         # Checks file type and reads lines into memory
         path = Path(filepath)
         if path.suffix.lower() != '.uiv':
-            raise ValueError(f"Expected .uiv file, got {path.suffix}") from None
+            msg = f"Expected .uiv file, got {path.suffix}"
+            raise ParserError(cls.__name__,  msg) from None
 
         lines = cls._read_lines(filepath)
 
@@ -54,7 +54,8 @@ class Parser:
         # Checks file type and read lines into memory
         derived_path = Path(filepath)
         if derived_path.suffix.lower() != '.ut':
-            raise ValueError(f"Expected .ut file, got {derived_path.suffix}") from None
+            msg = f"Expected .ut file, got {derived_path.suffix}"
+            raise ParserError(cls.__name__, msg) from None
 
         lines = cls._read_lines(filepath)
 
@@ -96,7 +97,8 @@ class Parser:
         # Convert to Path and validate
         filepath = Path(filepath_or_file)
         if not filepath.exists():
-            raise FileNotFoundError(f"File not found: {filepath}")
+            msg = f"File not found: {filepath}"
+            raise FileNotFoundError(msg) from None
 
         with filepath.open('r', encoding='utf-8') as f:
             return f.readlines()
@@ -226,3 +228,16 @@ class ParseLines:
 
         # Returns a empty string if false
         return False, ""
+
+
+def resolve_derived() -> None:
+    """ Resolves derived units via searching working directory recursively """
+    cwd = Path.cwd()
+
+    # Search recursively for any .ut file
+    candidates = list(cwd.rglob("*.ut"))
+    if candidates:
+        Parser.import_derived(candidates[0])
+        return
+
+    raise ExtensionNotFound("resolve_derived()", ".ut")

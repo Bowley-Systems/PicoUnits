@@ -1,34 +1,34 @@
 # pylint: skip-file
 """
 Filename: factory.pyi
-Clear: X
+
 Description:
     Static type hinting for the factory module.
-    The factory is type caster for quantities and
-    dispatcher for mathematical methods
 """
 
+from typing import Callable, overload
+
 from numpy import ndarray, integer, floating, complexfloating
-from typing import Callable, overload, TypeVar, Type
-from typing import Self
+
 from picounits.core.unit import Unit
 from picounits.core.scales import PrefixScale
 from picounits.core.quantities.scalars.types.complex import ComplexPacket
 from picounits.core.quantities.scalars.types.real import RealPacket
 from picounits.core.quantities.vectors.types.array import ArrayPacket
 
-# Bound typevar for packet types
+
 Packet = ComplexPacket | RealPacket | ArrayPacket
-P = TypeVar("P", ComplexPacket, RealPacket, ArrayPacket)
+
 
 class Factory:
+
     @overload
     @classmethod
     def create(
         cls,
         value: complex | complexfloating,
         unit: Unit,
-        prefix: PrefixScale | None = None
+        prefix: PrefixScale | None = None,
     ) -> ComplexPacket: ...
 
     @overload
@@ -37,7 +37,7 @@ class Factory:
         cls,
         value: float | int | floating | integer,
         unit: Unit,
-        prefix: PrefixScale | None = None
+        prefix: PrefixScale | None = None,
     ) -> RealPacket: ...
 
     @overload
@@ -46,22 +46,18 @@ class Factory:
         cls,
         value: ndarray | list | tuple,
         unit: Unit,
-        prefix: PrefixScale | None = None
+        prefix: PrefixScale | None = None,
     ) -> ArrayPacket: ...
 
     @classmethod
-    def create(
+    def reallocate(
         cls,
-        value: complex | float | int | floating | ndarray | list | tuple | integer | complexfloating,
-        unit: Unit,
-        prefix: PrefixScale | None = None,
-    ) -> ComplexPacket | RealPacket | ArrayPacket: ...
+        op_name: str,
+    ) -> Callable[[Callable], Callable]: ...
 
     @classmethod
-    def reallocate(cls, op_name: str) -> Callable[[Callable], Callable]: ...
-
-    @classmethod
-    def category_check(cls, q1: Packet, q2: Packet) -> None: ...
-
-
-def import_factory(caller: str) -> Type[Factory]: ...
+    def category_check(
+        cls,
+        q1: Packet,
+        q2: Packet,
+    ) -> None: ...

@@ -22,16 +22,13 @@ from picounits.core.scales import PrefixScale
 from picounits.core.quantities.packet import Packet
 from picounits.core.quantities.vectors.vector import VectorPacket
 
-from picounits.lazy_imports import import_factory
-from picounits.configuration.picounits import DEFAULT_SIGNIFICANT_FIGURES
-
+from picounits.utilities.lazy_imports import import_factory
+from picounits.configuration.management import get_significant_figures
 
 @dataclass(slots=True, repr=False, unsafe_hash=True)
 class ArrayPacket(VectorPacket):
     """
     A Array Packet: A prefix, array and a unit
-
-    NOTE: Prefix is init-only, value is held in absolute form
     """
     def __post_init__(self, prefix: PrefixScale) -> None:
         """ Validates value and unit, then mutates values to BASE """
@@ -85,10 +82,14 @@ class ArrayPacket(VectorPacket):
         value = float(linalg.norm(self.value))
         return factory.create(value, self.unit)
 
+    def __array__(self, dtype=None, copy=None) -> ndarray:
+        """ Return the underlying numerical array. """
+        return array(self.value, dtype=dtype, copy=copy)
+
     def name(self, fundamental: bool) -> str:
         """ Returns the packet name as value + prefix(unit) """
         value, prefix = self._normalize()
-        rounded_value = np_round(value, DEFAULT_SIGNIFICANT_FIGURES)
+        rounded_value = np_round(value, get_significant_figures())
 
         return f"{rounded_value} {prefix}({self.unit.name(fundamental)})"
 

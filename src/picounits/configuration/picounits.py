@@ -1,7 +1,17 @@
 # pylint: skip-file
 # picounits\configuration\picounits.py
 
-DEFAULT_CONFIG = """
+
+# PicoUnits Descriptions
+PICOUNITS_DESCRIPTION = "A Dynamic Runtime Type System for Dimensional Numerical Quantities."
+
+# Picounits generate command description & help
+GENERATE_HELP = "Creates a default SI metric .picounits config file in the current directory."
+GENERATE_DESCRIPTION = "Generate a ready-to-use .picounits file with SI metric symbols and ordering."
+
+# Default configuration file structure
+DEFAULT_CONFIG = (
+"""
 # ==============================================================
 # PicoUnits project configuration
 #
@@ -12,6 +22,9 @@ DEFAULT_CONFIG = """
 #   Dimensions cannot be added or removed, but their symbols and
 #   ordering may be customized.
 # ==============================================================
+
+[version]
+format: 0.1.0
 
 [symbols]
 # Change the symbol used to represent each fundamental dimension.
@@ -26,15 +39,20 @@ DIMENSIONLESS: ∅
 
 [order]
 # Change the order in which dimensions are represented.
-TIME: 0
-LENGTH: 1
-MASS: 2
+LENGTH: 0
+MASS: 1
+TIME: 2
 CURRENT: 3
 TEMPERATURE: 4
 AMOUNT: 5
 LUMINOSITY: 6
 DIMENSIONLESS: 7
+
+[numerical]
+# Limits for numeric representation.
+significant_figures: 3
 """.lstrip()
+)
 
 
 # Package defaults symbols and order (SI)
@@ -61,7 +79,5 @@ DEFAULT_ORDER = {
     "DIMENSIONLESS":    7,
 }
 
-
-# Dimension maximum exponent size
-MAX_EXPONENT = 10
+# Numerical constants
 DEFAULT_SIGNIFICANT_FIGURES = 3
