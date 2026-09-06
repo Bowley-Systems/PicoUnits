@@ -11,7 +11,7 @@ from __future__ import annotations
 from typing import Any
 
 from picounits.core.dimensions import Dimension
-from picounits.lazy_imports import import_factory
+from picounits.utilities.lazy_imports import import_factory
 
 from picounits.configuration.management import get_derived_units
 

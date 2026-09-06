@@ -1,10 +1,9 @@
 """
-Filename: parser_errors.py
+Filename: errors.py
 
 Description:
-    Defines the parser errors classes to 
-    ensure descriptive error messages are
-    returned to the user
+    Defines the runtime/parser errors classes 
+    to ensure descriptive error messages.
 """
 
 from abc import ABC, abstractmethod
@@ -34,7 +33,42 @@ class ParseListFailure(ValueError):
         super().__init__(msg)
 
 
+class UnitError(TypeError):
+    """ Exception for Unit Error """
+    def __init__(self, error: str, messenger: str |  None = None):
+        """ Returns a custom error message """
+        if messenger:
+            msg = f"{messenger!r} raised error: {error}."
+        else:
+            msg = f"Unit error occurred: {error}."
+        super().__init__(msg)
+
+
+class DimensionError(ValueError):
+    """ Exception for unit error """
+    def __init__(self, caller: str, message: str):
+        """ Returns a custom error message for unit error """
+        msg = f"{caller!r} {message}"
+        super().__init__(msg)
+
+
 # Specific errors
+class LazyImportError(ImportError):
+    """ Exception for failed lazy imports """
+    def __init__(self, caller: str, module: str):
+        """ Returns a custom error message for lazy imports """
+        msg = f"Could not import '{module}' for '{caller}'. This usually means picounits was not installed correctly"
+        super().__init__(msg)
+
+
+class ExtensionNotFound(FileNotFoundError):
+    """ Exception for failed lazy imports """
+    def __init__(self, caller: str, extension: str):
+        """ Returns a custom error message for file not found """
+        msg = f"{caller!r} was unable to find '{extension}' file in the current working directory."
+        super().__init__(msg)
+
+
 class UnknownOperator(ValueError):
     """ Exception for unknown operator during construction """
     CODE = "E003"

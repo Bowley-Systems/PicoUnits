@@ -10,7 +10,7 @@ Descriptions:
 import unittest
 
 from picounits.extensions.utilities.operations import Operations
-from picounits.extensions.utilities.errors import UnknownOperator
+from picounits.utilities.errors import UnknownOperator
 
 
 class TestOperators(unittest.TestCase):

@@ -11,7 +11,7 @@ Descriptions:
 
 import unittest
 
-from picounits.extensions.utilities.errors import UnbalancedDepth, ParserError
+from picounits.utilities.errors import UnbalancedDepth, ParserError
 from picounits.extensions.core.syntax import (
     ExtractionState, ExtractPairs, ExtractBrackets, ExtractParentheses, QualityExtraction
 )

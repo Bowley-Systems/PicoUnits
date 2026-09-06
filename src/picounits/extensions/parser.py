@@ -20,9 +20,9 @@ from picounits.extensions.utilities.attributes import AttributeCheck
 from picounits.extensions.core.syntax import ExtractPairs, QualityExtraction
 from picounits.extensions.core.construction import ConstructQuantity, ConstructUnits
 
-from picounits.extensions.utilities.errors import (
-    ParserError, BackCompatibilityWarning, DuplicateSectionError
-)
+from picounits.utilities.errors import ParserError, BackCompatibilityWarning
+from picounits.utilities.errors import DuplicateSectionError, ExtensionNotFound
+
 
 class Parser:
     """ Parser for .ut & .uiv file formats"""
@@ -41,7 +41,7 @@ class Parser:
         path = Path(filepath)
         if path.suffix.lower() != '.uiv':
             msg = f"Expected .uiv file, got {path.suffix}"
-            raise ValueError(msg) from None
+            raise ParserError(cls.__name__,  msg) from None
 
         lines = cls._read_lines(filepath)
 
@@ -56,7 +56,7 @@ class Parser:
         derived_path = Path(filepath)
         if derived_path.suffix.lower() != '.ut':
             msg = f"Expected .ut file, got {derived_path.suffix}"
-            raise ValueError(msg) from None
+            raise ParserError(cls.__name__, msg) from None
 
         lines = cls._read_lines(filepath)
 
@@ -229,3 +229,16 @@ class ParseLines:
 
         # Returns a empty string if false
         return False, ""
+
+
+def resolve_derived() -> None:
+    """ Resolves derived units via searching working directory recursively """
+    cwd = Path.cwd()
+
+    # Search recursively for any .ut file
+    candidates = list(cwd.rglob("*.ut"))
+    if candidates:
+        Parser.import_derived(candidates[0])
+        return
+
+    raise ExtensionNotFound("resolve_derived()", ".ut")

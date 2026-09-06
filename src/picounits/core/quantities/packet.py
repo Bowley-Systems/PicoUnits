@@ -16,7 +16,7 @@ from typing import Any
 from picounits.core.scales import PrefixScale
 from picounits.core.unit import Unit
 
-from picounits.lazy_imports import import_factory
+from picounits.utilities.lazy_imports import import_factory
 
 
 @dataclass

@@ -8,7 +8,7 @@ Description:
 """
 
 from __future__ import annotations
-from picounits.extensions.utilities.errors import InvalidSectionError, InvalidKeyError
+from picounits.utilities.errors import InvalidSectionError, InvalidKeyError
 
 
 class AttributeCheck:

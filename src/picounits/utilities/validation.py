@@ -1,23 +1,17 @@
 """
-Filename: validator.py
+Filename: validation.py
 
 Description:
-    Defines the methods for the unit validator
-    method in the Packet ABC dataclass
+    Defines the validator function method,
+    check quantity and strip quantity methods.
 """
 
-from typing import Callable
+from typing import Callable, Any
 
 from picounits.core.unit import Unit
 from picounits.core.quantities.packet import Packet
 
-
-class DimensionError(ValueError):
-    """ Exception for unit error """
-    def __init__(self, caller: str, message: str):
-        """ Returns a custom error message for unit error """
-        msg = f"{caller!r} {message}"
-        super().__init__(msg)
+from picounits.utilities.errors import DimensionError, UnitError
 
 
 def _check_packet(q: Packet, func: str) -> None:
@@ -65,6 +59,34 @@ def expects(forecasted: Unit) -> Callable:
 
         return wrapper
     return decorator
+
+
+def check_quantity(quantity: Packet, ref: Packet) -> None:
+    """ Checks if the quantity has the correct reference unit """
+    if not isinstance(quantity, Packet):
+        msg = f"{type(quantity)!r} is not a physical quantity object"
+        raise UnitError(msg)
+
+    if not isinstance(ref, (Unit, Packet)):
+        msg = f"Reference unit must be either a quantity or unit, not {type(ref)}"
+        raise UnitError(msg)
+
+    if isinstance(ref, Packet):
+        if quantity.unit != ref.unit:
+            msg = f"Expected {ref.unit!r}, got {quantity.unit!r}"
+            raise UnitError(msg)
+
+    if isinstance(ref, Unit):
+        if quantity.unit != ref:
+            msg = f"Expected {ref!r}, got {quantity.unit!r}"
+            raise UnitError(msg)
+
+
+def strip_quantity(quantity: Packet, reference: Packet) -> Any:
+    """ Strips quantity from value returns raw value """
+    check_quantity(quantity, reference)
+
+    return quantity.value
 
 
 # LEGACY API - keep the old name for backward compatibility before 1.0.6

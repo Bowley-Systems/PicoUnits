@@ -77,6 +77,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implemented unit frame injection for large applications
 - Implemented first sematic loading of ordering & symbols
 - Implemented column-wise array qualities for multi-unit, single row qualities.
+- Implemented `resolve_derived` to pull derived units from working directory easier.
 
 ### Removed
 - Deprecated `MAX_EXPONENT` constant from `/configurations`
@@ -84,10 +85,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Changed
 - Improved the `.picounits` file
+- Moved unit boundary functions and the `validator` function into one module.
+- Moved all custom error messages into one module.
 
 #### Fixed
 - Reordered the dimensional ordering for the `.picounits` file to reflect SI/metric ordering.
 - Single unit arrays without prefixes in .uiv files.
+- Improved the static type hinting of qualities via improving the `.pyi` implementation.
 
 #### Documentation
 - Added prefix set to `/docs` and also reformated `/docs` section

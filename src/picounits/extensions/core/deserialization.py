@@ -11,7 +11,7 @@ Description:
 
 from __future__ import annotations
 
-from picounits.extensions.utilities.errors import FailedCasting, ParseListFailure
+from picounits.utilities.errors import FailedCasting, ParseListFailure
 
 
 class Deserialize:

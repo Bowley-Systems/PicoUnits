@@ -20,7 +20,7 @@ from picounits.core.scales import PrefixScale
 from picounits.core.quantities.packet import Packet
 from picounits.core.quantities.scalars.scalar import ScalarPacket
 
-from picounits.lazy_imports import import_factory
+from picounits.utilities.lazy_imports import import_factory
 from picounits.configuration.management import get_significant_figures
 
 

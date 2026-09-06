@@ -21,7 +21,7 @@ from picounits.constants import (
 from picounits.extensions.core.construction import (
     ConstructPrefix, ConstructUnits, ConstructQuantity
 )
-from picounits.extensions.utilities.errors import (
+from picounits.utilities.errors import (
     ParserError, UnknownPrefix, UnsupportedType, ColumnAttribute
 )
 

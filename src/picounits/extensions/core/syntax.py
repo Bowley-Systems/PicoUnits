@@ -13,7 +13,7 @@ from __future__ import annotations
 from typing import Any
 from dataclasses import dataclass
 
-from picounits.extensions.utilities.errors import UnbalancedDepth, ParserError
+from picounits.utilities.errors import UnbalancedDepth, ParserError
 from picounits.extensions.core.deserialization import Deserialize
 
 

@@ -11,17 +11,7 @@ Description:
 from typing import Any
 from functools import lru_cache
 
-
-class LazyImportError(ImportError):
-    """ Exception for failed lazy imports """
-    def __init__(self, caller: str, module: str):
-        """ Returns a custom error message for lazy imports """
-        msg = (
-            f"Could not import '{module}' for '{caller}'. "
-            "This usually means picounits was not installed correctly"
-        )
-        super().__init__(msg)
-
+from picounits.utilities.errors import LazyImportError
 
 @lru_cache(maxsize=None)
 def import_factory(caller_name: str) -> Any:

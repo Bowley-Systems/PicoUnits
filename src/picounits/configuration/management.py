@@ -91,7 +91,7 @@ def _load_config(filepath: Path | None = None) -> None:
 
 
 def _find_picounits_file() -> Path | None:
-    """ Search upwards from cwd for .picounits """
+    """ Search upwards from current working directory for .picounits file """
     cwd = Path.cwd()
     for path in [cwd, *cwd.parents]:
         # Search for exact filename in subtree

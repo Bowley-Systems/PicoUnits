@@ -21,6 +21,7 @@ from fractions import Fraction
 try:
     # Ensures picounits works even with preferences issues
     from picounits.configuration.management import get_base_symbols, get_base_order
+
 except ImportError:
     def get_base_symbols() -> dict[str, str]:
         """ placeholder """

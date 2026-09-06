@@ -10,7 +10,7 @@ Descriptions:
 import unittest
 
 from picounits.extensions.core.deserialization import Deserialize, ParseListStructure
-from picounits.extensions.utilities.errors import ParseListFailure, FailedCasting
+from picounits.utilities.errors import ParseListFailure, FailedCasting
 
 
 class TestDeserialize(unittest.TestCase):

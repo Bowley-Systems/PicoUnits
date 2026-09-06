@@ -21,7 +21,7 @@ from picounits.core.quantities.packet import Packet
 from picounits.core.quantities.factory import Factory
 
 from picounits.extensions.utilities.operations import Operations
-from picounits.extensions.utilities.errors import (
+from picounits.utilities.errors import (
     ParserError, UnknownPrefix, ColumnAttribute, UnsupportedType,
     UnknownOperator, UnitNotFoundError 
 )
