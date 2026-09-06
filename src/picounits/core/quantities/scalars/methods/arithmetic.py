@@ -6,7 +6,6 @@ Description:
     and instance methods for scalar quantities
 """
 
-
 from picounits.core.unit import Unit
 from picounits.constants import DIMENSIONLESS
 

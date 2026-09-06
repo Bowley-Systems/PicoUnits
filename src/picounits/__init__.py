@@ -11,6 +11,7 @@ from picounits.core.quantities.packet import Packet as Quantity
 from picounits.configuration.management import inject_unit_frame
 from picounits.utilities.errors import UnitError
 
+
 # Configuration / Management for forcing a unit frame at the application level.
 _ = inject_unit_frame
 

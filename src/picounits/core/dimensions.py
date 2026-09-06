@@ -116,13 +116,7 @@ class FBase(Enum):
 
 @dataclass(frozen=True, slots=True)
 class Dimension:
-    """
-    A Physical dimension: Base unit raised to an signed integer or float power.
-
-    Args:
-        base: The fundamental unit type (FBase Enum)
-        exponent: Integer or float power
-    """
+    """ A Physical dimension: Base unit raised to an signed integer or float power. """
     base: FBase = FBase.DIMENSIONLESS
     exponent: int | float = 1
 

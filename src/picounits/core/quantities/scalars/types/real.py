@@ -28,8 +28,6 @@ from picounits.configuration.management import get_significant_figures
 class RealPacket(ScalarPacket):
     """
     A Real Packet: A prefix, value (integer or float) and Unit
-
-    NOTE: Prefix is init-only, value is held in absolute form
     """
     def __post_init__(self, prefix: PrefixScale) -> None:
         """ Validates value and unit, then mutates value to BASE """

@@ -24,10 +24,10 @@ class VectorPacket(Packet, ABC):
     """
     An Abstract Vector Packet: A prefix, value (Any Vector) and Unit
 
-    NOTE: Representation, prefix scaling, comparison, validation
+    NOTE: 
+    Representation, prefix scaling, comparison, validation
     are not implemented in this base case.
     """
-
     @property
     def unit_vector(self) -> Packet:
         """ Calculates the unit vector of self """

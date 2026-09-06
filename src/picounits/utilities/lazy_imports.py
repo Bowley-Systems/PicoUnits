@@ -7,11 +7,11 @@ Description:
     factory as its the main lazy import.
 """
 
-
 from typing import Any
 from functools import lru_cache
 
 from picounits.utilities.errors import LazyImportError
+
 
 @lru_cache(maxsize=None)
 def import_factory(caller_name: str) -> Any:
@@ -25,9 +25,7 @@ def import_factory(caller_name: str) -> Any:
 
 
 @lru_cache(maxsize=None)
-def lazy_import(
-    module_path: str, method_name: str, caller_name: str
-) -> Any:
+def lazy_import(module_path: str, method_name: str, caller_name: str) -> Any:
     """ Caches/returns the module_path.module_name for lazy imports  """
     try:
         mod = __import__(module_path, fromlist=[method_name])

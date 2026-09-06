@@ -18,12 +18,8 @@ from picounits.constants import (
     FORCE, PRESSURE, POWER, MILLI, KILO, MEGA
 )
 
-from picounits.extensions.core.construction import (
-    ConstructPrefix, ConstructUnits, ConstructQuantity
-)
-from picounits.utilities.errors import (
-    ParserError, UnknownPrefix, UnsupportedType, ColumnAttribute
-)
+from picounits.extensions.core.construction import ConstructPrefix, ConstructUnits, ConstructQuantity
+from picounits.utilities.errors import ParserError, UnknownPrefix, UnsupportedType, ColumnAttribute
 
 
 class TestConstructPrefix(unittest.TestCase):
