@@ -99,7 +99,7 @@ class Packet(ABC):
     def info(self) -> None:
         """ Displays the quality operational history """
         # Uses lazy import to avoid circular import between self & factory
-        factory = import_factory
+        factory = import_factory("Packet.info")
 
         factory.display(self)
 
