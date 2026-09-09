@@ -119,6 +119,12 @@ class Factory:
         return decorator
 
     @classmethod
+    def packet_info(cls, packet: Packet) -> None:
+        """ Displays the packet construction history """
+        node = packet.meta
+        cls.node_info(node)
+
+    @classmethod
     def node_info(cls, node: PacketNode, prefix: str = "", is_last: bool = True) -> None:
         """ Prints the node information in a structured tree """
         if not node:
