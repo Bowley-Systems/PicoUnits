@@ -101,7 +101,7 @@ class Packet(ABC):
         # Uses lazy import to avoid circular import between self & factory
         factory = import_factory("Packet.info")
 
-        factory.display(self)
+        factory.node_info(self)
 
     def unit_check(self, target: Packet | Unit) -> None:
         """ Uses fundamental dimensions and exponents to check equivalent """
