@@ -122,10 +122,10 @@ class Factory:
     def packet_info(cls, packet: Packet) -> None:
         """ Displays the packet construction history """
         node = packet.meta
-        cls.node_info(node)
+        print(node)
 
     @classmethod
-    def node_info(cls, node: PacketNode, prefix: str = "", is_last: bool = True) -> None:
+    def _print_node(cls, node: PacketNode, prefix: str = "", is_last: bool = True) -> None:
         """ Prints the node information in a structured tree """
         if not node:
             # if last node had either no primary or secondary nodes.
@@ -164,3 +164,14 @@ class PacketNode:
     operation:  Operation   |   None = None
     primary:    PacketNode  |   None = None
     secondary:  PacketNode  |   None = None
+
+    @property
+    def name(self) -> str:
+        """ Constructs a name based on attributes """
+        primary = True if isinstance(self.primary, PacketNode) else False
+        secondary = True if isinstance(self.secondary, PacketNode) else False
+
+        return f"<[{self.unit}, {self.operation}], Primary: {primary}, Secondary: {secondary}>"
+
+    def __repr__(self) -> str: return self.name
+    def __str__(self) -> str: return self.name
