@@ -65,7 +65,7 @@ How might one convert between systems at a boundary?
 
 <br>
 
-Because for computation, this is quite flawed. It destroys certainty for implementation convenience.
+Because for computation, it adds complexity for implementation convenience.
 
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
@@ -91,7 +91,8 @@ luminosity: cd
 dimensionless: ∅
 ```
 
-The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. 
+The dimensional environment is independent of the notation used to represent it. 
+Hence, any semantic representation can be used. 
 However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
 
 See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
