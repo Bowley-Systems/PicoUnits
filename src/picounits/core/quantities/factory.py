@@ -5,32 +5,28 @@ Description:
     Defines the Quantity Factory Class, acts
     as a type caster for quantities within
     the agnostic functional endpoint methods.
+    
+    It also allows for operation chain analysis.
 """
 
+from __future__ import annotations
+
+from enum import Enum
 from typing import Any, Callable
+from dataclasses import dataclass
 from numpy import ndarray, integer, floating, complexfloating
 from picounits.core.quantities.packet import Packet
 
 from picounits.utilities.lazy_imports import lazy_import
+from picounits.core.unit import Unit
+from picounits.core.scales import PrefixScale
 
 
 class Factory:
-    """
-    Packet type casing factory for usage in agnostic functional methods
-    """
+    """ Packet type casing factory for usage in agnostic functional methods """
     @classmethod
-    def create(cls, value: Any, unit, prefix=None) -> Packet:
-        """
-        Finds the type of the value and returns a casted packet
-
-        NOTE: 
-        The usage of import injection is to avoid circular imports
-        Cannot type hint unit nor prefix due to circular imports
-        """
-        if prefix is None:
-            prefixscale = lazy_import("picounits.core.scales", "PrefixScale", "Factory.create")
-            prefix = prefixscale.BASE
-
+    def create(cls, value: Any, unit: Unit, prefix: PrefixScale = PrefixScale.BASE) -> Packet:
+        """ Finds the type of the value and returns a casted packet """
         match value:
             case complex() | complexfloating():
                 complex_packet = lazy_import(
@@ -60,10 +56,7 @@ class Factory:
 
     @classmethod
     def reallocate(cls, op_name: str) -> Callable:
-        """
-        Reallocate arithmetic or transcendental methods when packets are
-        not similar types. For example ScalarPacket != VectorPacket
-        """
+        """ Reallocate arithmetic or transcendental methods when packets are not similar types. """
 
         def decorator(method: Callable) -> Callable:
             def wrapper(q1: Packet, q2: Packet) -> Callable:
@@ -108,3 +101,90 @@ class Factory:
 
         msg = f"{q1!r} is not in the same quality category as {q2!r}"
         raise TypeError(msg)
+
+    @classmethod
+    def chain(cls, operation: Operation) -> Packet:
+        """ A decorator; it maps operation chains. """
+        def decorator(func: Callable[[Packet, Packet], Packet]) -> Callable:
+            def wrapper(q1: Packet, q2: Packet) -> Packet:
+                # Extracts the pre-operation state from metadata
+                primary, secondary = q1.meta, q2.meta
+
+                # Runs the wrapped function & applies state
+                result = func(q1, q2)
+                result.meta = PacketNode(
+                    result.unit, 
+                    q1.unit, 
+                    q2.unit, 
+                    operation, 
+                    primary, 
+                    secondary
+                )
+
+                return result
+
+            return wrapper
+        return decorator
+
+    @classmethod
+    def packet_info(cls, node: Packet | PacketNode, prefix: str = "", is_last: bool = True) -> None:
+        """ Prints the node information in a structured tree """
+
+        # Choose the branch connector & extension
+        connector = "└── " if is_last else "├── "
+        extension = "    " if is_last else "│   "
+
+        if isinstance(node, Packet):
+            # On entry, the packet will be displayed without branching
+            connector = ""
+            extension = ""
+
+            # Replaces the packet with its node.
+            node = node.meta
+
+        # Formats the operator and prints the node
+        op_str = "[Base Unit]"
+        if node.operation:
+            op_str = f"[{node.argumentA} {node.operation} {node.argumentB}]"
+
+        print(f"{prefix}{connector}Unit: {node.result} {op_str}")
+
+        # Collect child nodes (primary and secondary)
+        children = [c for c in (node.primary, node.secondary) if c is not None]
+
+        # Recursively print children with proper indentation lines
+        for index, child in enumerate(children):
+            child_is_last = index == len(children) - 1
+            cls.packet_info(child, prefix + extension, child_is_last)
+
+
+class Operation(Enum):
+    """ List of operations that transform dimensions. """
+    DIVIDED         = "/"
+    MULTIPLICATION  = "*"
+    POWER           = "^"
+
+    def __repr__(self) -> str: return self.value
+    def __str__(self) -> str: return self.value
+
+
+@dataclass(slots=True, frozen=True)
+class PacketNode:
+    """ The operational data behind the packet state """
+    result:     Unit
+    argumentA:  Unit
+    argumentB:  Unit
+    operation:  Operation   |   None = None
+    primary:    PacketNode  |   None = None
+    secondary:  PacketNode  |   None = None
+
+    @property
+    def name(self) -> str:
+        """ Constructs a name based on attributes """
+        primary   = isinstance(self.primary,   PacketNode)
+        secondary = isinstance(self.secondary, PacketNode)
+
+        return f"<[{self.result}, {self.operation}], Primary: {primary}, Secondary: {secondary}>"
+
+    def __repr__(self) -> str: return self.name
+    def __str__(self) -> str: return self.name

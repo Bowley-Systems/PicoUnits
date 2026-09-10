@@ -9,9 +9,9 @@ Description:
 
 from __future__ import annotations
 
+from typing import Any, Optional
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, InitVar
-from typing import Any
 
 from picounits.core.scales import PrefixScale
 from picounits.core.unit import Unit
@@ -31,6 +31,7 @@ class Packet(ABC):
     value: Any
     unit: Unit
     prefix: InitVar[PrefixScale] = PrefixScale.BASE
+    meta: Optional[Any] = None
 
     @abstractmethod
     def __post_init__(self, prefix: PrefixScale) -> None:
@@ -39,9 +40,7 @@ class Packet(ABC):
 
     @abstractmethod
     def _normalize(self) -> tuple[Any, PrefixScale]:
-        """
-        Normalizes the value for representation and returns value + prefix
-        """
+        """ Normalizes the value for representation and returns value + prefix """
         return
 
     @abstractmethod
@@ -97,6 +96,13 @@ class Packet(ABC):
         msg = "Subclasses must implement __ge__"
         raise NotImplementedError(msg)
 
+    def info(self) -> None:
+        """ Displays the quality operational history """
+        # Uses lazy import to avoid circular import between self & factory
+        factory = import_factory("Packet.info")
+
+        factory.packet_info(self)
+
     def unit_check(self, target: Packet | Unit) -> None:
         """ Uses fundamental dimensions and exponents to check equivalent """
         other_unit = target
@@ -127,6 +133,9 @@ class Packet(ABC):
             # Uses lazy import to avoid circular import between self & factory
             factory = import_factory("Packet._get_other_packet")
             return factory.create(other, Unit.dimensionless())
+
+        msg = "Failed to get the other packet for the operation"
+        raise RuntimeError(msg)
 
     @property
     def stripped(self) -> Any:

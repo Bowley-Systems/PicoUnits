@@ -33,7 +33,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 
 ### Overview
 
-![Version](https://img.shields.io/badge/Version-1.1.0-006D77?style=flat-square)
+![Version](https://img.shields.io/badge/Version-x1.1.1-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
 ![Coverage](https://img.shields.io/badge/coverage-60%25-E14F4C?style=flat-square)
@@ -65,7 +65,7 @@ How might one convert between systems at a boundary?
 
 <br>
 
-Because for computation, this is quite flawed. It destroys certainty for implementation convenience.
+Because for computation, it adds complexity for implementation convenience.
 
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
@@ -91,7 +91,8 @@ luminosity: cd
 dimensionless: ∅
 ```
 
-The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. 
+The dimensional environment is independent of the notation used to represent it. 
+Hence, any semantic representation can be used. 
 However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
 
 See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
@@ -123,11 +124,14 @@ p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
 
-See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
+See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
 
 ---
 
 ### Quick Start
+
+A step-by-step introduction is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example). 
+Below is a standard application:
 
 ```py
 from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
@@ -137,15 +141,38 @@ def ohm_law(i: Q, r: Q) -> Q:
   return i * r
  
 # Correct Usage
-ohm_law(10 * CURRENT, 5 * RESISTANCE) 
+myVar = ohm_law(10 * CURRENT, 5 * RESISTANCE) 
 # > Output: 50.0 (kg·m²·s⁻³·A⁻¹)
 
 # Incorrect Usage
-ohm_law(10 * CURRENT, 5 * VOLTAGE)
+myMistake = ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
 
-> An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+<br>
+
+For tracing the path of a quantity, `info()` can be used:
+
+```py
+from picounits import LENGTH, MASS, CURRENT, TIME, FLUX_DENSITY
+
+# Charged particle entering a magnetic field
+charge = 1.5 * CURRENT * TIME
+velocity = 1.25 * LENGTH / TIME
+field = 200 * FLUX_DENSITY
+radius = 4.2 * LENGTH
+mass = 3.2 * MASS
+
+# Lorentz force
+force = charge * velocity * field
+force.info()
+
+# Output:
+# > Unit: kg·m·s⁻² [m·A * kg·s⁻²·A⁻¹]
+# > └── Unit: m·A [s·A * m·s⁻¹]
+# >     ├── Unit: s·A [A * s]
+# >     └── Unit: m·s⁻¹ [m / s]
+```
 
 ---
 
