@@ -129,7 +129,9 @@ See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview an
 
 ### Quick Start
 
-An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+A step-by-step introduction is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+
+####e Usage
 
 ```py
 from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
@@ -149,6 +151,8 @@ myMistake = ohm_law(10 * CURRENT, 5 * VOLTAGE)
 
 <br>
 
+#### Analysis
+
 ```py
 from picounits import LENGTH, MASS, CURRENT, TIME, FLUX_DENSITY
 
@@ -164,7 +168,7 @@ force = charge * velocity * field
 force.info()
 
 # Output:
-# > Unit: m·kg·s⁻² [m·A * kg·s⁻²·A⁻¹]
+# > Unit: kg·m·s⁻² [m·A * kg·s⁻²·A⁻¹]
 # > └── Unit: m·A [s·A * m·s⁻¹]
 # >     ├── Unit: s·A [A * s]
 # >     └── Unit: m·s⁻¹ [m / s]
