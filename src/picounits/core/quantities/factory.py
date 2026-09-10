@@ -119,21 +119,22 @@ class Factory:
         return decorator
 
     @classmethod
-    def packet_info(cls, packet: Packet) -> None:
-        """ Displays the packet construction history """
-        node = packet.meta
-        print(node)
-
-    @classmethod
-    def _print_node(cls, node: PacketNode, prefix: str = "", is_last: bool = True) -> None:
+    def packet_info(cls, node: Packet | PacketNode, prefix: str = "", is_last: bool = True) -> None:
         """ Prints the node information in a structured tree """
-        if not node:
-            # if last node had either no primary or secondary nodes.
-            return
 
-        # Choose the branch connector & formats/print entry
+        # Choose the branch connector & extension
         connector = "└── " if is_last else "├── "
+        extension = "    " if is_last else "│   "
 
+        if isinstance(node, Packet):
+            # On entry, the packet will be displayed without branching
+            connector = ""
+            extension = ""
+
+            # Replaces the packet with its node.
+            node = node.meta
+
+        # Formats and prints the node
         op_str = f"[{node.operation}]" if node.operation else "[Base Unit]"
         print(f"{prefix}{connector} Unit: {node.unit}{op_str}")
 
@@ -143,8 +144,7 @@ class Factory:
         # Recursively print children with proper indentation lines
         for index, child in enumerate(children):
             child_is_last = index == len(children) - 1
-            extension = "    " if is_last else "│   "
-            cls.node_info(child, prefix + extension, child_is_last)
+            cls.packet_info(child, prefix + extension, child_is_last)
 
 
 class Operation(Enum):
@@ -168,8 +168,8 @@ class PacketNode:
     @property
     def name(self) -> str:
         """ Constructs a name based on attributes """
-        primary = True if isinstance(self.primary, PacketNode) else False
-        secondary = True if isinstance(self.secondary, PacketNode) else False
+        primary   = isinstance(self.primary,   PacketNode)
+        secondary = isinstance(self.secondary, PacketNode)
 
         return f"<[{self.unit}, {self.operation}], Primary: {primary}, Secondary: {secondary}>"
 

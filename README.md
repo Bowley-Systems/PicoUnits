@@ -16,13 +16,6 @@ William Bowley,
 P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 -->
 
----
-
-Operational Chain Analysis Experiment: <br>
-This experiment is to implement this feature and consider how well it works within picounits.
-
----
-
 <p align="center">
   <img 
     src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" 

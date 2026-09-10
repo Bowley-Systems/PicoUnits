@@ -33,7 +33,3 @@ result_4 = voltage / current
 result_5 = result_1 / (result_2 * result_3)
 
 result_1.info()
-result_2.info()
-result_3.info()
-result_4.info()
-result_5.info()
