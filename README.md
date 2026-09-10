@@ -129,6 +129,8 @@ See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview an
 
 ### Quick Start
 
+An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+
 ```py
 from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
  
@@ -147,11 +149,26 @@ myMistake = ohm_law(10 * CURRENT, 5 * VOLTAGE)
 
 <br>
 
-```
-Example for info()
-```
+```py
+from picounits import LENGTH, MASS, CURRENT, TIME, FLUX_DENSITY
 
-> An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
+# Charged particle entering a magnetic field
+charge = 1.5 * CURRENT * TIME
+velocity = 1.25 * LENGTH / TIME
+field = 200 * FLUX_DENSITY
+radius = 4.2 * LENGTH
+mass = 3.2 * MASS
+
+# Lorentz force
+force = charge * velocity * field
+force.info()
+
+# Output:
+# > Unit: m·kg·s⁻² [m·A * kg·s⁻²·A⁻¹]
+# > └── Unit: m·A [s·A * m·s⁻¹]
+# >     ├── Unit: s·A [A * s]
+# >     └── Unit: m·s⁻¹ [m / s]
+```
 
 ---
 

@@ -112,7 +112,15 @@ class Factory:
 
                 # Runs the wrapped function & applies state
                 result = func(q1, q2)
-                result.meta = PacketNode(result.unit, operation, primary, secondary)
+                result.meta = PacketNode(
+                    result.unit, 
+                    q1.unit, 
+                    q2.unit, 
+                    operation, 
+                    primary, 
+                    secondary
+                )
+
                 return result
 
             return wrapper
@@ -134,9 +142,12 @@ class Factory:
             # Replaces the packet with its node.
             node = node.meta
 
-        # Formats and prints the node
-        op_str = f"[{node.operation}]" if node.operation else "[Base Unit]"
-        print(f"{prefix}{connector} Unit: {node.unit}{op_str}")
+        # Formats the operator and prints the node
+        op_str = "[Base Unit]"
+        if node.operation:
+            op_str = f"[{node.argumentA} {node.operation} {node.argumentB}]"
+
+        print(f"{prefix}{connector}Unit: {node.result} {op_str}")
 
         # Collect child nodes (primary and secondary)
         children = [c for c in (node.primary, node.secondary) if c is not None]
@@ -160,7 +171,9 @@ class Operation(Enum):
 @dataclass(slots=True, frozen=True)
 class PacketNode:
     """ The operational data behind the packet state """
-    unit:       Unit
+    result:     Unit
+    argumentA:  Unit
+    argumentB:  Unit
     operation:  Operation   |   None = None
     primary:    PacketNode  |   None = None
     secondary:  PacketNode  |   None = None
@@ -171,7 +184,7 @@ class PacketNode:
         primary   = isinstance(self.primary,   PacketNode)
         secondary = isinstance(self.secondary, PacketNode)
 
-        return f"<[{self.unit}, {self.operation}], Primary: {primary}, Secondary: {secondary}>"
+        return f"<[{self.result}, {self.operation}], Primary: {primary}, Secondary: {secondary}>"
 
     def __repr__(self) -> str: return self.name
     def __str__(self) -> str: return self.name
