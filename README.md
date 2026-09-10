@@ -123,7 +123,7 @@ p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
 
-See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
+See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
 
 ---
 
@@ -141,8 +141,14 @@ myVar = ohm_law(10 * CURRENT, 5 * RESISTANCE)
 # > Output: 50.0 (kg·m²·s⁻³·A⁻¹)
 
 # Incorrect Usage
-myVar = ohm_law(10 * CURRENT, 5 * VOLTAGE)
+myMistake = ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
+```
+
+<br>
+
+```
+Example for info()
 ```
 
 > An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
