@@ -149,6 +149,8 @@ myMistake = ohm_law(10 * CURRENT, 5 * VOLTAGE)
 
 <br>
 
+For tracing the path of a quantity, `info()` can be used:
+
 ```py
 from picounits import LENGTH, MASS, CURRENT, TIME, FLUX_DENSITY
 
