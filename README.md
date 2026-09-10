@@ -137,11 +137,11 @@ def ohm_law(i: Q, r: Q) -> Q:
   return i * r
  
 # Correct Usage
-ohm_law(10 * CURRENT, 5 * RESISTANCE) 
+myVar = ohm_law(10 * CURRENT, 5 * RESISTANCE) 
 # > Output: 50.0 (kg·m²·s⁻³·A⁻¹)
 
 # Incorrect Usage
-ohm_law(10 * CURRENT, 5 * VOLTAGE)
+myVar = ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
 
