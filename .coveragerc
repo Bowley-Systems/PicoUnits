@@ -3,3 +3,4 @@
 [run]
 omit =
     src/tests/*
+    src/picounits/utilities/errors.py

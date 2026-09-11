@@ -22,8 +22,12 @@ from picounits.core.quantities.factory import Factory
 
 from picounits.extensions.utilities.operations import Operations
 from picounits.utilities.errors import (
-    ParserError, UnknownPrefix, ColumnAttribute, UnsupportedType,
-    UnknownOperator, UnitNotFoundError 
+    ParserError,
+    UnknownPrefix,
+    ColumnAttribute,
+    UnsupportedType,
+    UnknownOperator,
+    UnitNotFoundError
 )
 
 from picounits.configuration.management import get_derived_units
