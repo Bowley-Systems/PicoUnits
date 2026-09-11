@@ -102,13 +102,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [1.1.1] - 2026-09-14
 
 ### Added
-- `.info()` for qualities construction trace
+- `.info()` for qualities construction trace / construction representation at endpoint.
+- `.info()` for `.uiv` files now can represent vector arrays across multiple lines.
+- Introduction for quality trace debugging within `introduction.py` tutorial.
 
 #### Changed
-*(TBD) — Work in progress*
+- Made `example` folder into `tutorial` instead as it was never an example anyways.
 
 #### Fixed
-*(TBD) — Work in progress*
+- Fixed dynamic loader indexation of arrays within the tree for `.info()` of `.uiv` files.
 
 #### Documentation
 *(TBD) — Work in progress*

@@ -89,8 +89,15 @@ class Loader:
             return
 
         if isinstance(value, (list, tuple)):
+            # Prints lists or tuples as a collection of entries
             self._print_collection(key, value, context)
             return
+
+        if not isinstance(value, str) and hasattr(value, "len()"):
+            if len(value) > 1:
+                # Prints non-strings with more than one entry as a collection
+                self._print_collection(key, value, context)
+                return
 
         leaf_connector = context.connector()
         print(f"{context.indent}{leaf_connector}{key}: {value}")
@@ -98,18 +105,21 @@ class Loader:
     def _print_collection(self, key: str, collection, context: LoaderContext) -> None:
         """Prints a collection (list or tuple) with proper formatting."""
         leaf_connector = context.connector()
+
         # Print array in-line if within limit
         if len(collection) <= context.inline:
             print(f"{context.indent}{leaf_connector}{key}: {collection}")
             return
 
-        # Prints arrays as multi-line objects
+        # Prints arrays as multi-line objects & Get the child indent
         print(f"{context.indent}{leaf_connector}{key}: [")
+        child_indent = context.next_level()
+
         for i, item in enumerate(collection):
             item_connector = "└── " if i == len(collection) - 1 else "├── "
-            print(f"{context.indent}    {item_connector}{item}")
+            print(f"{child_indent.indent}{item_connector}{item}")
 
-        print(f"{context.indent}    ]")
+        print(f"{child_indent.indent}]")
 
     def _set_path(self, path_items: Any, value: Any) -> None:
         """ Loads values via attribute injection """

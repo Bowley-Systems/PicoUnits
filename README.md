@@ -131,7 +131,7 @@ See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview an
 
 ### Quick Start
 
-A step-by-step introduction is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example). <br>
+A step-by-step introduction is available in [`tutorial/`](https://github.com/Bowley-Systems/PicoUnits/tree/tutorial). <br>
 Below is a standard application:
 
 ```py

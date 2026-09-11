@@ -1,6 +1,5 @@
 [version]
 format: 0.1.1
-unit_frame: units.ut
 notes: "Example usage of .uiv without .ut for introduction.py"
 
 # ---------------------------------------------------------
