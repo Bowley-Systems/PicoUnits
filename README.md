@@ -118,8 +118,6 @@ attribute: value prefix(unit)
 p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 ```
 
-<br>
-
 `.uiv` defines the quantities within your unit system:
 
 ```
