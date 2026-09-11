@@ -64,8 +64,6 @@ How might one convert between systems at a boundary?
 ↺ Each iteration
 ```
 
-<br>
-
 Because conversion adds complexity for convenience. <br>
 <b>Picounits</b> follows this principle:
 
