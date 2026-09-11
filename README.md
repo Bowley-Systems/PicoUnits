@@ -94,7 +94,6 @@ The dimensional environment is independent of the notation used to represent it.
 Hence, any semantic representation can be used. 
 
 However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
-
 See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
 
 ---
