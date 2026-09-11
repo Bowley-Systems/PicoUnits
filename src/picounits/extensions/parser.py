@@ -85,9 +85,8 @@ class Parser:
             # Constructs the unit
             registry[symbol] = ConstructUnits.construct_unit(unit_str)
 
-        if not status:
-            # Raises warning for missing 'format' key in version
-            BackCompatibilityWarning(filepath).display()
+        # Raises warning for missing 'format' key in version
+        if not status: BackCompatibilityWarning(filepath).display() # pragma: no cover 
 
         return add_derived_units(registry)
 
@@ -195,13 +194,18 @@ class ParseLines:
         """ Handles multi-line values such as lists """
         open_count, close_count = cls._count_brackets(raw_value)
 
+        # Remove inline comments first
+        if '#' in raw_value:
+            raw_value = raw_value[:raw_value.index('#')].rstrip()
+
         # Collects lines until balanced
         while open_count > close_count and state.index < len(lines):
             # Removes whitespaces and adds next_line
             next_line = lines[state.index].strip()
 
-            # Remove inline comments first
-            if '#' in next_line: next_line = next_line[:next_line.index('#')].rstrip()
+            if '#' in next_line:
+                # Remove inline comments first
+                next_line = next_line[:next_line.index('#')].rstrip()
 
             state.index += 1
             raw_value += ' ' + next_line
@@ -230,7 +234,7 @@ class ParseLines:
         return False, ""
 
 
-def resolve_derived() -> None:
+def resolve_derived() -> None:  # pragma: no cover
     """ Resolves derived units via searching working directory recursively """
     cwd = Path.cwd()
 

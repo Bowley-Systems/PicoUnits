@@ -45,6 +45,15 @@ from tests.extensions.core.syntax import (
     TestQualityExtraction
 )
 
+from tests.extensions.parser import (
+    TestParseLines,
+    TestParseLinesHelpers,
+    TemporaryDirectory,
+    TestParserImportDerived,
+    TestParserOpen,
+    TestParserReadLines,
+)
+
 
 loader = unittest.TestLoader()
 suite = unittest.TestSuite()
@@ -77,9 +86,16 @@ suite.addTest(loader.loadTestsFromTestCase(TestQualityExtraction))
 suite.addTests(loader.loadTestsFromTestCase(TestOperators))
 suite.addTests(loader.loadTestsFromTestCase(TestAttributes))
 
+# Parser
+suite.addTests(loader.loadTestsFromTestCase(TestParseLines))
+suite.addTests(loader.loadTestsFromTestCase(TestParseLinesHelpers))
+suite.addTests(loader.loadTestsFromTestCase(TemporaryDirectory))
+suite.addTests(loader.loadTestsFromTestCase(TestParserImportDerived))
+suite.addTests(loader.loadTestsFromTestCase(TestParserOpen))
+suite.addTests(loader.loadTestsFromTestCase(TestParserReadLines))
+
 
 runner = unittest.TextTestRunner(verbosity=2)
-
 
 if __name__ == "__main__":
     result = runner.run(suite)
