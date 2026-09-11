@@ -105,6 +105,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.info()` for qualities construction trace / construction representation at endpoint.
 - `.info()` for `.uiv` files now can represent vector arrays across multiple lines.
 - Introduction for quality trace debugging within `introduction.py` tutorial.
+- `PURE` = picounits runtime error for consistent errors outputs.
+- `PUPE` = picounits parser error & `PUPW` = picounits parser warning for consistent errors
 
 #### Changed
 - Made `example` folder into `tutorial` instead as it was never an example anyways.

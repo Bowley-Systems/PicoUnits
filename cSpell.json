@@ -118,6 +118,8 @@
     "munits",
     "axisinfo",
     "coveragerc",
-    "tera"
+    "tera",
+    "PUPE",
+    "PUPW"
   ]
 }
