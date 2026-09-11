@@ -54,7 +54,7 @@ It provides a consistent type system for expressing dimensional quantities throu
 
 ### Why convert at all?
 
-<b>Picounits</b> removes uncertainty by reducing the set of units to one canonical set defined by the user.
+<b>Picounits</b> reduces complexity by reducing the set of units to one canonical set defined by the user.
 
 <strong>It does not attempt to answer:</strong>
 
