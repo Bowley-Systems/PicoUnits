@@ -42,7 +42,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <b>Picounits</b> is a dynamic runtime typing system for numerical dimensional quantities. 
 It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
-#### Features
+### Features
 
 ```
 - Configurable `unit frames` with custom symbols and dimension ordering.
