@@ -1,5 +1,5 @@
 # pylint: skip-file
-""" Filename: dsl_parser.py """
+""" Filename: parser.py """
 
 import unittest
 from pathlib import Path

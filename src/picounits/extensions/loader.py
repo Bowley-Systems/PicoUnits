@@ -93,7 +93,7 @@ class Loader:
             self._print_collection(key, value, context)
             return
 
-        if not isinstance(value, str) and hasattr(value, "len()"):
+        if not isinstance(value, str) and hasattr(value, "__len__"):
             if len(value) > 1:
                 # Prints non-strings with more than one entry as a collection
                 self._print_collection(key, value, context)

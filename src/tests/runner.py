@@ -54,6 +54,12 @@ from tests.extensions.parser import (
     TestParserReadLines,
 )
 
+from tests.extensions.loader import (
+    TestLoaderContext,
+    TestDynamicLoader,
+    TestLoader
+)
+
 
 loader = unittest.TestLoader()
 suite = unittest.TestSuite()
@@ -93,6 +99,11 @@ suite.addTests(loader.loadTestsFromTestCase(TemporaryDirectory))
 suite.addTests(loader.loadTestsFromTestCase(TestParserImportDerived))
 suite.addTests(loader.loadTestsFromTestCase(TestParserOpen))
 suite.addTests(loader.loadTestsFromTestCase(TestParserReadLines))
+
+# Loader
+suite.addTests(loader.loadTestsFromTestCase(TestLoaderContext))
+suite.addTests(loader.loadTestsFromTestCase(TestDynamicLoader))
+suite.addTests(loader.loadTestsFromTestCase(TestLoader))
 
 
 runner = unittest.TextTestRunner(verbosity=2)
