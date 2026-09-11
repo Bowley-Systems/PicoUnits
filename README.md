@@ -64,11 +64,11 @@ How might one convert between systems at a boundary?
 ↺ Each iteration
 ```
 
+Because it adds complexity to computation for implementation convenience. 
+
 <br>
 
-Because it adds complexity to computation for implementation convenience. <br>
 Therefore, picounits follows this principle:
-
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
 ```
