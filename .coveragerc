@@ -4,3 +4,4 @@
 omit =
     src/tests/*
     src/picounits/utilities/errors.py
+    src/picounits/utilities/lazy_imports.py
