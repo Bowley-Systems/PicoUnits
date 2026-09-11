@@ -13,6 +13,8 @@ from pathlib import Path
 # pylint: disable=line-too-long
 
 # Generic Errors
+
+
 class ParserError(ValueError):
     """ Exception for Parser errors when parsing """
     CODE = "PUPE001"
@@ -58,6 +60,8 @@ class DimensionError(ValueError):
 
 
 # Specific errors
+
+
 class LazyImportError(ImportError):
     """ Exception for failed lazy imports """
     CODE = "PURE003"
@@ -205,9 +209,11 @@ class UnitNotFoundError(ValueError):
 
 
 # Notifications / Warning classes
+
+
 class ParserNotification(ABC):
     """ Abstract base class for parser notifications messages """
-    CODE: str = ""      # Placeholder
+    CODE: str
 
     @abstractmethod
     def __init__(self):
