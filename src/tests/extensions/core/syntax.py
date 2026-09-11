@@ -121,7 +121,14 @@ class TestExtractBrackets(unittest.TestCase):
         for item in items:
             with self.assertRaises(UnbalancedDepth):
                 _ = ExtractBrackets.extract_content(item)
+    
+    def test_extract_brackets_with_escaped_character(self):
+        """ Tests escaped character inside brackets is skipped """
+        line = r"[\]]"
+        content, end_index = ExtractBrackets.extract_content(line)
 
+        self.assertEqual(content, r"\]")
+        self.assertEqual(end_index, 3)    
 
 class TestExtractParentheses(unittest.TestCase):
     """ Unit tests for Extracting content between matching parenthesizes """
@@ -143,13 +150,12 @@ class TestExtractParentheses(unittest.TestCase):
             self.assertEqual(result, expected[index])
 
     def test_extract_parentheses_content_with_escaped_character(self):
-        """ Test escaped colon is ignored and returns the correct content """
-        line = r"item\: value prefix(unit)"
-        exp_content = ["unit"]
+        """ Test escaped character inside parentheses triggers escape branch """
+        line = r"(hello\)world)"
+        exp_content = [r"hello\)world"]
 
         raw_content = ExtractParentheses.extract_content(line)
         self.assertEqual(raw_content, exp_content)
-
 
 class TestQualityExtraction(unittest.TestCase):
     """ Unit tests for Quantity Extraction From Text """
@@ -187,7 +193,41 @@ class TestQualityExtraction(unittest.TestCase):
             self.assertEqual(prefix, expected[index][1])
             self.assertEqual(unit, expected[index][2])
 
+    def test_with_pain_text(self):
+        """" Test if pain text will be passed as no prefix, no unit """
+        result, prefix, unit = QualityExtraction.extract('"Hello I am william!"')
+    
+        self.assertEqual(result, 'Hello I am william!')
+        self.assertEqual(prefix, "")
+        self.assertEqual(unit, "")
 
+    def test_list_with_single_unit(self):
+        """ [1,2,3] k(kg) → list, prefix 'k', unit 'kg' """
+        result, prefix, unit = QualityExtraction.extract("[1, 2, 3] k(kg)")
+
+        self.assertEqual(result, [1, 2, 3])
+        self.assertEqual(prefix, "k")
+        self.assertEqual(unit, ["kg"])
+
+    def test_list_with_multiple_units(self):
+        """ [1,2] k(kg), m(m) → column-wise prefixes """
+        result, prefixes, units = QualityExtraction.extract("[1, 2] k(kg), m(m)")
+
+        self.assertEqual(result, [1, 2])
+        self.assertEqual(prefixes, ["k", "m"])
+        self.assertEqual(units, ["kg", "m"])
+
+    def test_unbalanced_parentheses(self):
+        """ Test unbalanced parentheses structure """
+        with self.assertRaises(UnbalancedDepth):
+            ExtractParentheses.extract_content("(hello")
+    
+    def test_list_prefix_extraction_without_prefix(self):
+        """ Test prefix extraction without prefix """
+        result = QualityExtraction._list_prefix_extraction("")
+        self.assertEqual(result, "")
+    
+    
 if __name__ == '__main__':
     unittest.main()
     
