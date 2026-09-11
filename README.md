@@ -160,6 +160,6 @@ pip install PicoUnits
 
 #### Documentation
 
-Full documentation is available in the [`docs/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/docs) folder, including API reference, changelog, and contributors.
+Full documentation is available in the [`docs/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/docs) folder including API reference, changelog, and contributors.
 
 ---
