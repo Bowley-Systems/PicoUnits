@@ -65,7 +65,7 @@ How might one convert between systems at a boundary?
 
 <br>
 
-Because for computation, it adds complexity for implementation convenience.
+Because it adds complexity to computation for implementation convenience. Therefore, we do:
 
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
