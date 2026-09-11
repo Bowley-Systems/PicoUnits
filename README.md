@@ -39,7 +39,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 ![Coverage](https://img.shields.io/badge/coverage-60%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
-PicoUnits is a dynamic runtime typing system for numerical quantities. 
+PicoUnits is a dynamic runtime typing system for numerical dimensional quantities. 
 It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
 ```
@@ -47,6 +47,7 @@ It provides a consistent type system for expressing dimensional quantities throu
 - Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`).
 - Numerical support for real, complex, and vector quantities with type-specific operations.
 - Type checking at functional boundaries, defined by the user.
+- Traces quality construction and dimensional operations.
 ```
 
 ---
@@ -65,7 +66,8 @@ How might one convert between systems at a boundary?
 
 <br>
 
-Because it adds complexity to computation for implementation convenience. Therefore, we do:
+Because it adds complexity to computation for implementation convenience. <br>
+Therefore, picounits follows this principle:
 
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
@@ -93,6 +95,7 @@ dimensionless: ∅
 
 The dimensional environment is independent of the notation used to represent it. 
 Hence, any semantic representation can be used. 
+
 However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
 
 See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
@@ -130,7 +133,7 @@ See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview an
 
 ### Quick Start
 
-A step-by-step introduction is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example). 
+A step-by-step introduction is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example). <br>
 Below is a standard application:
 
 ```py
