@@ -227,7 +227,14 @@ class TestQualityExtraction(unittest.TestCase):
         result = QualityExtraction._list_prefix_extraction("")
         self.assertEqual(result, "")
     
-    
+    def test_from_parentheses_invalid_structure(self):
+        """ Tests invalid parentheses structure raises ParserError """
+        line = "(kg)"
+        content = ["kg"]
+
+        with self.assertRaises(ParserError):
+            QualityExtraction._from_parentheses(line, content)
+
 if __name__ == '__main__':
     unittest.main()
     

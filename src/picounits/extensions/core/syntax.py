@@ -294,7 +294,7 @@ class QualityExtraction:
                 return (Deserialize.cast(value), prefix, unit)
 
             # If split_prefix is none than return value with empty prefix
-            return (Deserialize.cast(split_prefix_unit), "", unit)
+            return (Deserialize.cast(split_prefix_unit), "", unit)  # pragma: no cover
 
         msg = f"Invalid parentheses structure: {line!r}"
         raise ParserError(cls.__name__, msg) from None
