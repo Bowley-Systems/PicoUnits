@@ -132,7 +132,6 @@ See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview an
 ### Quick Start
 
 A step-by-step introduction is available in [`tutorial/`](https://github.com/Bowley-Systems/PicoUnits/tree/tutorial). <br>
-Below is a standard application:
 
 ```py
 from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
