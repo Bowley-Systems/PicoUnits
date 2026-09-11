@@ -33,6 +33,7 @@ from tests.quantities.quantities_construction import QualityScalingConstruction
 
 from tests.extensions.core.deserialization import TestParseList, TestDeserialize
 from tests.extensions.utilities.operations import TestOperators
+from tests.extensions.utilities.attributes import TestAttributes
 
 from tests.extensions.core.construction import (
     TestConstructPrefix, TestConstructUnits, TestConstructQuality
@@ -42,6 +43,7 @@ from tests.extensions.core.syntax import (
     TestExtractionState, TestExtractPairs, TestExtractBrackets, TestExtractParentheses,
     TestQualityExtraction
 )
+
 
 loader = unittest.TestLoader()
 suite = unittest.TestSuite()
@@ -70,8 +72,10 @@ suite.addTest(loader.loadTestsFromTestCase(TestExtractBrackets))
 suite.addTest(loader.loadTestsFromTestCase(TestExtractParentheses))
 suite.addTest(loader.loadTestsFromTestCase(TestQualityExtraction))
 
-# Operators
+# Operators & attributes
 suite.addTests(loader.loadTestsFromTestCase(TestOperators))
+suite.addTests(loader.loadTestsFromTestCase(TestAttributes))
+
 
 runner = unittest.TextTestRunner(verbosity=2)
 

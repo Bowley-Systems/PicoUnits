@@ -1,13 +1,5 @@
 # pylint: skip-file
-"""
-Filename: syntax.py
-
-Descriptions:
-    Tests the syntax classes within the parser
-    NOTE:   Classes | TestExtractionState, TestExtractPairs, 
-            TestExtractBrackets, TestExtractParentheses,
-            TestQualityExtraction
-"""
+""" Filename: syntax.py """
 
 import unittest
 

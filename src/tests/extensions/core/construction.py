@@ -1,11 +1,5 @@
 # pylint: skip-file
-"""
-Filename: construction.py
-
-Descriptions:
-    Tests the construction classes within the parser
-    NOTE: Classes | TestConstructPrefix, TestConstructUnits, TestConstructQuality
-"""
+""" Filename: construction.py """
 
 import unittest
 

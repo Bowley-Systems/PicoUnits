@@ -1,11 +1,5 @@
 # pylint: skip-file
-"""
-Filename: operator.py
-
-Descriptions:
-    Tests the operator class and sub-methods 
-    within the parser
-"""
+""" Filename: operator.py """
 
 import unittest
 
