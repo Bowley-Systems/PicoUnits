@@ -3,6 +3,8 @@
 
 import unittest
 
+from pathlib import Path
+
 from picounits.core.scales import PrefixScale, _SYMBOLS_TO_SCALE
 from picounits.core.unit import Unit
 from picounits.core.quantities.packet import Packet
@@ -12,8 +14,15 @@ from picounits.constants import (
     FORCE, PRESSURE, POWER, MILLI, KILO, MEGA
 )
 
+from picounits.extensions.parser import Parser
 from picounits.extensions.core.construction import ConstructPrefix, ConstructUnits, ConstructQuantity
-from picounits.utilities.errors import ParserError, UnknownPrefix, UnsupportedType, ColumnAttribute
+from picounits.utilities.errors import (
+    ParserError, 
+    UnknownPrefix, 
+    UnsupportedType, 
+    ColumnAttribute,
+    UnitNotFoundError
+)
 
 
 class TestConstructPrefix(unittest.TestCase):
@@ -238,6 +247,41 @@ class TestConstructQuality(unittest.TestCase):
         self.assertEqual(len(result), 2)
         for packet in result:
             self.assertIsInstance(packet, Packet)
+
+    def test_derived_units_with_valid(self):
+        """ Test using derived units for tokens """
+        
+        # Imports derived units for test
+        BASE_DIR = Path(__file__).parent.parent.parent
+        Parser.import_derived(BASE_DIR / "runner.ut")
+        
+        # Tests method with derived units
+        tokens = ["V", "F", "H"]
+
+        for token in tokens:
+            result = ConstructUnits._derived_unit(token)
+            self.assertIsInstance(result, Unit)
+    
+    def test_derived_units_with_invalid(self):
+        """ Test using trying non-defined derived units """
+        tokens = ["W", "T", "V", "F", "H"]
+        
+        for token in tokens:
+            with self.assertRaises(UnitNotFoundError):
+                ConstructUnits._derived_unit(token)
+
+    def test_quality_with_derived_units(self):
+        """ Test quality construction using derived units """
+
+        # Imports derived units for test
+        BASE_DIR = Path(__file__).parent.parent.parent
+        Parser.import_derived(BASE_DIR / "runner.ut")
+        
+        # Attempt to constructs a quality with derived unit
+        result = ConstructQuantity.quantity(12.2, "", "m*H")
+        expected = 12.2 * (MASS * LENGTH ** 3 * TIME ** -2 * CURRENT ** -2)
+        
+        self.assertEqual(result, expected)
 
 
 if __name__ == '__main__':

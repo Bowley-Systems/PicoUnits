@@ -28,8 +28,8 @@ from tests.unit.dimensional_construction import DimensionConstruction
 from tests.quantities.quantities_construction import QualityScalingConstruction
 
 from tests.extensions.core.deserialization import TestParseList, TestDeserialize
-from tests.extensions.utilities.operations import TestOperators
-from tests.extensions.utilities.attributes import TestAttributes
+from tests.utilities.operations import TestOperators
+from tests.utilities.attributes import TestAttributes
 
 from tests.extensions.core.construction import (
     TestConstructPrefix, 

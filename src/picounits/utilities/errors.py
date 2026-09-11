@@ -203,8 +203,7 @@ class UnitNotFoundError(ValueError):
 
     def __init__(self, unit: str, available_units: list):
         """ Returns a unit not found error """
-        available = ", ".join(available_units) if available_units else "none defined"
-        msg = f"[{self.CODE}] Unit {unit!r} not found. Available units: {available}"
+        msg = f"[{self.CODE}] Unit {unit!r} not found. Available units: {available_units}"
         super().__init__(msg)
 
 

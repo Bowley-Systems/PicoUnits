@@ -18,6 +18,7 @@ disable =
     R0911,                      # too-many-return-statements - Too many return statements (>6)
     R0903,                      # too-few-public-methods - Too few public methods (<2)
     R0904,                      # too-many-public-methods - Too many public methods (>20)
+    R0912,                      # too-many-branches - Too many branches (>12)
 
 [MASTER]
 ignore-paths=
