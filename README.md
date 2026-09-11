@@ -33,7 +33,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 
 ### Overview
 
-![Version](https://img.shields.io/badge/Version-x1.1.1-006D77?style=flat-square)
+![Version](https://img.shields.io/badge/Version-1.1.1-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
 ![Coverage](https://img.shields.io/badge/coverage-60%25-E14F4C?style=flat-square)
@@ -42,12 +42,14 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <b>Picounits</b> is a dynamic runtime typing system for numerical dimensional quantities. 
 It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
+#### Features
+
 ```
 - Configurable `unit frames` with custom symbols and dimension ordering.
 - Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`).
 - Numerical support for real, complex, and vector quantities with type-specific operations.
+- Traces quantity construction and dimensional operations performed on quantities.
 - Type checking at functional boundaries, defined by the user.
-- Traces quality construction and dimensional operations.
 ```
 
 ---
