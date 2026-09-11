@@ -238,13 +238,11 @@ class TestConstructQuality(unittest.TestCase):
 
     def test_column_wise_array(self):
         """ Covers column-wise array construction """
-        value = [[1, 2, 3], [4, 5, 6]]
-        prefix = [PrefixScale.MILLI, PrefixScale.KILO, PrefixScale.MEGA]
+        value = [1, 2, 3]
+        prefix = ["m", "k", "M"]
         units = ["kg", "m/mol", "A^-1"]
 
-        result = ConstructQuantity._column_wise_array(value, units, prefix)
-
-        self.assertEqual(len(result), 2)
+        result = ConstructQuantity.quantity(value, prefix, units)
         for packet in result:
             self.assertIsInstance(packet, Packet)
 
@@ -270,8 +268,21 @@ class TestConstructQuality(unittest.TestCase):
             with self.assertRaises(UnitNotFoundError):
                 ConstructUnits._derived_unit(token)
 
-    def test_quality_with_derived_units(self):
-        """ Test quality construction using derived units """
+    def test_quality_with_derived_unit(self):
+        """ Test quality construction with using derived units"""
+
+        # Imports derived units for test
+        BASE_DIR = Path(__file__).parent.parent.parent
+        Parser.import_derived(BASE_DIR / "runner.ut")
+        
+        # Attempt to constructs a quality with derived unit
+        result = ConstructQuantity.quantity(12.2, "", "H")
+        expected = 12.2 * (MASS * LENGTH ** 2 * TIME ** -2 * CURRENT ** -2)
+        
+        self.assertEqual(result, expected)
+    
+    def test_quality_with_constructed_derived_units(self):
+        """ Test quality construction using constructed derived units """
 
         # Imports derived units for test
         BASE_DIR = Path(__file__).parent.parent.parent

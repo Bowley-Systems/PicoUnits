@@ -72,7 +72,7 @@ class ConstructQuantity:
 
         # Creates column-wise unit-pair array
         if isinstance(prefix, list) and isinstance(unit, list):
-            return cls._column_wise_array(value, unit, prefix_obj)
+            return cls._column_wise_array(value, prefix_obj, unit)
 
         # Pops the first unit to use for simple list construction
         if isinstance(unit, list): unit = unit.pop(0)
@@ -121,7 +121,7 @@ class ConstructQuantity:
         raise ColumnAttribute(unit) from None
 
     @classmethod
-    def _column_wise_array(cls, value: list, unit: list, prefix: list) -> list[Packet]:
+    def _column_wise_array(cls, value: list, prefix: list, unit: list) -> list[Packet]:
         """ Constructs a column-wise array into qualities. """
         result = []
 
