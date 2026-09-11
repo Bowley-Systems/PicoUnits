@@ -39,7 +39,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 ![Coverage](https://img.shields.io/badge/coverage-60%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
-`PicoUnits` is a dynamic runtime typing system for numerical dimensional quantities. 
+<b>Picounits</b> is a dynamic runtime typing system for numerical dimensional quantities. 
 It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
 
 ```
@@ -54,7 +54,7 @@ It provides a consistent type system for expressing dimensional quantities throu
 
 ### Why convert at all?
 
-`PicoUnits` removes uncertainty by reducing the set of units to one canonical set defined by the user.
+<b>Picounits</b> removes uncertainty by reducing the set of units to one canonical set defined by the user.
 
 <strong>It does not attempt to answer:</strong>
 
@@ -67,7 +67,7 @@ How might one convert between systems at a boundary?
 <br>
 
 Because conversion adds complexity for convenience. <br>
-`Picounits` follows this principle:
+<b>Picounits</b> follows this principle:
 
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
