@@ -149,31 +149,6 @@ myMistake = ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
 
-<br>
-
-For tracing the path of a quantity, `info()` can be used:
-
-```py
-from picounits import LENGTH, MASS, CURRENT, TIME, FLUX_DENSITY
-
-# Charged particle entering a magnetic field
-charge = 1.5 * CURRENT * TIME
-velocity = 1.25 * LENGTH / TIME
-field = 200 * FLUX_DENSITY
-radius = 4.2 * LENGTH
-mass = 3.2 * MASS
-
-# Lorentz force
-force = charge * velocity * field
-force.info()
-
-# Output:
-# > Unit: kg·m·s⁻² [m·A * kg·s⁻²·A⁻¹]
-# > └── Unit: m·A [s·A * m·s⁻¹]
-# >     ├── Unit: s·A [A * s]
-# >     └── Unit: m·s⁻¹ [m / s]
-```
-
 ---
 
 ### Installation 
