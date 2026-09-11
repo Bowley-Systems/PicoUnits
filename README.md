@@ -66,7 +66,7 @@ How might one convert between systems at a boundary?
 
 <br>
 
-Because conversion adds complexity for convenience. <br>
+Because conversion adds complexity for convenience.
 Picounits follows this principle:
 
 ```
