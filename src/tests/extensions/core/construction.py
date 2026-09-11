@@ -31,7 +31,18 @@ class TestConstructPrefix(unittest.TestCase):
         for symbol in symbols:
             with self.assertRaises(UnknownPrefix):
                 ConstructPrefix.construct_prefix(symbol) 
-        
+
+    def test_construct_prefix_from_empty_list(self):
+        """ Empty list returns empty list """
+        result = ConstructPrefix.construct_prefix([])
+        self.assertEqual(result, [])
+
+    def test_construct_prefix_from_list_with_unknown(self):
+        """ Unknown prefix inside list raises UnknownPrefix """
+
+        with self.assertRaises(UnknownPrefix):
+            ConstructPrefix.construct_prefix(["m", "not-a-prefix"])
+
 
 class TestConstructUnits(unittest.TestCase):
     """ Unit tests for construct units class """
@@ -110,6 +121,7 @@ class TestConstructUnits(unittest.TestCase):
             result = ConstructUnits.construct_unit(item)
             self.assertEqual(result, expected[index])
 
+
 class TestConstructQuality(unittest.TestCase):
     """ Unit tests for construct qualities class """
     def test_non_numerical_value_input(self):
@@ -167,13 +179,12 @@ class TestConstructQuality(unittest.TestCase):
         value = [[1,2,3], [1,2,3], [1,2,3]]
         units = ["kg", "m/mol", "A^-1"]
         
-        expected_rows = [1  * MASS, 2 * LENGTH / AMOUNT, 3 * CURRENT ** -1]
+        expected_rows = [1  * MASS, 2 * (LENGTH / AMOUNT), 3 * CURRENT ** -1]
         expected = [expected_rows, expected_rows, expected_rows]
         
         result = ConstructQuantity.quantity(value, "", units)
         self.assertEqual(result, expected)    
-    
-    
+
     def test_column_prefix_with_valid_input(self):
         """ Tests the column prefix with valid input """
         items = [
@@ -215,7 +226,19 @@ class TestConstructQuality(unittest.TestCase):
             units, index = item[0], item[1]
             with self.assertRaises(ColumnAttribute):
                 ConstructQuantity._column_unit(units, index)
-            
+
+    def test_column_wise_array(self):
+        """ Covers column-wise array construction """
+        value = [[1, 2, 3], [4, 5, 6]]
+        prefix = [PrefixScale.MILLI, PrefixScale.KILO, PrefixScale.MEGA]
+        units = ["kg", "m/mol", "A^-1"]
+
+        result = ConstructQuantity._column_wise_array(value, units, prefix)
+
+        self.assertEqual(len(result), 2)
+        for packet in result:
+            self.assertIsInstance(packet, Packet)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -3,16 +3,12 @@
 File: runner.py
 
 Description:
-    Main script to run all unit test modules within
-    the picounits library. This includes unit modelling, 
-    parser, dynamic-loader and configurations.
-    
-    NOTE: Reference commands:
+    Reference commands:
     coverage run src/tests/runner.py
     coverage report -m
     
     
-    NOTE: Unit Symbols required for this test suite in `.picounits`
+    Unit Symbols required for this test suite in `.picounits`:
     [symbols]
     # Change the name of fundamental dimensions
     time: s
@@ -36,11 +32,16 @@ from tests.extensions.utilities.operations import TestOperators
 from tests.extensions.utilities.attributes import TestAttributes
 
 from tests.extensions.core.construction import (
-    TestConstructPrefix, TestConstructUnits, TestConstructQuality
+    TestConstructPrefix, 
+    TestConstructUnits, 
+    TestConstructQuality
 )
 
 from tests.extensions.core.syntax import (
-    TestExtractionState, TestExtractPairs, TestExtractBrackets, TestExtractParentheses,
+    TestExtractionState, 
+    TestExtractPairs, 
+    TestExtractBrackets, 
+    TestExtractParentheses,
     TestQualityExtraction
 )
 
