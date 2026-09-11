@@ -66,8 +66,8 @@ How might one convert between systems at a boundary?
 
 <br>
 
-Because conversion adds complexity for implementation convenience. <br>
-Picounits therefore follows this principle:
+Because conversion adds complexity for convenience. <br>
+Picounits follows this principle:
 
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
