@@ -36,7 +36,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 ![Version](https://img.shields.io/badge/Version-1.1.1-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
-![Coverage](https://img.shields.io/badge/coverage-71%25-E14F4C?style=flat-square)
+![Coverage](https://img.shields.io/badge/coverage-80%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
 <b>Picounits</b> is a dynamic runtime typing system for numerical dimensional quantities. 

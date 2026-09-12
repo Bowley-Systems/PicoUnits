@@ -120,6 +120,7 @@
     "coveragerc",
     "tera",
     "PUPE",
-    "PUPW"
+    "PUPW",
+    "colour"
   ]
 }

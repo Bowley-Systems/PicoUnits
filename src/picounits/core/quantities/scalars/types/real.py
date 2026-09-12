@@ -19,6 +19,7 @@ from picounits.core.quantities.scalars.scalar import ScalarPacket
 
 from picounits.utilities.lazy_imports import import_factory
 
+from picounits.core.quantities.scalars.methods import arithmetic as acops
 from picounits.core.quantities.scalars.methods import transcendental as tlops
 from picounits.configuration.management import get_significant_figures
 
@@ -147,6 +148,11 @@ class RealPacket(ScalarPacket):
 
         msg = f"Cannot compare different units, {q1.unit} != {q2.unit}"
         raise ValueError(msg)
+
+    def __mod__(self, other: Any) -> Packet: # pragma: no cover
+        """ Defines the behavior for the forwards modulus operation (%) """
+        q2 = self._get_other_packet(other)
+        return acops.modulo_logic(self, q2)
 
     def __lt__(self, other: Any) -> bool:   # pragma: no cover
         """ Defines the behavior for less than comparison """

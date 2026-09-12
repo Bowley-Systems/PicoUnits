@@ -37,6 +37,20 @@ def sub_logic(q1: Packet, q2: Packet) -> Packet:
     return Factory.create(new_value, q1.unit)
 
 
+@Factory.reallocate("__mod__")
+def modulo_logic(q1: Packet, q2: Packet) -> Packet:
+    """ Defines the logic for modulo (q2 % q1) """
+
+    # Modulus requires both packets to have the same Unit
+    q2.unit_check(q1)
+
+    if q1.value == 0:
+        msg = f'Modulo failed due to division by zero: {q2.value} % {q1.value}'
+        raise ValueError(msg)
+
+    return Factory.create(q2.value % q1.value, q2.unit)
+
+
 @Factory.reallocate("__mul__")
 @Factory.chain(Operation.MULTIPLICATION)
 def multiplication_logic(q1: Packet, q2: Packet | Unit) -> Packet:
