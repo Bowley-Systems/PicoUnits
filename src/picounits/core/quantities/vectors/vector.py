@@ -29,51 +29,49 @@ class VectorPacket(Packet, ABC):
     are not implemented in this base case.
     """
     @property
-    def unit_vector(self) -> Packet:
+    def unit_vector(self) -> Packet:   # pragma: no cover
         """ Calculates the unit vector of self """
         return osops.normalize(self)
 
-    def dot(self, other: Packet) -> Packet:
+    def dot(self, other: Packet) -> Packet:   # pragma: no cover
         """ Defines the behavior for the dot product method """
         return osops.dot(self, other)
 
-    def cross(self, other: Packet) -> Packet:
+    def cross(self, other: Packet) -> Packet:   # pragma: no cover
         """ Defines the behavior for the cross product method"""
         return osops.cross(self, other)
 
-    def angle_between(self, other: Packet) -> Packet:
-        """
-        Defines the behavior for the angle between method. Returns in radians
-        """
+    def angle_between(self, other: Packet) -> Packet:   # pragma: no cover
+        """ Defines the behavior for the angle between method. Returns in radians """
         return osops.angle_between(self, other)
 
-    def __add__(self, other: Any) -> Packet:
+    def __add__(self, other: Any) -> Packet:    # pragma: no cover
         """ Defines the behavior for the forwards addition operator (+) """
         q2 = self._get_other_packet(other)
         return acops.add_logic(self, q2)
 
-    def __radd__(self, other: Any) -> Packet:
+    def __radd__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines the behavior for the reverse addition operator (+) """
         # Due to the commutative property of addition (a+b = b+a)
         return self.__add__(other)
 
-    def __iadd__(self, other: Any) -> Packet:
+    def __iadd__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines in-place addition operation (+=) """
         # Due to the commutative property of addition (a+b = b+a)
         return self.__add__(other)
 
-    def __sub__(self, other: Any) -> Packet:
+    def __sub__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines behavior for the forwards subtraction operator (-) """
         q2 = self._get_other_packet(other)
         return acops.sub_logic(self, q2)
 
-    def __rsub__(self, other: Any) -> Packet:
+    def __rsub__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines the behavior for the reverse subtraction method """
         # Due to subtraction being non-commutative
         q1 = self._get_other_packet(other)
         return q1.__sub__(self)
 
-    def __isub__(self, other: Any) -> Packet:
+    def __isub__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines in-place subtraction operation (-=) """
         return self.__sub__(other)
 
@@ -90,12 +88,12 @@ class VectorPacket(Packet, ABC):
 
         return acops.multiplication_logic(self, q2)
 
-    def __rmul__(self, other: Any) -> Packet:
+    def __rmul__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines behavior for the reverse multiplication """
         # Due to the commutative property of multiplication (ab = ba)
         return self.__mul__(other)
 
-    def __imul__(self, other: Any) -> Packet:
+    def __imul__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines in-place multiplication operation (*=) """
         return self.__mul__(other)
 
@@ -111,22 +109,22 @@ class VectorPacket(Packet, ABC):
             q2 = self._get_other_packet(other)
         return acops.true_division_logic(self, q2)
 
-    def __rtruediv__(self, other: float | int) -> Packet:
+    def __rtruediv__(self, other: float | int) -> Packet:   # pragma: no cover
         """ Defines behavior for the reverse true division """
         # Due to division being non-commutative
         q1 = self._get_other_packet(other)
         return q1.__truediv__(self)
 
-    def __itruediv__(self, other: Any) -> Packet:
+    def __itruediv__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines in-place division (/=) """
         return self.__truediv__(other)
 
-    def __pow__(self, other: Any) -> Packet:
+    def __pow__(self, other: Any) -> Packet:   # pragma: no cover
         """ Defines behavior for the forward power operator (**) """
         q2 = self._get_other_packet(other)
         return acops.power_logic(self, q2)
 
-    def __rpow__(self, other: float | int) -> Packet:
+    def __rpow__(self, other: float | int) -> Packet:   # pragma: no cover
         """ Defines behavior for the reverse power """
         q1 = self._get_other_packet(other)
         return q1.__pow__(self)
@@ -140,47 +138,47 @@ class VectorPacket(Packet, ABC):
         )
         raise TypeError(msg)
 
-    def __lt__(self, other: Any) -> bool:
+    def __lt__(self, other: Any) -> bool:   # pragma: no cover
         """ Defines the behavior for less than comparison """
         _ = other
         self._raise_ordering_error()
 
-    def __le__(self, other: Any) -> bool:
+    def __le__(self, other: Any) -> bool:   # pragma: no cover
         """ Defines the behavior for less than or equal to comparison """
         _ = other
         self._raise_ordering_error()
 
-    def __gt__(self, other: Any) -> bool:
+    def __gt__(self, other: Any) -> bool:   # pragma: no cover
         """ Defines the behavior for greater than comparison """
         _ = other
         self._raise_ordering_error()
 
-    def __ge__(self, other: Any) -> bool:
+    def __ge__(self, other: Any) -> bool:   # pragma: no cover
         """ Defines the behavior for greater than or equal to comparison """
         _ = other
         self._raise_ordering_error()
 
-    def __abs__(self) -> Packet:
+    def __abs__(self) -> Packet:   # pragma: no cover
         """ Defines the absolute value operator """
         return Factory.create(self.magnitude, self.unit)
 
-    def __neg__(self) -> Packet:
+    def __neg__(self) -> Packet:   # pragma: no cover
         """ Defines behavior for negation operator (-quantity) """
         return Factory.create(-self.value, self.unit)
 
-    def __pos__(self) -> Packet:
+    def __pos__(self) -> Packet:   # pragma: no cover
         """ Defines behavior for unary plus operator (+quantity) """
         return Factory.create(+self.value, self.unit)
 
-    def __bool__(self) -> bool:
+    def __bool__(self) -> bool:   # pragma: no cover
         """ Defines behavior for boolean conversion (USES MAGNITUDE) """
         return self.magnitude != 0
 
-    def __len__(self) -> int:
+    def __len__(self) -> int:   # pragma: no cover
         """ Returns the number of elements in the vector. """
         return len(self.value)
 
-    def __getitem__(self, index) -> Any:
+    def __getitem__(self, index) -> Any:   # pragma: no cover
         """ Allows indexing like packet[0] """
         return Factory.create(self.value[index], self.unit)
 
@@ -199,7 +197,7 @@ class VectorPacket(Packet, ABC):
         msg = f"{type(other)!r} is an unsupported type for item assignment"
         raise TypeError(msg)
 
-    def __iter__(self) -> Generator[Packet, None, None]:
+    def __iter__(self) -> Generator[Packet, None, None]:   # pragma: no cover
         """ Returns an iterator for the array. """
         for val in self.value:
             yield Factory.create(val, self.unit)

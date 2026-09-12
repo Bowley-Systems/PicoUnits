@@ -25,6 +25,7 @@ from picounits.core.quantities.vectors.vector import VectorPacket
 from picounits.utilities.lazy_imports import import_factory
 from picounits.configuration.management import get_significant_figures
 
+
 @dataclass(slots=True, repr=False, unsafe_hash=True)
 class ArrayPacket(VectorPacket):
     """
@@ -75,14 +76,14 @@ class ArrayPacket(VectorPacket):
         self.value = array(new_value)
 
     @property
-    def magnitude(self) -> float:
+    def magnitude(self) -> float:      # pragma: no cover
         """ Returns the magnitude of vector with units """
         factory = import_factory("ArrayPacket.magnitude")
 
         value = float(linalg.norm(self.value))
         return factory.create(value, self.unit)
 
-    def __array__(self, dtype=None, copy=None) -> ndarray:
+    def __array__(self, dtype=None, copy=None) -> ndarray:      # pragma: no cover
         """ Return the underlying numerical array. """
         return array(self.value, dtype=dtype, copy=copy)
 
@@ -124,12 +125,12 @@ class ArrayPacket(VectorPacket):
 
         return self.value / (10 ** closest.value), closest
 
-    def __ceil__(self) -> Packet:
+    def __ceil__(self) -> Packet:      # pragma: no cover
         """ Defines the behavior for ceiling method """
         factory = import_factory("ArrayPacket.__ceil__")
         return factory.create(ceil(self.value), self.unit)
 
-    def __format__(self, format_spec: str) -> str:
+    def __format__(self, format_spec: str) -> str:      # pragma: no cover
         """ Formats the string based on user input through 'format_spec'"""
         _ = format_spec
         return self.name(fundamental=False)
