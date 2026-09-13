@@ -34,7 +34,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 
 ### Overview
 
-![Version](https://img.shields.io/badge/Version-1.1.1-006D77?style=flat-square)
+![Version](https://img.shields.io/badge/Version-1.1.2-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
 ![Coverage](https://img.shields.io/badge/coverage-80%25-E14F4C?style=flat-square)
@@ -132,7 +132,7 @@ See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview an
 
 ### Quick Start
 
-A step-by-step introduction is available in [`tutorial/`](https://github.com/Bowley-Systems/PicoUnits/tree/tutorial). <br>
+A step-by-step introduction is available in [`tutorial/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/tutorial). <br>
 
 ```py
 from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
