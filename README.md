@@ -34,7 +34,7 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 
 ### Overview
 
-![Version](https://img.shields.io/badge/Version-1.1.2-006D77?style=flat-square)
+![Version](https://img.shields.io/badge/Version-1.1.3-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
 ![Coverage](https://img.shields.io/badge/coverage-80%25-E14F4C?style=flat-square)
