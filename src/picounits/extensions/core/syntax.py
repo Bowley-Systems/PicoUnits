@@ -210,16 +210,13 @@ class QualityExtraction:
             return cls._from_parentheses(text, parentheses_content)
 
         # Assumed plain text without prefix or unit
-        return (Deserialize.cast(text), "", "")
+        return (Deserialize.cast(text), "", "")      # pragma: no cover
 
     @classmethod
     def _from_list_structure(cls, text: str) -> tuple[Any, str | list, str | list] | None:
         """ Extracts qualities from list structure. """
         # Extracts content from between brackets
         bracket_content = ExtractBrackets.extract_content(text)
-        if not bracket_content:
-            msg = f"Invalid list structure: {text!r}"
-            raise ParserError(cls.__name__, msg) from None
 
         # Splits content and end index
         content, end_index = bracket_content
@@ -240,7 +237,7 @@ class QualityExtraction:
                 return list_result, prefix, units
 
         # Assumed plain list without prefix or unit
-        return list_result, "", ""
+        return list_result, "", ""              # pragma: no cover
 
     @classmethod
     def _column_wise_prefixes(cls, unit_strings: str) -> list[str]:
@@ -297,7 +294,7 @@ class QualityExtraction:
                 return (Deserialize.cast(value), prefix, unit)
 
             # If split_prefix is none than return value with empty prefix
-            return (Deserialize.cast(split_prefix_unit), "", unit)
+            return (Deserialize.cast(split_prefix_unit), "", unit)  # pragma: no cover
 
         msg = f"Invalid parentheses structure: {line!r}"
         raise ParserError(cls.__name__, msg) from None

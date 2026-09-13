@@ -6,3 +6,5 @@
 *.fdb_latexmk
 *.fls
 *.gz
+example/test.py
+example/test.uiv

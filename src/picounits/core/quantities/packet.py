@@ -9,9 +9,9 @@ Description:
 
 from __future__ import annotations
 
+from typing import Any, Optional
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, InitVar
-from typing import Any
 
 from picounits.core.scales import PrefixScale
 from picounits.core.unit import Unit
@@ -31,71 +31,59 @@ class Packet(ABC):
     value: Any
     unit: Unit
     prefix: InitVar[PrefixScale] = PrefixScale.BASE
+    meta: Optional[Any] = None
 
     @abstractmethod
     def __post_init__(self, prefix: PrefixScale) -> None:
         """ Validates value and unit, then mutates value to base """
-        return
 
     @abstractmethod
     def _normalize(self) -> tuple[Any, PrefixScale]:
-        """
-        Normalizes the value for representation and returns value + prefix
-        """
-        return
+        """ Normalizes the value for representation and returns value + prefix """
 
     @abstractmethod
     def name(self, fundamental: bool) -> str:
         """ Returns the packet name as value + prefix(unit) """
-        return
 
     @property
     @abstractmethod
     def magnitude(self) -> Any:
         """ Returns the absolute physical size of the value """
-        return
 
     @abstractmethod
     def __format__(self, format_spec: str) -> str:
         """ Formats the string based on user input through 'format_spec' """
-        msg = "Subclasses must implement __format__"
-        raise NotImplementedError(msg)
 
     @abstractmethod
     def __ceil__(self) -> Packet:
         """ Defines the behavior for ceiling method """
-        msg = "Subclasses must implement __ceil__"
-        raise NotImplementedError(msg)
 
     @abstractmethod
     def __abs__(self) -> Packet:
         """ Defines the absolute value operator """
-        msg = "Subclasses must implement __abs__"
-        raise NotImplementedError(msg)
 
     @abstractmethod
     def __lt__(self, other: Any) -> bool:
         """ Defines the behavior for less than comparison """
-        msg = "Subclasses must implement __lt__"
-        raise NotImplementedError(msg)
 
     @abstractmethod
     def __le__(self, other: Any) -> bool:
         """ Defines the behavior for less than or equal to comparison """
-        msg = "Subclasses must implement __le__"
-        raise NotImplementedError(msg)
 
     @abstractmethod
     def __gt__(self, other: Any) -> bool:
         """ Defines the behavior for greater than comparison """
-        msg = "Subclasses must implement __gt__"
-        raise NotImplementedError(msg)
 
     @abstractmethod
     def __ge__(self, other: Any) -> bool:
         """ Defines the behavior for greater than or equal to comparison """
-        msg = "Subclasses must implement __ge__"
-        raise NotImplementedError(msg)
+
+    def info(self) -> None:      # pragma: no cover
+        """ Displays the quality operational history """
+        # Uses lazy import to avoid circular import between self & factory
+        factory = import_factory("Packet.info")
+
+        factory.packet_info(self)
 
     def unit_check(self, target: Packet | Unit) -> None:
         """ Uses fundamental dimensions and exponents to check equivalent """
@@ -109,7 +97,7 @@ class Packet(ABC):
         msg = f"Units are not the same, {self.unit} != {other_unit}"
         raise ValueError(msg)
 
-    def _get_factor(self, difference: int) -> int:
+    def _get_factor(self, difference: int) -> int:      # pragma: no cover
         """ Calculates the scaling factor for the value """
         return 10 ** difference
 
@@ -128,24 +116,27 @@ class Packet(ABC):
             factory = import_factory("Packet._get_other_packet")
             return factory.create(other, Unit.dimensionless())
 
+        msg = "Failed to get the other packet for the operation"
+        raise RuntimeError(msg)
+
     @property
-    def stripped(self) -> Any:
+    def stripped(self) -> Any:      # pragma: no cover
         """ Strips the unit object away, returns non-scaled value """
         return self.value
 
     @property
-    def fundamental(self) -> str:
+    def fundamental(self) -> str:      # pragma: no cover
         """ Returns the fundamental string representation of the packet name """
         return str(self.name(True))
 
-    def __hash__(self):
+    def __hash__(self):      # pragma: no cover
         """ Defines behavior for hashing the packet """
         return hash((self.value, self.unit))
 
-    def __str__(self) -> str:
+    def __str__(self) -> str:      # pragma: no cover
         """ Return string representation of the packet name """
         return str(self.name(fundamental=False))
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> str:      # pragma: no cover
         """ Returns representation of the packet name """
         return str(self.name(fundamental=False))

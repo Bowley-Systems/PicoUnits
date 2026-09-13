@@ -1,13 +1,9 @@
 # pylint: skip-file
-"""
-Filename: construction.py
-
-Descriptions:
-    Tests the construction classes within the parser
-    NOTE: Classes | TestConstructPrefix, TestConstructUnits, TestConstructQuality
-"""
+""" Filename: construction.py """
 
 import unittest
+
+from pathlib import Path
 
 from picounits.core.scales import PrefixScale, _SYMBOLS_TO_SCALE
 from picounits.core.unit import Unit
@@ -18,8 +14,15 @@ from picounits.constants import (
     FORCE, PRESSURE, POWER, MILLI, KILO, MEGA
 )
 
+from picounits.extensions.parser import Parser
 from picounits.extensions.core.construction import ConstructPrefix, ConstructUnits, ConstructQuantity
-from picounits.utilities.errors import ParserError, UnknownPrefix, UnsupportedType, ColumnAttribute
+from picounits.utilities.errors import (
+    ParserError, 
+    UnknownPrefix, 
+    UnsupportedType, 
+    ColumnAttribute,
+    UnitNotFoundError
+)
 
 
 class TestConstructPrefix(unittest.TestCase):
@@ -37,7 +40,18 @@ class TestConstructPrefix(unittest.TestCase):
         for symbol in symbols:
             with self.assertRaises(UnknownPrefix):
                 ConstructPrefix.construct_prefix(symbol) 
-        
+
+    def test_construct_prefix_from_empty_list(self):
+        """ Empty list returns empty list """
+        result = ConstructPrefix.construct_prefix([])
+        self.assertEqual(result, [])
+
+    def test_construct_prefix_from_list_with_unknown(self):
+        """ Unknown prefix inside list raises UnknownPrefix """
+
+        with self.assertRaises(UnknownPrefix):
+            ConstructPrefix.construct_prefix(["m", "not-a-prefix"])
+
 
 class TestConstructUnits(unittest.TestCase):
     """ Unit tests for construct units class """
@@ -116,6 +130,7 @@ class TestConstructUnits(unittest.TestCase):
             result = ConstructUnits.construct_unit(item)
             self.assertEqual(result, expected[index])
 
+
 class TestConstructQuality(unittest.TestCase):
     """ Unit tests for construct qualities class """
     def test_non_numerical_value_input(self):
@@ -173,13 +188,12 @@ class TestConstructQuality(unittest.TestCase):
         value = [[1,2,3], [1,2,3], [1,2,3]]
         units = ["kg", "m/mol", "A^-1"]
         
-        expected_rows = [1  * MASS, 2 * LENGTH / AMOUNT, 3 * CURRENT ** -1]
+        expected_rows = [1  * MASS, 2 * (LENGTH / AMOUNT), 3 * CURRENT ** -1]
         expected = [expected_rows, expected_rows, expected_rows]
         
         result = ConstructQuantity.quantity(value, "", units)
         self.assertEqual(result, expected)    
-    
-    
+
     def test_column_prefix_with_valid_input(self):
         """ Tests the column prefix with valid input """
         items = [
@@ -221,7 +235,65 @@ class TestConstructQuality(unittest.TestCase):
             units, index = item[0], item[1]
             with self.assertRaises(ColumnAttribute):
                 ConstructQuantity._column_unit(units, index)
-            
+
+    def test_column_wise_array(self):
+        """ Covers column-wise array construction """
+        value = [1, 2, 3]
+        prefix = ["m", "k", "M"]
+        units = ["kg", "m/mol", "A^-1"]
+
+        result = ConstructQuantity.quantity(value, prefix, units)
+        for packet in result:
+            self.assertIsInstance(packet, Packet)
+
+    def test_derived_units_with_valid(self):
+        """ Test using derived units for tokens """
+        
+        # Imports derived units for test
+        BASE_DIR = Path(__file__).parent.parent.parent
+        Parser.import_derived(BASE_DIR / "runner.ut")
+        
+        # Tests method with derived units
+        tokens = ["V", "F", "H"]
+
+        for token in tokens:
+            result = ConstructUnits._derived_unit(token)
+            self.assertIsInstance(result, Unit)
+    
+    def test_derived_units_with_invalid(self):
+        """ Test using trying non-defined derived units """
+        tokens = ["W", "T", "V", "F", "H"]
+        
+        for token in tokens:
+            with self.assertRaises(UnitNotFoundError):
+                ConstructUnits._derived_unit(token)
+
+    def test_quality_with_derived_unit(self):
+        """ Test quality construction with using derived units"""
+
+        # Imports derived units for test
+        BASE_DIR = Path(__file__).parent.parent.parent
+        Parser.import_derived(BASE_DIR / "runner.ut")
+        
+        # Attempt to constructs a quality with derived unit
+        result = ConstructQuantity.quantity(12.2, "", "H")
+        expected = 12.2 * (MASS * LENGTH ** 2 * TIME ** -2 * CURRENT ** -2)
+        
+        self.assertEqual(result, expected)
+    
+    def test_quality_with_constructed_derived_units(self):
+        """ Test quality construction using constructed derived units """
+
+        # Imports derived units for test
+        BASE_DIR = Path(__file__).parent.parent.parent
+        Parser.import_derived(BASE_DIR / "runner.ut")
+        
+        # Attempt to constructs a quality with derived unit
+        result = ConstructQuantity.quantity(12.2, "", "m*H")
+        expected = 12.2 * (MASS * LENGTH ** 3 * TIME ** -2 * CURRENT ** -2)
+        
+        self.assertEqual(result, expected)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,11 +1,5 @@
 # pylint: skip-file
-"""
-Filename: deserialization.py
-
-Descriptions:
-    Tests the deserialization classes within the parser
-    NOTE: Classes | TestDeserialize, TestParseList
-"""
+""" Filename: deserialization.py """
 
 import unittest
 

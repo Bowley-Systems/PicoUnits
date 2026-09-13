@@ -2,9 +2,6 @@
 
 The API reference for `PicoUnits` can be found here: [api-reference.pdf](./api-reference.pdf)  
 
-> An easy-to-understand Python program is available here if you don't want to read the full documentation.
-> [Introduction example](..\examples\introduction.uiv)
-
 #### PicoUnits Prefixes:
 
 ```yaml

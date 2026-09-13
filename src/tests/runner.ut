@@ -1,0 +1,6 @@
+[version]
+format: 0.1.0
+
+V:      kg*m^2*s^-3*A^-1
+F:      kg^-1*m^-2*s^4*A^2
+H:      kg*m^2*s^-2*A^-2

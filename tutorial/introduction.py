@@ -150,7 +150,7 @@ print("Calculating pole volume using parameters")
 print(f"Pole Volume: {volume}")
 
 
-next_step("8: Parser (derived.ut)")
+next_step("8: Parser (introduction.ut)")
 
 from pathlib import Path
 
@@ -159,11 +159,17 @@ from picounits.extensions import Parser
 from picounits.configuration.management import get_derived_units
 
 BASE_DIR = Path(__file__).parent
-derived_units = BASE_DIR / "derived.ut"
+derived_units = BASE_DIR / "introduction.ut"
 
 # Imports and displays derived units
 Parser.import_derived(derived_units)
-print(f"Derived Units: {get_derived_units()}")
+derived_units = get_derived_units()
+
+print(f"Derived Unit: [")
+for item in derived_units:
+    print(f"    {1 * item},")
+
+print("]")
 
 voltage = 10 * VOLTAGE
 current = 10 * CURRENT
@@ -188,7 +194,25 @@ print(f"Fundamental (.fundamental): {power.fundamental}, {energy.fundamental}")
 print(f"Stripped (.stripped): {power.stripped}, {energy.stripped}")
 
 
-next_step("10: Validation Boundary Class")
+next_step("10: Debugging via construction trace")
+
+from picounits import LENGTH, MASS, CURRENT, TIME, FLUX_DENSITY
+
+# Charged particle entering a magnetic field
+charge = 1.5 * CURRENT * TIME
+velocity = 1.25 * LENGTH / TIME
+field = 200 * FLUX_DENSITY
+radius = 4.2 * LENGTH
+mass = 3.2 * MASS
+
+# Computes the lorentz force & prints
+force = charge * velocity * field
+print(f"lorentz force: {force} \n")
+
+# Quality trace for that operation.
+force.info()
+
+next_step("11: Validation Boundary Class")
 
 from picounits import Q, strip_quantity
 from picounits import VELOCITY, LENGTH, TIME, KILO

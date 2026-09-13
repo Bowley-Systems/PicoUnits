@@ -10,7 +10,7 @@ from picounits.core.unit import Unit
 from picounits.constants import DIMENSIONLESS
 
 from picounits.core.quantities.packet import Packet
-from picounits.core.quantities.factory import Factory
+from picounits.core.quantities.factory import Factory, Operation
 
 
 @Factory.reallocate("__add__")
@@ -37,7 +37,22 @@ def sub_logic(q1: Packet, q2: Packet) -> Packet:
     return Factory.create(new_value, q1.unit)
 
 
+@Factory.reallocate("__mod__")
+def modulo_logic(q1: Packet, q2: Packet) -> Packet:
+    """ Defines the logic for modulo (q2 % q1) """
+
+    # Modulus requires both packets to have the same Unit
+    q2.unit_check(q1)
+
+    if q1.value == 0:
+        msg = f'Modulo failed due to division by zero: {q2.value} % {q1.value}'
+        raise ValueError(msg)
+
+    return Factory.create(q2.value % q1.value, q2.unit)
+
+
 @Factory.reallocate("__mul__")
+@Factory.chain(Operation.MULTIPLICATION)
 def multiplication_logic(q1: Packet, q2: Packet | Unit) -> Packet:
     """ Defines the logic for multiplication between two quantities"""
 
@@ -58,6 +73,7 @@ def multiplication_logic(q1: Packet, q2: Packet | Unit) -> Packet:
 
 
 @Factory.reallocate("__truediv__")
+@Factory.chain(Operation.DIVIDED)
 def true_division_logic(q1: Packet, q2: Packet) -> Packet:
     """ Defines the logic for true division between two quantities """
     if q2.value == 0:
@@ -73,6 +89,7 @@ def true_division_logic(q1: Packet, q2: Packet) -> Packet:
 
 
 @Factory.reallocate("__floordiv__")
+@Factory.chain(Operation.DIVIDED)
 def floor_division_logic(q1: Packet, q2: Packet) -> Packet:
     """ Defines the logic for floor division between two quantities """
     if q2.value == 0:
@@ -87,6 +104,7 @@ def floor_division_logic(q1: Packet, q2: Packet) -> Packet:
 
 
 @Factory.reallocate("__pow__")
+@Factory.chain(Operation.POWER)
 def power_logic(q1: Packet, q2: Packet) -> Packet:
     """ Defines the logic for power between two quantities """
     if q2.unit != DIMENSIONLESS:

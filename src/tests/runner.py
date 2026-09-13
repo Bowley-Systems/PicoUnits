@@ -3,16 +3,12 @@
 File: runner.py
 
 Description:
-    Main script to run all unit test modules within
-    the picounits library. This includes unit modelling, 
-    parser, dynamic-loader and configurations.
-    
-    NOTE: Reference commands:
+    Reference commands:
     coverage run src/tests/runner.py
     coverage report -m
     
     
-    NOTE: Unit Symbols required for this test suite in `.picounits`
+    Unit Symbols required for this test suite in `.picounits`:
     [symbols]
     # Change the name of fundamental dimensions
     time: s
@@ -32,16 +28,38 @@ from tests.unit.dimensional_construction import DimensionConstruction
 from tests.quantities.quantities_construction import QualityScalingConstruction
 
 from tests.extensions.core.deserialization import TestParseList, TestDeserialize
-from tests.extensions.utilities.operations import TestOperators
+from tests.utilities.operations import TestOperators
+from tests.utilities.attributes import TestAttributes
 
 from tests.extensions.core.construction import (
-    TestConstructPrefix, TestConstructUnits, TestConstructQuality
+    TestConstructPrefix, 
+    TestConstructUnits, 
+    TestConstructQuality
 )
 
 from tests.extensions.core.syntax import (
-    TestExtractionState, TestExtractPairs, TestExtractBrackets, TestExtractParentheses,
+    TestExtractionState, 
+    TestExtractPairs, 
+    TestExtractBrackets, 
+    TestExtractParentheses,
     TestQualityExtraction
 )
+
+from tests.extensions.parser import (
+    TestParseLines,
+    TestParseLinesHelpers,
+    TemporaryDirectory,
+    TestParserImportDerived,
+    TestParserOpen,
+    TestParserReadLines,
+)
+
+from tests.extensions.loader import (
+    TestLoaderContext,
+    TestDynamicLoader,
+    TestLoader
+)
+
 
 loader = unittest.TestLoader()
 suite = unittest.TestSuite()
@@ -70,11 +88,25 @@ suite.addTest(loader.loadTestsFromTestCase(TestExtractBrackets))
 suite.addTest(loader.loadTestsFromTestCase(TestExtractParentheses))
 suite.addTest(loader.loadTestsFromTestCase(TestQualityExtraction))
 
-# Operators
+# Operators & attributes
 suite.addTests(loader.loadTestsFromTestCase(TestOperators))
+suite.addTests(loader.loadTestsFromTestCase(TestAttributes))
+
+# Parser
+suite.addTests(loader.loadTestsFromTestCase(TestParseLines))
+suite.addTests(loader.loadTestsFromTestCase(TestParseLinesHelpers))
+suite.addTests(loader.loadTestsFromTestCase(TemporaryDirectory))
+suite.addTests(loader.loadTestsFromTestCase(TestParserImportDerived))
+suite.addTests(loader.loadTestsFromTestCase(TestParserOpen))
+suite.addTests(loader.loadTestsFromTestCase(TestParserReadLines))
+
+# Loader
+suite.addTests(loader.loadTestsFromTestCase(TestLoaderContext))
+suite.addTests(loader.loadTestsFromTestCase(TestDynamicLoader))
+suite.addTests(loader.loadTestsFromTestCase(TestLoader))
+
 
 runner = unittest.TextTestRunner(verbosity=2)
-
 
 if __name__ == "__main__":
     result = runner.run(suite)

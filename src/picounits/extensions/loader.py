@@ -11,26 +11,7 @@ from __future__ import annotations
 from typing import Any
 from dataclasses import dataclass
 
-
-class AttributeNotFound(AttributeError):
-    """ Exception for attribute not found error """
-    def __init__(self, attribute: str, path: str):
-        """ Returns a custom error message """
-        self.path = path
-        self.attribute = attribute
-
-        msg = f"{attribute!r} not found at {path!r} within loader tree"
-        super().__init__(msg)
-
-
-class InjectionError(Exception):
-    """Raised when a value cannot be injected into a Loader tree."""
-    def __init__(self, path: str, value: Any):
-        self.path = path
-        self.value = value
-
-        msg = f"Failed to inject {value!r} at {path!r}"
-        super().__init__(msg)
+from picounits.utilities.errors import AttributeNotFound, InjectionError
 
 
 @dataclass(frozen=True, slots=True)
@@ -108,8 +89,15 @@ class Loader:
             return
 
         if isinstance(value, (list, tuple)):
+            # Prints lists or tuples as a collection of entries
             self._print_collection(key, value, context)
             return
+
+        if not isinstance(value, str) and hasattr(value, "__len__"):
+            if len(value) > 1:
+                # Prints non-strings with more than one entry as a collection
+                self._print_collection(key, value, context)
+                return
 
         leaf_connector = context.connector()
         print(f"{context.indent}{leaf_connector}{key}: {value}")
@@ -117,18 +105,21 @@ class Loader:
     def _print_collection(self, key: str, collection, context: LoaderContext) -> None:
         """Prints a collection (list or tuple) with proper formatting."""
         leaf_connector = context.connector()
+
         # Print array in-line if within limit
         if len(collection) <= context.inline:
             print(f"{context.indent}{leaf_connector}{key}: {collection}")
             return
 
-        # Prints arrays as multi-line objects
+        # Prints arrays as multi-line objects & Get the child indent
         print(f"{context.indent}{leaf_connector}{key}: [")
+        child_indent = context.next_level()
+
         for i, item in enumerate(collection):
             item_connector = "└── " if i == len(collection) - 1 else "├── "
-            print(f"{context.indent}    {item_connector}{item}")
+            print(f"{child_indent.indent}{item_connector}{item}")
 
-        print(f"{context.indent}    ]")
+        print(f"{child_indent.indent}]")
 
     def _set_path(self, path_items: Any, value: Any) -> None:
         """ Loads values via attribute injection """

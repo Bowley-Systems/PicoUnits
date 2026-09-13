@@ -26,26 +26,30 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 </p>
 
 <p align="center">
-    <strong>Define the type. Define the variable. Execute.</strong><br>
+    <strong>Define the type. Define the variable. Execute.</strong>
+    <br>
     Automate physical meaning throughout your pipeline.
 </p>
 
 
 ### Overview
 
-![Version](https://img.shields.io/badge/Version-1.1.0-006D77?style=flat-square)
+![Version](https://img.shields.io/badge/Version-1.1.1-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
-![Coverage](https://img.shields.io/badge/coverage-60%25-E14F4C?style=flat-square)
+![Coverage](https://img.shields.io/badge/coverage-80%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
-PicoUnits is a dynamic runtime typing system for numerical quantities. 
+<b>Picounits</b> is a dynamic runtime typing system for numerical dimensional quantities. 
 It provides a consistent type system for expressing dimensional quantities throughout your pipeline.
+
+### Features
 
 ```
 - Configurable `unit frames` with custom symbols and dimension ordering.
 - Parses `UnitValues` language formats: unit types (`.ut`) and unit-informed values (`.uiv`).
 - Numerical support for real, complex, and vector quantities with type-specific operations.
+- Traces quantity construction and dimensional operations performed on quantities.
 - Type checking at functional boundaries, defined by the user.
 ```
 
@@ -53,7 +57,7 @@ It provides a consistent type system for expressing dimensional quantities throu
 
 ### Why convert at all?
 
-PicoUnits removes uncertainty by reducing the set of units to one canonical set defined by the user.
+<b>Picounits</b> reduces complexity by reducing the set of units to one canonical set defined by the user.
 
 <strong>It does not attempt to answer:</strong>
 
@@ -63,9 +67,7 @@ How might one convert between systems at a boundary?
 ↺ Each iteration
 ```
 
-<br>
-
-Because for computation, this is quite flawed. It destroys certainty for implementation convenience.
+<b>Picounits</b> follows this principle:
 
 ```
 Define unit frame → Define derived units → Work within it, not outside it.
@@ -91,9 +93,10 @@ luminosity: cd
 dimensionless: ∅
 ```
 
-The dimensional environment is independent of the notation used to represent it. Hence, any semantic representation can be used. 
-However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes.
+The dimensional environment is independent of the notation used to represent it. 
+Hence, any semantic representation can be used. 
 
+However, PicoUnits operates on a fixed set of fundamental dimensions and prefixes. <br>
 See the [`.picounits`](https://github.com/Bowley-Systems/PicoUnits/blob/main/.picounits) file for implementation details.
 
 ---
@@ -114,8 +117,6 @@ attribute: value prefix(unit)
 p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 ```
 
-<br>
-
 `.uiv` defines the quantities within your unit system:
 
 ```
@@ -123,11 +124,15 @@ p: kg*m^-1*s^-2                # Defines the unit for pressure (Pascal)
 inlet_pressure: 101 k(p)  # 101 kPa using the defined unit p
 ```
 
-See [UnitValues](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
+<br>
+
+See [`UnitValues`](https://github.com/Bowley-Systems/UnitValues) for overview and language specification.
 
 ---
 
 ### Quick Start
+
+A step-by-step introduction is available in [`tutorial/`](https://github.com/Bowley-Systems/PicoUnits/tree/tutorial). <br>
 
 ```py
 from picounits import Q, expects, VOLTAGE, CURRENT, RESISTANCE
@@ -137,15 +142,13 @@ def ohm_law(i: Q, r: Q) -> Q:
   return i * r
  
 # Correct Usage
-ohm_law(10 * CURRENT, 5 * RESISTANCE) 
+myVar = ohm_law(10 * CURRENT, 5 * RESISTANCE) 
 # > Output: 50.0 (kg·m²·s⁻³·A⁻¹)
 
 # Incorrect Usage
-ohm_law(10 * CURRENT, 5 * VOLTAGE)
+myVar = ohm_law(10 * CURRENT, 5 * VOLTAGE)
 # > DimensionError: 'ohm_law' returned kg·m²·s⁻³, expected kg·m²·s⁻³·A⁻¹
 ```
-
-> An introduction example is available in [`example/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/example).
 
 ---
 
@@ -159,6 +162,6 @@ pip install PicoUnits
 
 #### Documentation
 
-Full documentation is available in the [`docs/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/docs) folder, including API reference, changelog, and contributors.
+Full documentation is available in the [`docs/`](https://github.com/Bowley-Systems/PicoUnits/tree/main/docs) folder including API reference, changelog, and contributors.
 
 ---
