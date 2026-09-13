@@ -116,7 +116,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Fixed
 - Fixed dynamic loader indexation of arrays within the tree for `.info()` of `.uiv` files
 
-#### Documentation
-*(TBD) — Work in progress*
-
 ---
