@@ -26,7 +26,8 @@ P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
 </p>
 
 <p align="center">
-    <strong>Define the type. Define the variable. Execute.</strong><br>
+    <strong>Define the type. Define the variable. Execute.</strong>
+    <br>
     Automate physical meaning throughout your pipeline.
 </p>
 
