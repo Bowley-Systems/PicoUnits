@@ -1,14 +1,6 @@
 # pylint: skip-file
-"""
-Filename: dimensional_algebra.py
-
-Description:
-    Tests for the Unit class to ensure that the 
-    dimensional algebra and pipelines are correct.
-    
-    NOTE:
-    Testing for string representation should be added.
-"""
+# Note: Testing for string representation should be added.
+""" Filename: dimensional_algebra.py """
 
 import unittest
 from picounits.core.dimensions import Dimension, FBase

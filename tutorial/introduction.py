@@ -1,12 +1,8 @@
 # pylint: skip-file
 """
-Filename: Introduction.py
+Introduces the mechanics of picounits via a few examples
 
-Descriptions:
-    Introduces the mechanics of picounits via a few examples
-
-    NOTE: 
-    Assumes your base dimensions are SI metric for (notation)
+[Assumes: base dimensions are SI metric for (notation)]
 """
 
 def next_step(title: str, first: bool = False):
@@ -17,6 +13,7 @@ def next_step(title: str, first: bool = False):
 
 
 next_step("0a: How to set a prefix(value:unit) pair", True)
+# ------------------------------------------------------------
 
 # Import the dimension & prefix you want to use
 from picounits import LENGTH, MILLI
@@ -30,6 +27,7 @@ print(f"William (defined as mm): {william_height_mm}")
 print("Result: Picounits normalized both to 1.75 meters.")
 
 next_step("0b: Due to prefix(value:unit) prefixes don't carry")
+# ------------------------------------------------------------
 
 # Import the dimension & prefix you want to use
 from picounits import LENGTH, MILLI
@@ -46,6 +44,7 @@ print(f"Square Area: {square_area}")
 
 
 next_step("1: Math Operations with value:units")
+# ------------------------------------------------------------
 
 # Import the dimension & prefix you want to use
 from picounits import MASS, FORCE, KILO
@@ -64,6 +63,7 @@ print(f"Car Acceleration:   {car_acceleration}")
 
 
 next_step("2: Validates the output is the correct dimension")
+# ------------------------------------------------------------
 
 # Import the quantity for type hinting, the validator for checking and dimensions to use
 from picounits import Q, expects, CURRENT, VOLTAGE, RESISTANCE
@@ -84,7 +84,8 @@ print("Re-entry with calculate_voltage(10 A, 10 Ω)....")
 print(f"Element voltage: {calculate_voltage(10 * CURRENT, 10 * RESISTANCE)}")
 
 
-next_step("4: Physics with Complex Numbers (SUVAT)")
+next_step("3: Physics with Complex Numbers (SUVAT)")
+# ------------------------------------------------------------
 
 from picounits import Q, expects, VELOCITY, TIME
 
@@ -103,7 +104,8 @@ final_v = suvat(initial_velocity, acceleration, displacement)
 print(f"Complex Velocity Result: {final_v}")
 
 
-next_step("5: Scaling Lists/Arrays with Units")
+next_step("4: Scaling Lists/Arrays with Units")
+# ------------------------------------------------------------
 
 from picounits import VOLTAGE, KILO, VOLTAGE
 
@@ -115,7 +117,8 @@ print(f"Standard Voltages: {voltages}")
 print(f"High Voltages (kV scaled): {high_voltages}")
 
 
-next_step("6: Derived Energy Calculation")
+next_step("5: Derived Energy Calculation")
+# ------------------------------------------------------------
 
 from picounits import Q, expects, ENERGY
 
@@ -129,7 +132,8 @@ energy = kinetic_energy(Projectile_Mass, final_v)
 print(f"Final Kinetic Energy: {energy}")
 
 
-next_step("7: Parser (introduction.uiv)")
+next_step("6: Parser (introduction.uiv)")
+# ------------------------------------------------------------
 
 from math import pi
 from pathlib import Path
@@ -150,7 +154,8 @@ print("Calculating pole volume using parameters")
 print(f"Pole Volume: {volume}")
 
 
-next_step("8: Parser (introduction.ut)")
+next_step("7: Parser (introduction.ut)")
+# ------------------------------------------------------------
 
 from pathlib import Path
 
@@ -180,7 +185,8 @@ energy = power * 1 * TIME
 print(f"power: {power}, energy: {energy}")
 
 
-next_step("9: Debugging with derived units")
+next_step("8: Debugging with derived units")
+# ------------------------------------------------------------
 
 from picounits import KILO, POWER, TIME
 
@@ -194,7 +200,8 @@ print(f"Fundamental (.fundamental): {power.fundamental}, {energy.fundamental}")
 print(f"Stripped (.stripped): {power.stripped}, {energy.stripped}")
 
 
-next_step("10: Debugging via construction trace")
+next_step("9: Debugging via construction trace")
+# ------------------------------------------------------------
 
 from picounits import LENGTH, MASS, CURRENT, TIME, FLUX_DENSITY
 
@@ -212,7 +219,8 @@ print(f"lorentz force: {force} \n")
 # Quality trace for that operation.
 force.info()
 
-next_step("11: Validation Boundary Class")
+next_step("10: Validation Boundary Class")
+# ------------------------------------------------------------
 
 from picounits import Q, strip_quantity
 from picounits import VELOCITY, LENGTH, TIME, KILO
@@ -252,3 +260,4 @@ print("[NOTE]: Review the implementation for this example: Line 185-222")
 
 print("\n" + "=" * 30)
 print("Tutorial Complete!")
+# ------------------------------------------------------------

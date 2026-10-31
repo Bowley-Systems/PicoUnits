@@ -1,11 +1,5 @@
 # pylint: skip-file
-""" 
-Filename: qualities_construction.py
-
-Descriptions:
-    Tests the scaling and construction of Qualities with a
-    focus on prefix-exponent interactions 
-"""
+""" Filename: qualities_construction.py """
 
 import unittest
 from picounits import MILLI, KILO, LENGTH, TIME, MASS

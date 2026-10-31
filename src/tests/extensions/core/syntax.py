@@ -4,9 +4,8 @@
 import unittest
 
 from picounits.utilities.errors import UnbalancedDepth, ParserError
-from picounits.extensions.core.syntax import (
-    ExtractionState, ExtractPairs, ExtractBrackets, ExtractParentheses, QualityExtraction
-)
+from picounits.extensions.core.syntax import ExtractionState, ExtractPairs, ExtractBrackets
+from picounits.extensions.core.syntax import ExtractParentheses, QualityExtraction
 
 
 class TestExtractionState(unittest.TestCase):
@@ -234,6 +233,7 @@ class TestQualityExtraction(unittest.TestCase):
 
         with self.assertRaises(ParserError):
             QualityExtraction._from_parentheses(line, content)
+
 
 if __name__ == '__main__':
     unittest.main()

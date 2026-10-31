@@ -1,4 +1,6 @@
 # .gitignore
+
+# Ignore Files
 *.pyc
 *.log
 *.coverage
@@ -6,5 +8,5 @@
 *.fdb_latexmk
 *.fls
 *.gz
-example/test.py
-example/test.uiv
+
+# Ignore folders

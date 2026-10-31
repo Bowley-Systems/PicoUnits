@@ -1,15 +1,6 @@
 # pylint: skip-file
-"""
-Filename: dimensional_construction.py
-
-Description:
-    Tests for the fundamental unit 'FBASE' and dataclass 'Dimension'
-    to ensure that the dimensional construction 
-    is correct for the application.
-    
-    NOTE:
-    Testing for string representation should be added.
-"""
+# Note: Testing for string representation should be added.
+""" Filename: dimensional_construction.py """
 
 import unittest
 from picounits.core.dimensions import Dimension, FBase, SUPERSCRIPT_MAP

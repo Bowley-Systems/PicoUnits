@@ -1,14 +1,13 @@
 # pylint: skip-file
-"""
-File: runner.py
+""" File: runner.py """
 
-Description:
-    Reference commands:
+"""
+Reference commands:
     coverage run src/tests/runner.py
     coverage report -m
-    
-    
-    Unit Symbols required for this test suite in `.picounits`:
+
+
+Unit Symbols required for this test suite in `.picounits`:
     [symbols]
     # Change the name of fundamental dimensions
     time: s
@@ -105,8 +104,9 @@ suite.addTests(loader.loadTestsFromTestCase(TestLoaderContext))
 suite.addTests(loader.loadTestsFromTestCase(TestDynamicLoader))
 suite.addTests(loader.loadTestsFromTestCase(TestLoader))
 
-
+# Creates the runner for running!?
 runner = unittest.TextTestRunner(verbosity=2)
+
 
 if __name__ == "__main__":
     result = runner.run(suite)

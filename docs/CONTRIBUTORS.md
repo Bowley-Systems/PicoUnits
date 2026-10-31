@@ -11,8 +11,6 @@
 
 > Ensure that you add words to `picounits`'s `cSpell.json`, not your personal dictionary.
 
----
-
 My personal VS Code workflow also includes:
 - `Pylance`
 - `Python`

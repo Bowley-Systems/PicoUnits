@@ -9,20 +9,12 @@ from picounits.core.scales import PrefixScale, _SYMBOLS_TO_SCALE
 from picounits.core.unit import Unit
 from picounits.core.quantities.packet import Packet
 
-from picounits.constants import (
-    TIME, LENGTH, MASS, CURRENT, TEMPERATURE, AMOUNT, LUMINOSITY, NULLSET,
-    FORCE, PRESSURE, POWER, MILLI, KILO, MEGA
-)
+from picounits import MILLI, KILO, MEGA
+from picounits import TIME, LENGTH, MASS, CURRENT, TEMPERATURE, AMOUNT, LUMINOSITY, NULLSET, FORCE, PRESSURE, POWER
 
 from picounits.extensions.parser import Parser
 from picounits.extensions.core.construction import ConstructPrefix, ConstructUnits, ConstructQuantity
-from picounits.utilities.errors import (
-    ParserError, 
-    UnknownPrefix, 
-    UnsupportedType, 
-    ColumnAttribute,
-    UnitNotFoundError
-)
+from picounits.utilities.errors import ParserError, UnknownPrefix, UnsupportedType, ColumnAttribute, UnitNotFoundError
 
 
 class TestConstructPrefix(unittest.TestCase):

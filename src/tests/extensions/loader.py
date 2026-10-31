@@ -1,9 +1,6 @@
 # pylint: skip-file
 """ Filename: loader.py """
 
-# pylint: skip-file
-""" Filename: loader.py """
-
 import io
 import unittest
 from contextlib import redirect_stdout
