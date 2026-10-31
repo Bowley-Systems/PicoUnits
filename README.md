@@ -9,16 +9,9 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <p align="center">
   <img 
     src="https://raw.githubusercontent.com/Bowley-Systems/PicoUnits/refs/heads/main/media/logo.png" 
-    alt="PicoUnits logo" 
-    width="100%" 
-    style="max-width:100%; display:block;"
+    alt="Logo" 
+    width="700"
   >
-</p>
-
-<p align="center">
-    <strong>Define the type. Define the variable. Execute.</strong>
-    <br>
-    Automate physical meaning throughout your pipeline.
 </p>
 
 
