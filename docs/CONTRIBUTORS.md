@@ -1,6 +1,6 @@
 ### Contributors
 
-#### Required.
+#### Required
 
 - `pylint` as the linter
 - `radon` as the complexity analyzer
