@@ -6,7 +6,6 @@ Description:
     comprised of a Value, Unit and prefixScale.
 """
 
-
 from __future__ import annotations
 from dataclasses import dataclass
 

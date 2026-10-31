@@ -5,8 +5,6 @@ Description:
     Defines the Quantity Factory Class, acts
     as a type caster for quantities within
     the agnostic functional endpoint methods.
-    
-    It also allows for operation chain analysis.
 """
 
 from __future__ import annotations
@@ -113,11 +111,11 @@ class Factory:
                 # Runs the wrapped function & applies state
                 result = func(q1, q2)
                 result.meta = PacketNode(
-                    result.unit, 
-                    q1.unit, 
-                    q2.unit, 
-                    operation, 
-                    primary, 
+                    result.unit,
+                    q1.unit,
+                    q2.unit,
+                    operation,
+                    primary,
                     secondary
                 )
 

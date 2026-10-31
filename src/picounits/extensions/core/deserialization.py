@@ -4,9 +4,6 @@ Filename: deserialization.py
 Description:
     Type conversion for .ut & .uiv format values.
     Handles lists and nested structures recursively.
-    
-    Converts strings to Python primitives:
-        (int, float, complex, bool, null/none, str).
 """
 
 from __future__ import annotations

@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long
 """
 Filename: config.py
 
@@ -15,7 +16,6 @@ from typing import Dict, Any
 from picounits.configuration.picounits import DEFAULT_ORDER, DEFAULT_SYMBOLS
 from picounits.configuration.picounits import DEFAULT_SIGNIFICANT_FIGURES
 
-# pylint: disable=line-too-long
 
 # Effective preferences after first load
 _effective_symbols: Dict[str, str] | None = None

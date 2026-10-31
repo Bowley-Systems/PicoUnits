@@ -190,6 +190,7 @@ class Dimension:
 # Mapping int to unicode for __repr__ & name within Dimension
 SUPERSCRIPT_MAP = str.maketrans("/0123456789+-. ", "⁄⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻· ")
 
+
 # Standard SI Secondary fallbacks (used when not overridden in preferences)
 _SIBASE_SYMBOLS = {
     FBase.TIME: "s",
@@ -201,6 +202,7 @@ _SIBASE_SYMBOLS = {
     FBase.LUMINOSITY: "cd",
     FBase.DIMENSIONLESS: "∅",
 }
+
 
 # Preferred order for consistent dimensional notation (e.g., kg·m²/s²)
 # Mass first (0), then length (1), time (2), etc.

@@ -2,9 +2,8 @@
 Filename: attributes.py
 
 Description:
-    Ensures that the attribute name
-    for a section or key is valid within
-    python
+    Ensures that the attribute name for a 
+    section or key is valid within python
 """
 
 from __future__ import annotations
@@ -45,11 +44,41 @@ class AttributeCheck:
 
 # Python keywords (as of Python 3.10+)
 KEYWORDS = {
-    'and', 'as', 'assert', 'async', 'await', 
-    'break', 'case', 'class', 'continue', 
-    'def', 'del', 'elif', 'else', 'except', 
-    'False', 'finally', 'for', 'from', 'global',
-    'if', 'import', 'in', 'is', 'lambda', 'match',
-    'None', 'nonlocal', 'not', 'or', 'pass', 'raise', 
-    'return', 'True', 'try', 'while', 'with', 'yield'
+    'False',
+    'None',
+    'True',
+    'and',
+    'as',
+    'assert',
+    'async',
+    'await',
+    'break',
+    'case',
+    'class',
+    'continue',
+    'def',
+    'del',
+    'elif',
+    'else',
+    'except',
+    'finally',
+    'for',
+    'from',
+    'global',
+    'if',
+    'import',
+    'in',
+    'is',
+    'lambda',
+    'match',
+    'nonlocal',
+    'not',
+    'or',
+    'pass',
+    'raise',
+    'return',
+    'try',
+    'while',
+    'with',
+    'yield'
 }

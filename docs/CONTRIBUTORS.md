@@ -1,6 +1,6 @@
 ### Contributors
 
-#### Picounits is developed using:
+#### Required.
 
 - `pylint` as the linter
 - `radon` as the complexity analyzer
@@ -10,6 +10,8 @@
 - `UnitValues` for syntax highlighting for `.ut` and `.uiv`
 
 > Ensure that you add words to `picounits`'s `cSpell.json`, not your personal dictionary.
+
+#### Personal
 
 My personal VS Code workflow also includes:
 - `Pylance`

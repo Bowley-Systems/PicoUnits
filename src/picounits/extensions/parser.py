@@ -3,10 +3,7 @@ Filename: dsl_parser.py
 
 Description:
     Domain specific language parser for .ut (unit types)
-    & .uiv (unit informed values) supports v1.0 and v1.1.
-    
-    Orchestrates deserialization, syntax analysis & 
-    construction of units
+    & .uiv (unit informed values) supports v0.1.0-0.1.2.
 """
 
 from __future__ import annotations
@@ -86,7 +83,7 @@ class Parser:
             registry[symbol] = ConstructUnits.construct_unit(unit_str)
 
         # Raises warning for missing 'format' key in version
-        if not status: BackCompatibilityWarning(filepath).display() # pragma: no cover 
+        if not status: BackCompatibilityWarning(filepath).display() # pragma: no cover
 
         return add_derived_units(registry)
 

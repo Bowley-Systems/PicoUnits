@@ -1,10 +1,5 @@
 # pylint: skip-file
-"""
-Filename: factory.pyi
-
-Description:
-    Static type hinting for the factory module.
-"""
+""" Filename: factory.pyi """
 
 from enum import Enum
 from dataclasses import dataclass

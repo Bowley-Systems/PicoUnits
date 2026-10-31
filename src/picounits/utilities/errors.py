@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long
 """
 Filename: errors.py
 
@@ -10,10 +11,7 @@ from abc import ABC, abstractmethod
 from typing import Any
 from pathlib import Path
 
-# pylint: disable=line-too-long
-
 # Generic Errors
-
 
 class ParserError(ValueError):
     """ Exception for Parser errors when parsing """

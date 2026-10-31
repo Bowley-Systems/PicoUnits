@@ -5,9 +5,11 @@
 # PicoUnits Descriptions
 PICOUNITS_DESCRIPTION = "A Dynamic Runtime Type System for Dimensional Numerical Quantities."
 
+
 # Picounits generate command description & help
 GENERATE_HELP = "Creates a default SI metric .picounits config file in the current directory."
 GENERATE_DESCRIPTION = "Generate a ready-to-use .picounits file with SI metric symbols and ordering."
+
 
 # Default configuration file structure
 DEFAULT_CONFIG = (
@@ -78,6 +80,7 @@ DEFAULT_ORDER = {
     "LUMINOSITY":       6,
     "DIMENSIONLESS":    7,
 }
+
 
 # Numerical constants
 DEFAULT_SIGNIFICANT_FIGURES = 3

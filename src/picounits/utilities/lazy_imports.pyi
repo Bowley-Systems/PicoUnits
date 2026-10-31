@@ -1,10 +1,5 @@
 # pylint: skip-file
-"""
-Filename: lazy_imports.pyi
-
-Description:
-    Static type hinting for the lazy import module.
-"""
+""" Filename: lazy_imports.pyi """
 
 from typing import Any
 from picounits.core.quantities.factory import Factory

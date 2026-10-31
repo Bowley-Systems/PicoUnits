@@ -6,10 +6,8 @@ Description:
     functions methods for scalar quantities (REAL only)
 """
 
-from math import (
-    radians, degrees, sin, cos, tan, exp, log, log10, log2, e,
-    asin, acos, atan, atan2, sinh, cosh, tanh, asinh, acosh, atanh
-)
+from math import radians, degrees, sin, cos, tan, exp, log, log10, log2, e
+from math import asin, acos, atan, atan2, sinh, cosh, tanh, asinh, acosh, atanh
 
 from picounits.core.unit import Unit
 from picounits.core.quantities.packet import Packet

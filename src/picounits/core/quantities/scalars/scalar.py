@@ -24,8 +24,7 @@ class ScalarPacket(Packet, ABC):
     An Abstract Scalar Packet: A prefix, value (Any Scalar) and Unit
 
     NOTE:
-    Representation, prefix scaling, comparison, validation
-    are not implemented in this base case.
+    Representation, prefix scaling, comparison, validation are not implemented in this base case.
     """
     def sqrt(self) -> Packet:   # pragma: no cover
         """ Defines the behavior for taking the square root of a scalar """

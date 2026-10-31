@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long
 """
 Filename: cli.py
 
@@ -15,7 +16,6 @@ from pathlib import Path
 from picounits.configuration.picounits import GENERATE_HELP, GENERATE_DESCRIPTION
 from picounits.configuration.picounits import PICOUNITS_DESCRIPTION, DEFAULT_CONFIG
 
-# pylint: disable=line-too-long
 
 def generate(args: argparse.Namespace | None = None) -> None:
     """ Generates the '.picounits' file in working directories """

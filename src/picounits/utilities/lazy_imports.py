@@ -2,9 +2,7 @@
 Filename: lazy_imports.py
 
 Description:
-    This file defines a generic lazy import
-    helper function and a specific import for
-    factory as its the main lazy import.
+    This file defines a generic lazy import helper functions.
 """
 
 from typing import Any
