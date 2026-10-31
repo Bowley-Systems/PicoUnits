@@ -2,18 +2,8 @@
 #006d77ff -> deep, muted teal-green 
 #d92c2aff -> bold, warm crimson-red 
 
-Hello,
-PicoUnits only exists because I got annoyed by the 
-uncertainty of other unit systems and I wanted a 
-language that can encode parameters into it (UnitValues).
-
-I think the final result here is quite reasonable for 
-that initial problem. I hope you enjoy using PicoUnits.
-
-William Bowley, 
-20th August, 2026
-
-P.S: Thanks for downloading our PicoUnits repository `▽`ʃ♡
+Thanks for downloading our PicoUnits repository `▽`ʃ♡
+- William Bowley (2026/11/01)
 -->
 
 <p align="center">
