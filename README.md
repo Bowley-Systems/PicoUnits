@@ -16,9 +16,6 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
 
 <br>
 
-
-### Overview
-
 ![Version](https://img.shields.io/badge/Version-1.1.3-006D77?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
 ![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
