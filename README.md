@@ -25,10 +25,7 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <table>
   <tr>
     <td>
-      <p>
-      <b>PicoUnits</b> is a dynamic runtime typing system for numerical dimensional quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.</p>
-      <pre><code>"Propagate dimensional type information through your pipeline"</code></pre>
-      <br>
+      <img src="./media/01_examples/test.png">
     </td>
     <td>
       <img src="./media/01_examples/parser_example.gif">
