@@ -14,18 +14,11 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
   >
 </p>
 
-Externalized physical meaning, with custom notation combined with runtime dimensional checking and tracing within python.
+<br>
 
 ---
 
-<p align="center">
-  <table>
-    <tr>
-      <td><img src="./media/01_examples/parser_example.png" width="400"></td>
-      <td><img src="./media/01_examples/parser_example.gif" width="400"></td>
-    </tr>
-  </table>
-</p>
+<p align="center"><img src="./media/01_examples/parser_example.gif" width="400"></p>
 
 
 ### Installation 
