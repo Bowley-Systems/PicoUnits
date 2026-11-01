@@ -25,7 +25,7 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
 <div align="center">
   <table>
     <tr>
-      <td style="vertical-align:top; width:50%;">
+      <td style="">
         <p><b>PicoUnits</b> is a dynamic runtime typing system for numerical dimensional quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.</p>
       </td>
       <td style="vertical-align:top; width:50%;">
