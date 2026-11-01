@@ -22,31 +22,29 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
 ![Coverage](https://img.shields.io/badge/coverage-80%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
-<div align="center">
-  <table>
-    <tr>
-      <td style="vertical-align:top; width:50%;">
-        <p>
-        <b>PicoUnits</b> is a dynamic runtime typing system for numerical dimensional quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.</p>
-        <pre><code>"Propagate dimensional type information through your pipeline"</code></pre>
-        <br>
-        <p>
-        <b>Picounits</b> also has a custom domain-specific language called `unit-values` for writing parameters
-        externally of python. It is then parsed into dimensional types via an attribute tree that can be used during runtime.
-        </p>
-        <pre><code>[circuit]
+<table>
+  <tr>
+    <td style="vertical-align:top; width:50%;">
+      <p>
+      <b>PicoUnits</b> is a dynamic runtime typing system for numerical dimensional quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.</p>
+      <pre><code>"Propagate dimensional type information through your pipeline"</code></pre>
+      <br>
+      <p>
+      <b>Picounits</b> also has a custom domain-specific language called `unit-values` for writing parameters
+      externally of python. It is then parsed into dimensional types via an attribute tree that can be used during runtime.
+      </p>
+      <pre><code>[circuit]
 # The current represented as a complex number
 current_phasor: 10+1j (A)
 current_range: [0, 3] (A)
 voltage_range: [5, 12, 24] k(kg*m^2*s^-3*A^-1)
 magnet_grade: [0.836, 1.10] M(A/m), (kg*s^-2*A^-1)</code></pre>
-      </td>
-      <td style="vertical-align:top; width:50%;">
-        <img src="./media/01_examples/parser_example.gif" width="400">
-      </td>
-    </tr>
-  </table>
-</div>
+    </td>
+    <td style="vertical-align:top; width:50%;">
+      <img src="./media/01_examples/parser_example.gif" width="400">
+    </td>
+  </tr>
+</table>
 
 ### Installation 
  
