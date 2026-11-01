@@ -1,7 +1,8 @@
 # pylint: skip-file
-"""
-Introduces the mechanics of picounits via a few examples
+""" 
+Filename: introduction.py
 
+Introduces the mechanics of picounits via a few examples
 [Assumes: base dimensions are SI metric for (notation)]
 """
 
