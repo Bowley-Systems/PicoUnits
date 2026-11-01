@@ -24,14 +24,14 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
 
 <table>
   <tr>
-    <td style="vertical-align:top; width:50%;">
-      <p width="400">
+    <td>
+      <p>
       <b>PicoUnits</b> is a dynamic runtime typing system for numerical dimensional quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.</p>
       <pre><code>"Propagate dimensional type information through your pipeline"</code></pre>
       <br>
     </td>
-    <td style="vertical-align:top; width:50%;">
-      <img src="./media/01_examples/parser_example.gif" width="400">
+    <td>
+      <img src="./media/01_examples/parser_example.gif">
     </td>
   </tr>
 </table>
