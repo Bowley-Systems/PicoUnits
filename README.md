@@ -16,7 +16,15 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
 
 <br>
 
----
+
+### Overview
+
+![Version](https://img.shields.io/badge/Version-1.1.3-006D77?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-E14F4C?style=flat-square)
+![Python  Version](https://img.shields.io/badge/Python-3.10%2B-006D77?style=flat-square)
+![Coverage](https://img.shields.io/badge/coverage-80%25-E14F4C?style=flat-square)
+[![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
+
 
 <p align="center"><img src="./media/01_examples/parser_example.gif" width="400"></p>
 
