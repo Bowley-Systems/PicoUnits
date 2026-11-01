@@ -22,9 +22,19 @@ Thanks for downloading our PicoUnits repository `▽`ʃ♡
 ![Coverage](https://img.shields.io/badge/coverage-80%25-E14F4C?style=flat-square)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/picounits?label=downloads\&style=flat-square\&color=006D77)](https://pepy.tech/projects/picounits)
 
-
-<p align="center"><img src="./media/01_examples/parser_example.gif" width="400"></p>
-
+<div align="center">
+  <table>
+    <tr>
+      <td style="vertical-align:top; width:50%;">
+        <p><b>PicoUnits</b> is a dynamic runtime typing system for numerical dimensional quantities. It provides a consistent type system for expressing dimensional quantities throughout your pipeline.</p>
+        <pre><code> </code></pre>
+      </td>
+      <td style="vertical-align:top; width:50%;">
+        <img src="./media/01_examples/parser_example.gif" style="width:100%">
+      </td>
+    </tr>
+  </table>
+</div>
 
 ### Installation 
  
